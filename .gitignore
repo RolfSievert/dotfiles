@@ -1,1 +1,6 @@
-/home/.config/pulse/
+*
+!home
+!home/.config/
+!home/.config/*
+!/home/.scripts/
+!/home/.scripts/lock.sh
