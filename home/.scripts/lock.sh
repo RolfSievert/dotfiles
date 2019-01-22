@@ -30,13 +30,13 @@ i3lock \
 --screen 1            \
 --blur 5              \
 --clock               \
-#--indicator           \
+--indicator           \
 --timestr="%H:%M:%S"  \
 --datestr="%A, %m %Y" \
---keylayout 2         \
+\ #--keylayout 2         \
 \
 --veriftext="...Maybe..." \
---wrongtext="Nope!" \
+--wrongtext="Nope!" 
 # --textsize=20
 # --modsize=10
 # --timefont=comic-sans
