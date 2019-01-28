@@ -1,6 +1,15 @@
 *
 !home
 !home/.config/
-!home/.config/*
+!home/.config/i3
+!home/.config/i3/*
+!home/.config/polybar
+!home/.config/polybar/*
+!home/.config/wal
+!home/.config/wal/*
+!home/.config/rofi
+!home/.config/rofi/*
+!home/.config/compton
+!home/.config/compton/*
 !/home/.scripts/
-!/home/.scripts/lock.sh
+!/home/.scripts/*

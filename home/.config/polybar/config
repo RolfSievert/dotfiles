@@ -118,11 +118,11 @@ pin-workspaces = true
 label-mode-font = 2
 ; focused = Active workspace on focused monitor
 ;label-focused = 
-label-focused = " "
+label-focused = ""
 label-focused-background = ${colors.ws-focused}
 label-separator = "  "
 label-separator-background = ${colors.backgrounda}
-label-focused-foreground = ${colors.icon}
+label-focused-foreground = ${xrdb:color6}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
