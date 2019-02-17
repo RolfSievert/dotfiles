@@ -1,9 +1,19 @@
 #!/bin/sh
 
-#I=~/Pictures/5vvyo4u8y8wz.jpg # image (w h ratio = 1.78)
+# image (w h ratio = 1.78)
 S=0.35 # saturation
+B=1 # backend index
 
-wal -i $1 --saturate $S --backend haishoku
+# Backends: colorz, schemer2, haishoku, colorthief, wal
+backend=(wal colorthief haishoku colorz schemer2)
 
-# Backends:
-# colorz, schemer2, haishoku, colorthief, wal
+if ! [ -z "$2" ]; then
+    backend_index=$2
+fi
+
+if ! [ -z "$3" ]; then
+    S=$3
+fi
+
+wal -i $1 --saturate $S --backend ${backend[B]}
+
