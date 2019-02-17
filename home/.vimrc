@@ -11,6 +11,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'scrooloose/nerdtree'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 colorscheme wal
 " Indent and syntax highlighting
@@ -41,6 +42,9 @@ set t_Co=256
 " colorscheme elflord
 " set background=dark
 " au Filetype prolog colorscheme delek
+"
+" Realod file when changed
+set autoread
 
 " Rownumbers
 set rnu
