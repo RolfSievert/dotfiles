@@ -20,10 +20,10 @@ V=$(echo $(awk '/\*color3:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)f
 
 
 i3lock \
---insidevercolor=$C   \
+--insidevercolor=$B   \
 --ringvercolor=$V     \
 \
---insidewrongcolor=$C \
+--insidewrongcolor=$B \
 --ringwrongcolor=$W   \
 \
 --insidecolor=$B      \
@@ -34,7 +34,7 @@ i3lock \
 --verifcolor=$T        \
 --wrongcolor=$T        \
 --timecolor=$T        \
---datecolor=$T        \
+--datecolor=$D        \
 --layoutcolor=$T      \
 --keyhlcolor=$W       \
 --bshlcolor=$W        \
@@ -45,10 +45,12 @@ i3lock \
 --indicator           \
 --timestr="%H:%M:%S"  \
 --datestr="%A, %m %Y" \
-\ #--keylayout 2         \
 \
---veriftext="...Maybe..." \
---wrongtext="Nope!" 
+--veriftext="" \
+--wrongtext="" \
+--noinputtext="" \
+--radius=100 \
+--ring-width=8
 # --textsize=20
 # --modsize=10
 # --timefont=comic-sans
