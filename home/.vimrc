@@ -2,17 +2,29 @@
 call plug#begin('~/.vim/plugged')
 " Load plugins
 " Using plug
+" Colorscheme from wal
 Plug 'dylanaraps/wal.vim'
+" Python autocompletion
 Plug 'davidhalter/jedi-vim'
+" Good tabs and spaces
 Plug 'godlygeek/tabular'
+" Markdown compiler, syntax, etc 
 Plug 'plasticboy/vim-markdown'
-Plug 'jalvesaq/Nvim-R'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-rmarkdown'
+" File browser
 Plug 'scrooloose/nerdtree'
+" Autocompletion
 Plug 'Valloric/YouCompleteMe'
+" Use template for new files
+Plug 'aperezdc/vim-template'
+" Asynchronous linting
+Plug 'w0rp/ale'
+" Language pack (better syntax highlighting)
+Plug 'sheerun/vim-polyglot'
 call plug#end()
+
 colorscheme wal
 " Indent and syntax highlighting
 filetype plugin indent on
@@ -20,6 +32,9 @@ syntax enable
 
 " Make clicking move cursor
 set mouse=a
+
+" Suggested linebreak
+"set colorcolumn=72
 
 " Open nerdtree if no files are specified
 autocmd StdinReadPre * let s:std_in=1
@@ -42,7 +57,7 @@ set t_Co=256
 " colorscheme elflord
 " set background=dark
 " au Filetype prolog colorscheme delek
-"
+
 " Realod file when changed
 set autoread
 
@@ -71,5 +86,3 @@ set ignorecase
 " Cool stuff
 set showmatch "Highlight braces
 set wildmenu "Show menu alternatives
-
-

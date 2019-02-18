@@ -8,7 +8,7 @@ B=1 # backend index
 backend=(wal colorthief haishoku colorz schemer2)
 
 if ! [ -z "$2" ]; then
-    backend_index=$2
+    B=$2
 fi
 
 if ! [ -z "$3" ]; then
