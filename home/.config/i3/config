@@ -214,7 +214,7 @@ bindsym $mod+c exec brave
 bindsym Control+$mod+l exec $HOME/.scripts/lock.sh
 exec --no-startup-id xautolock -time 15 -locker "betterlockscreen -l dim -t 'unlock the swag'"
 # Rofi
-bindsym Super_L exec rofi -show run -kb-cancel Super_L
+bindsym Super_L exec rofi -show run -kb-cancel Super_L -sidebar-mode -location 0 -width 25% -lines 5
 # Switch workspaces
 bindsym $mod+s exec python3 $HOME/.config/i3/swap_workspaces.py
 # Switch focused container up 10 workspaces

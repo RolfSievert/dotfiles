@@ -8,7 +8,7 @@
 
     alternate-active-background: @background;
     alternate-active-foreground: @foreground;
-    alternate-normal-background: argb:15{background.strip};
+    alternate-normal-background: argb:55{background.strip};
     alternate-normal-foreground: @foreground;
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
@@ -21,7 +21,7 @@
     selected-urgent-foreground: @foreground;
 
     background-color: @transparent;
-    background: argb:bb{background.strip};
+    background: argb:f5{background.strip};
     foreground: {foreground};
     transparent: argb:00000000;
     border-color: @background;
