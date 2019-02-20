@@ -17,16 +17,32 @@
 ;==========================================================
 
 [colors]
+; Background and standard colors
 background = ${xrdb:background}
 backgrounda = ${xrdb:polybarbg}
+alert = ${xrdb:color4}
 font-color= ${xrdb:color15}
 background-alt = ${xrdb:color8}
 background-blue = ${xrdb:color1}
 foreground = #fff
 foreground-alt = #55aa55
-primary = #ffb52a
-secondary = #e60053
-alert = ${xrdb:color4}
+dark-background = #000
+
+; Volume colors
+vol-normal = #000
+vol-muted = #000
+
+; Spotify color
+spotify = ${xrdb:color8}
+
+; i3 Colors
+ws-unfocused = ${xrdb:polybarbg}
+ws-unfocused-icon = ${xrdb:color1}
+ws-focused = ${xrdb:polybarbg}
+ws-focused-icon = ${xrdb:color2}
+ws-separator = ${xrdb:color1}
+
+; Icons
 icon = ${xrdb:color15}
 icon-light = ${xrdb:color4}
 icon-time = ${xrdb:color5}
@@ -34,8 +50,6 @@ icon-cpu = ${xrdb:color4}
 icon-memory = ${xrdb:color4}
 icon-wifi = ${xrdb:color8}
 icon-battery = ${xrdb:color3}
-ws-unfocused = ${xrdb:color3a}
-ws-focused = ${xrdb:color5a}
 
 [bar/bar]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -62,19 +76,20 @@ line-color = #f00
 bottom = true
 border-color = #00000000
 
-padding-left = 0
-padding-right = 3
+padding-left = 2
+padding-right = 2
 
-module-margin-left = 3
+module-margin-left = 1
 module-margin-right = 0
 
 font-0 = Inconsolata-g:pixelsize=12;1
 font-1 = "FontAwesome:style=regular:pixelsize=11;2"
 font-2 = "Symbola:style=regular:pixelsize=11;2"
 
-modules-left = i3
+modules-left = volume spotify
 ;modules-center = spotify mpd
-modules-right = volume battery cpu memory date wlan
+modules-center = i3
+modules-right = battery cpu memory date wlan
 
 ;tray-position = right
 ;tray-padding = 2
@@ -120,18 +135,19 @@ label-mode-font = 2
 ;label-focused = 
 label-focused = ""
 label-focused-background = ${colors.ws-focused}
-label-separator = "  "
+label-separator = " "
 label-separator-background = ${colors.backgrounda}
-label-focused-foreground = ${xrdb:color6}
-label-focused-padding = 2
+label-separator-foreground = ${colors.ws-separator}
+label-focused-foreground = ${colors.ws-focused-icon}
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = " "
+label-unfocused = ""
 ;label-unfocused = 
-label-unfocused-padding = 2
+label-unfocused-padding = 3
 ;label-unfocused-underline = #ff0000
 label-unfocused-background = ${colors.ws-unfocused}
-label-unfocused-foreground = ${colors.font-color}
+label-unfocused-foreground = ${colors.ws-unfocused-icon}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
@@ -155,6 +171,7 @@ label-urgent-padding = 2
 type = custom/script
 exec = sh ~/.config/polybar/spotify.sh
 interval = 2
+format-foreground = ${colors.spotify}
 
 [module/mpd]
 type = internal/mpd
@@ -268,6 +285,7 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 5
+format-margin = 2
 
 date = %dth %b
 time = " %H:%M -"
@@ -289,8 +307,7 @@ format-volume = <ramp-volume> <label-volume>
 
 format-muted= <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = 
-label-muted-padding-right = 3
+label-muted =  %percentage%%
 label-muted-foreground = #66
 
 bar-volume-width = 10
@@ -322,6 +339,8 @@ type = internal/battery
 battery = BAT0
 adapter = AC0
 full-at = 98
+format-charging-margin = 2
+format-discharging-margin = 2
 
 format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
@@ -340,6 +359,7 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.icon-battery}
+ramp-capacity-0-foreground = ${colors.alert}
 
 animation-charging-0 = 
 animation-charging-1 = 
