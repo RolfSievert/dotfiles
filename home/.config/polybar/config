@@ -36,11 +36,15 @@ vol-muted = #000
 spotify = ${xrdb:color8}
 
 ; i3 Colors
-ws-unfocused = ${xrdb:polybarbg}
+;ws-unfocused = ${xrdb:polybarbg}
+ws-unfocused = #000
 ws-unfocused-icon = ${xrdb:color1}
-ws-focused = ${xrdb:polybarbg}
+;ws-focused = ${xrdb:polybarbg}
+ws-focused = #000
 ws-focused-icon = ${xrdb:color2}
-ws-separator = ${xrdb:color1}
+;ws-separator = ${xrdb:color1}
+ws-separator = #000
+ws-separator-icon = #000
 
 ; Icons
 icon = ${xrdb:color15}
@@ -136,8 +140,8 @@ label-mode-font = 2
 label-focused = ""
 label-focused-background = ${colors.ws-focused}
 label-separator = " "
-label-separator-background = ${colors.backgrounda}
-label-separator-foreground = ${colors.ws-separator}
+label-separator-background = ${colors.ws-separator}
+label-separator-foreground = ${colors.ws-separator-icon}
 label-focused-foreground = ${colors.ws-focused-icon}
 label-focused-padding = 3
 
