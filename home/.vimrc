@@ -1,3 +1,9 @@
+" Automatic install of plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 " Load Plug (plugin mananger)
 call plug#begin('~/.vim/plugged')
 " Load plugins
@@ -23,6 +29,10 @@ Plug 'aperezdc/vim-template'
 Plug 'w0rp/ale'
 " Language pack (better syntax highlighting)
 Plug 'sheerun/vim-polyglot'
+" Better syntax highlighting for c++
+"Plug 'octol/vim-cpp-enhanced-highlight'
+" Fuzzy search for vim
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 colorscheme wal

@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright © 2019 hitsnapper <hitsnapper@Znap>
+# Copyright © 2019 Rolf Sievert
 #
 # Distributed under terms of the MIT license.
 
 """
-
+A script made to pipe jokes into cowsay. Jokes on git: taivop/joke-dataset
 """
 
 import json
@@ -35,7 +35,6 @@ elif set_nr == 2:
 # Debugging
 index = randint(0, len(data)-1)
 if set_nr == 0:
-    print(data[index]["title"])
     print(data[index]["body"])
 
 elif set_nr == 1:
