@@ -11,13 +11,12 @@
 
 #Colors path
 COL_PATH=/home/.cache/wal/colors.Xresources
-B=$(echo $(awk '/\*color0:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)cc)
-C=$(echo $(awk '/\*color0:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff)
-D=$(echo $(awk '/\*color2:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff)
-T=$(echo $(awk '/\*color4:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff)
-W=$(echo $(awk '/\*color5:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff)
-V=$(echo $(awk '/\*color3:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff)
-
+B=$(echo $(awk '/\*color0:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)cc) # Background
+C=$(echo $(awk '/\*color1:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Ring color
+D=$(echo $(awk '/\*color3:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Date color
+T=$(echo $(awk '/\*color5:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Time color
+W=$(echo $(awk '/\*color5:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Wrong color
+V=$(echo $(awk '/\*color3:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Verify color
 
 i3lock \
 --insidevercolor=$B   \
@@ -27,9 +26,9 @@ i3lock \
 --ringwrongcolor=$W   \
 \
 --insidecolor=$B      \
---ringcolor=$D        \
+--ringcolor=$C        \
 --linecolor=$B        \
---separatorcolor=$D   \
+--separatorcolor=$C   \
 \
 --verifcolor=$T        \
 --wrongcolor=$T        \
@@ -50,7 +49,11 @@ i3lock \
 --wrongtext="" \
 --noinputtext="" \
 --radius=100 \
---ring-width=8
+--ring-width=8 \
+--bar-indicator \
+#--datepos="80: 2*ty-30" \
+#--timepos="ix: iy+12" \
+#--datesize=20 \
 # --textsize=20
 # --modsize=10
 # --timefont=comic-sans
