@@ -194,9 +194,11 @@ focus_follows_mouse no
 #for_window [class="Brave"] move to workspace 1; workspace 1
 #for_window [class="Spotify"] move to workspace 4; workspace 4
 
-# Keybindings
+##### Keybindings #####
 bindsym $mod+z workspace prev
 bindsym $mod+x workspace next
+
+# Special buttons
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle #mute sound
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle #mute mic
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +4% #increase sound volume
@@ -215,13 +217,13 @@ bindsym Control+$mod+l exec $HOME/.scripts/lock.sh
 bindsym Super_L exec rofi -show run -kb-cancel Super_L -sidebar-mode -location 0 -width 25% -lines 5
 # Switch workspaces
 bindsym $mod+s exec python3 $HOME/.config/i3/swap_workspaces.py
-# Switch focused container up 10 workspaces
+# Move focused container up 10 workspaces
 bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.py
 
-# Startup stuff
+#### Startup stuff ####
 
 # Autolock after specified time
-exec --no-startup-id xautolock -time 5 -locker $HOME/.scripts/lock.sh
+exec --no-startup-id xautolock -time 9 -locker $HOME/.scripts/lock.sh
 # Restore previous color scheme
 exec_always --no-startup-id wal -R
 # Start polybar
