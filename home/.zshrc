@@ -100,7 +100,7 @@ alias pdf='apvlv $1 &'
 export PATH=$PATH:~/Programs/Piskel-0.14.0-64bits/
 
 # cowsay
-python3 .scripts/cowsay/cowsay.py | cowsay -f moose
+#python3 .scripts/cowsay/cowsay.py | cowsay -f moose
 
 # Show todolist
 todolist l

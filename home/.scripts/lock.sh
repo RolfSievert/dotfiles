@@ -51,6 +51,7 @@ i3lock \
 --radius=100 \
 --ring-width=8 \
 --bar-indicator \
+--timesize=60
 #--datepos="80: 2*ty-30" \
 #--timepos="ix: iy+12" \
 #--datesize=20 \
