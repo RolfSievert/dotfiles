@@ -17,4 +17,4 @@ fi
 
 wal -i $1 --saturate $S --backend ${backend[B]}
 
-oomox-cli -m all ~/.cache/wal/colors-oomox
+#oomox-cli -m all ~/.cache/wal/colors-oomox
