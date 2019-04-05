@@ -86,6 +86,11 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# Floating windows
+for_window [class="Thunar"] floating enable
+for_window [class="nautilus"] floating enable
+for_window [class="gimp"] floating enable
+
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -223,7 +228,7 @@ bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.
 #### Startup stuff ####
 
 # Autolock after specified time
-exec --no-startup-id xautolock -time 9 -locker $HOME/.scripts/lock.sh
+#exec --no-startup-id xautolock -time 9 -locker $HOME/.scripts/lock.sh
 # Restore previous color scheme
 exec_always --no-startup-id wal -R
 # Start polybar

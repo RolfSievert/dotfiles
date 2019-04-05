@@ -107,3 +107,36 @@ todolist l
 
 # Set vim as editor
 export EDITOR=vim
+
+# Modified version where you can press
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fo() {
+  local out file key
+  IFS=$'\n' out=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --expect=ctrl-o,ctrl-e))
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || mimeopen "$file" &
+  fi
+}
+
+vf() {
+  local out file key
+  IFS=$'\n' out=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --expect=ctrl-o,ctrl-e))
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || vim "$file"
+  fi
+}
+
+folder_items() {
+    sudo du -ax --block-size=1M "$1" | sort -n -r | head -20
+}
+
+package_sizes() {
+    pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}
+
+export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'
