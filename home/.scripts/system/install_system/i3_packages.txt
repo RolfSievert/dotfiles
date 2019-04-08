@@ -1,0 +1,8 @@
+# Window compositor
+compton
+# Graphics for windows, transparency and stuff
+compton-tryone-git
+# Terminal with transparent background
+gnome-terminal-transparent
+# Locker for i3
+i3lock-color
