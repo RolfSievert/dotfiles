@@ -46,6 +46,9 @@ set mouse=a
 " Suggested linebreak
 "set colorcolumn=72
 
+" ycm extra conf
+let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+
 " ALE jump to warning
 nmap <silent> <C-j> :ALENext<cr>
 nmap <silent> <C-k> :ALEPrevious<cr>
@@ -60,8 +63,6 @@ let NERDTreeQuitOnOpen = 1
 " Open foler on 'l'
 "let NERDTreeMapActivateNode='<o>'
 "let NERDTreeMapCloseDir='<x>'
-"Yanks in vim can be pasted outside vim
-set clipboard=unnamedplus
 
 " Correct encoding
 set encoding=utf-8
