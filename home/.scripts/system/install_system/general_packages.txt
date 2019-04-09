@@ -1,24 +1,18 @@
-# Nice internet manager
-netctl
-# Automatic network manager
-netctl-auto
 # makes symlinks from git repo to system, nice for config files
 homesick
-# Nice toolbar
-polybar
-# Nice search popup
-rofi
-# Creates colorschemes based on background
-pywal
 # Pdf reader with vim bindings
 zathura
 # Good browser
 brave
 # Expansion of bash isch
 zsh
-# Nice theme for cursor
-xcursor-breeze
 # fzf fuzzy search
 fzf
 # Nice file opener
-mimeopen
+perl-file-mimeinfo
+# Nice search
+gawk
+# cmake
+cmake
+# Python pip
+python-pip

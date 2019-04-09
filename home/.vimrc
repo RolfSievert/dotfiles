@@ -35,7 +35,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
-colorscheme wal
 " Indent and syntax highlighting
 filetype plugin indent on
 syntax enable
