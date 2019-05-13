@@ -30,6 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
+#bindsym $mod+Return exec termite -c .cache/wal/termite
 bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
@@ -215,7 +216,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 # Move to workspace 1 and start brave
-bindsym $mod+c workspace 1; exec brave
+bindsym $mod+c workspace 1; exec firefox
 # Lock screen
 bindsym Control+$mod+l exec $HOME/.scripts/lock.sh
 # Rofi
@@ -224,6 +225,8 @@ bindsym Super_L exec rofi -show run -kb-cancel Super_L -sidebar-mode -location 0
 bindsym $mod+s exec python3 $HOME/.config/i3/swap_workspaces.py
 # Move focused container up 10 workspaces
 bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.py
+# Emacs
+bindsym $mod+m exec emacs
 
 #### Startup stuff ####
 

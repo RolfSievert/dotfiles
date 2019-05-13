@@ -9,7 +9,10 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="arrow"
+
+# Set colorscheme from wal
 #(cat ~/.cache/wal/sequences &)
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -96,8 +99,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Use for tilix terminal
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
+
 alias pdf='apvlv $1 &'
 export PATH=$PATH:~/Programs/Piskel-0.14.0-64bits/
+alias nv='nvim'
 
 # cowsay
 #python3 .scripts/cowsay/cowsay.py | cowsay -f moose
@@ -127,7 +137,7 @@ vf() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || vim "$file"
+    [ "$key" = ctrl-o ] && open "$file" || nvim "$file"
   fi
 }
 
@@ -139,4 +149,4 @@ package_sizes() {
     pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 
-export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'
+# export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'

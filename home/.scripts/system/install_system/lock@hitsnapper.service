@@ -1,13 +1,14 @@
 [Unit]
 Description = Lock screen when going to sleep/suspend
 Before=sleep.target
+Before=suspend.target
 
 [Service]
 User=hitsnapper
 Type=forking
 Environment=DISPLAY=:0
 ExecStartPre=
-ExecStart=xautolock -locknow
+ExecStart=/home/hitsnapper/.scripts/lock.sh
 TimeoutSec=infinity
 
 [Install]

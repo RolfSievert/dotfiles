@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 " Colorscheme from wal
 Plug 'dylanaraps/wal.vim'
 " Python autocompletion
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " Good tabs and spaces
 Plug 'godlygeek/tabular'
 " Markdown compiler, syntax, etc 
@@ -35,6 +35,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+
 " Indent and syntax highlighting
 filetype plugin indent on
 syntax enable
@@ -45,12 +47,23 @@ set mouse=a
 " Suggested linebreak
 "set colorcolumn=72
 
+" Make copying copy to clipboard
+set clipboard=unnamedplus
+
+" wal colorscheme
+colorscheme wal
+
 " ycm extra conf
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
-" ALE jump to warning
-nmap <silent> <C-j> :ALENext<cr>
-nmap <silent> <C-k> :ALEPrevious<cr>
+" Run FZF
+nmap <silent> <C-d> :FZF<cr>
+
+" Jump to warning/error
+" let g:ycm_always_populate_location_list = 1 "using ycm
+let g:ycm_enable_diagnostic_signs = 0
+nmap <silent> <C-j> :ALENext<CR>
+nmap <silent> <C-k> :ALEPrevious<CR>
 
 " Open nerdtree if no files are specified
 autocmd StdinReadPre * let s:std_in=1
@@ -88,14 +101,23 @@ set tabstop=4
 
 " Folding
 set foldenable
-set foldlevelstart=10
+set foldlevelstart=1
 set foldmethod=indent
-set foldnestmax=10
+set foldnestmax=3
 
 " Searching
 set hlsearch "Highlights search
+" Press Space to turn off highlighting and clear any message already displayed.
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 set incsearch
 set ignorecase
+
+" Tab shortcuts
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
+" Quick enter normal mode
+inoremap fd <ESC>
 
 " Cool stuff
 set showmatch "Highlight braces

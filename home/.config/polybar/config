@@ -27,6 +27,7 @@ background-blue = ${xrdb:color1}
 foreground = #fff
 foreground-alt = #55aa55
 dark-background = #000
+;dark-background = ${xrdb:color0}
 
 ; Volume colors
 vol-normal = #000
@@ -37,14 +38,14 @@ spotify = ${xrdb:color8}
 
 ; i3 Colors
 ;ws-unfocused = ${xrdb:polybarbg}
-ws-unfocused = #000
+ws-unfocused = ${colors.dark-background}
 ws-unfocused-icon = ${xrdb:color1}
 ;ws-focused = ${xrdb:polybarbg}
-ws-focused = #000
+ws-focused = ${colors.dark-background}
 ws-focused-icon = ${xrdb:color2}
 ;ws-separator = ${xrdb:color1}
-ws-separator = #000
-ws-separator-icon = #000
+ws-separator = ${colors.dark-background}
+ws-separator-icon = ${colors.dark-background}
 
 ; Icons
 icon = ${xrdb:color15}
