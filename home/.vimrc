@@ -59,6 +59,9 @@ let g:ale_linters = {'cpp': ['g++']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
+let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format']}
+call ale#Set('c_clangformat_options', '-style=file')
+nmap <F8> :ALEFix<CR>
 
 " NerdTree
 " open nerdtree if no files are specified
