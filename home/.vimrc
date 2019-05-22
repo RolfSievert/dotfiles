@@ -6,12 +6,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 " Load Plug (plugin mananger)
 call plug#begin('~/.vim/plugged')
-" Load plugins
-" Using plug
+
+""" Load plugins
+
 " Colorscheme from wal
 Plug 'dylanaraps/wal.vim'
-" Python autocompletion
-" Plug 'davidhalter/jedi-vim'
 " Good tabs and spaces
 Plug 'godlygeek/tabular'
 " Markdown compiler, syntax, etc 
@@ -21,7 +20,8 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-rmarkdown'
 " File browser
 Plug 'scrooloose/nerdtree'
-" Autocompletion
+" Autocompletion (tip: use package bear on makefile, "bear make", to link
+" project
 Plug 'Valloric/YouCompleteMe'
 " Use template for new files
 Plug 'aperezdc/vim-template'
@@ -29,8 +29,6 @@ Plug 'aperezdc/vim-template'
 Plug 'w0rp/ale'
 " Language pack (better syntax highlighting)
 Plug 'sheerun/vim-polyglot'
-" Better syntax highlighting for c++
-"Plug 'octol/vim-cpp-enhanced-highlight'
 " Fuzzy search for vim
 Plug 'ctrlpvim/ctrlp.vim'
 " Snippets
@@ -38,9 +36,11 @@ Plug 'honza/vim-snippets'
 call plug#end()
 
 """"" PLUG PACKAGES CONFIG """""
+
 " YCM
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+nmap <silent> gd :YcmCompleter GoTo<CR>
 " disagble diagnostics
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_enable_diagnostic_signs = 0
