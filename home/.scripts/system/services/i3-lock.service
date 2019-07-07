@@ -7,7 +7,6 @@ Before=suspend.target
 User=hitsnapper
 Type=forking
 Environment=DISPLAY=:0
-ExecStartPre=
 ExecStart=/home/hitsnapper/.scripts/lock.sh
 TimeoutSec=infinity
 

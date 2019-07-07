@@ -17,6 +17,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vim-pandoc/vim-rmarkdown'
 " File browser
 Plug 'scrooloose/nerdtree'
@@ -61,7 +62,7 @@ nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
 let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format']}
 call ale#Set('c_clangformat_options', '-style=file')
-nmap <F8> :ALEFix<CR>
+nmap <silent> <F8> :ALEFix<CR>
 
 " NerdTree
 " open nerdtree if no files are specified
@@ -71,7 +72,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 " close nerdtree when opening a file
 let NERDTreeQuitOnOpen = 1
-
 
 
 
@@ -105,11 +105,11 @@ set rnu
 set nu
 
 " Tab buffers
-nmap <C-t> :tab sp<cr>
-nmap tj :tabprevious<cr>
-nmap th :tabprevious<cr>
-nmap tk :tabnext<cr>
-nmap tl :tabnext<cr>
+nmap <silent> tt :tab sp<cr>
+nmap <silent> tj :tabprevious<cr>
+nmap <silent> th :tabprevious<cr>
+nmap <silent> tk :tabnext<cr>
+nmap <silent> tl :tabnext<cr>
 
 " Good tabs
 set autoindent

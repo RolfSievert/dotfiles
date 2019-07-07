@@ -105,7 +105,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-alias pdf='apvlv $1 &'
 export PATH=$PATH:~/Programs/Piskel-0.14.0-64bits/
 alias nv='nvim'
 
@@ -147,6 +146,10 @@ folder_items() {
 
 package_sizes() {
     pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}
+
+nn() {
+    gnome-terminal --working-directory=$(pwd) &
 }
 
 # export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'
