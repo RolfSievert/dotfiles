@@ -1,0 +1,51 @@
+{
+    // splitv split container with 2 children
+    "layout": "splitv",
+    "type": "con",
+    "nodes": [
+        {
+            // stacked split container with 2 children
+            "layout": "splith",
+            "percent": 0.7,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "none",
+                    "name": "terminal",
+                    "percent": 0.5,
+                    "type": "con",
+                    "swallows": [
+                        {
+                            "class": "^Gnome-terminal$",
+                            "instance": "^gnome-terminal-server$"
+                        }
+                    ]
+                },
+                {
+                    "border": "none",
+                    "name": "terminal",
+                    "percent": 0.5,
+                    "type": "con",
+                    "swallows": [
+                        {
+                            "class": "^Gnome-terminal$",
+                            "instance": "^gnome-terminal-server$"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "border": "none",
+            "name": "test",
+            "percent": 0.15,
+            "type": "con",
+            "swallows": [
+                {
+                "class": "^Gnome-terminal$",
+                "instance": "^gnome-terminal-server$"
+                }
+            ]
+        }
+    ]
+}
