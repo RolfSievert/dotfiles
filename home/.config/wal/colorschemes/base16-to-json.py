@@ -54,7 +54,7 @@ for arg in sys.argv[1:]:
         }
         #print(json.dumps(x))
 
-        with open(dir_path + '/' + file_name + '.json', 'w', encoding='utf-8') as f:
+        with open(os.path.join(dir_path, file_name) + '.json', 'w', encoding='utf-8') as f:
             json.dump(x, f, ensure_ascii=False, indent=4)
     else:
         print(arg + " is not of type .yaml")

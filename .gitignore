@@ -6,7 +6,7 @@
 !home/.config/polybar
 !home/.config/polybar/**
 !home/.config/wal
-!home/.config/wal/**
+!home/.config/wal/*
 !home/.config/rofi
 !home/.config/rofi/**
 !home/.config/compton

@@ -230,6 +230,13 @@ bindsym $mod+o exec python3 $HOME/.config/i3/next_empty.py
 bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.py
 # Open nmtui
 bindsym $mod+n exec i3-sensible-terminal -e nmtui-connect
+# open project folder
+bindsym $mod+p exec gnome-terminal -- $HOME/.scripts/project_layout/project-layout.sh
+
+
+# show on press and hide on release
+# bindcde $mod exec
+# bindcode --release $mod exec
 
 #### Startup stuff ####
 
@@ -237,6 +244,8 @@ bindsym $mod+n exec i3-sensible-terminal -e nmtui-connect
 #exec --no-startup-id xautolock -time 9 -locker $HOME/.scripts/lock.sh
 # Restore previous color scheme
 exec_always --no-startup-id wal -R
+# Set background image
+exec_always --no-startup-id ~/.fehbg &
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Compton
