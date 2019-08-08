@@ -24,15 +24,16 @@ alert = ${xrdb:color4}
 font-color= ${xrdb:color15}
 background-alt = ${xrdb:color8}
 background-blue = ${xrdb:color1}
-foreground = #fff
+white = #fff
 foreground-alt = #55aa55
+black = #000
 
 ; Spotify color
 spotify = ${xrdb:color8}
 
 ; i3 Colors
 ws-unfocused = ${xrdb:polybarbg}
-ws-unfocused-icon = ${xrdb:color1}
+ws-unfocused-icon = ${colors.black}
 ws-focused = ${xrdb:polybarbg}
 ws-focused-icon = ${xrdb:color2}
 ws-separator = ${xrdb:polybarbg}
@@ -46,6 +47,7 @@ icon-cpu = ${xrdb:color4}
 icon-memory = ${xrdb:color4}
 icon-wifi = ${xrdb:color8}
 icon-battery = ${xrdb:color3}
+icon-volume-muted = ${xrdb:color8}
 
 [bar/bar]
 ;DEFAULT
@@ -66,7 +68,7 @@ bottom = true
 ;EXPERIMENTAL
 
 background = ${colors.backgrounda}
-foreground = ${colors.foreground}
+foreground = ${colors.white}
 
 line-size = rgba(0, 0, 0, 0)
 line-color = #f00
@@ -81,16 +83,16 @@ border-color = #00000000
 padding-left = 2
 padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 0
 
 font-0 = Inconsolata-g:pixelsize=12;1
 font-1 = "FontAwesome:style=regular:pixelsize=11;2"
 font-2 = "Symbola:style=regular:pixelsize=11;2"
 
-modules-left = volume spotify
+modules-left = date
 modules-center = i3
-modules-right = battery cpu memory date wireless-network
+modules-right = battery cpu memory volume wireless-network
 
 ;tray-position = right
 ;tray-padding = 2
@@ -248,7 +250,7 @@ label-connected-foreground = ${colors.icon-wifi}
 label-connected =  %signal%
 ;format-connected = <label-connected>
 format-connected-underline = #9f78e1
-click-left = nm-applet
+click-left = notify-send "CLICKED!"
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -280,12 +282,12 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 5
-format-margin = 2
+format-margin = 0
 
 date = %dth %b
 time = " %H:%M -"
 
-format-prefix = 
+;format-prefix = 
 format-prefix-foreground = ${colors.icon-time}
 format-underline = #0a6cf5
 
@@ -295,6 +297,7 @@ label-foreground = ${colors.icon-time}
 [module/volume]
 type = internal/alsa
 
+format-muted-margin = 0
 format-volume = <ramp-volume> <label-volume>
 ;format-volume = <bar-volume>
 ;label-volume = VOL
@@ -303,7 +306,7 @@ format-volume = <ramp-volume> <label-volume>
 format-muted= <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
 label-muted =  %percentage%%
-label-muted-foreground = #66
+label-muted-foreground = ${colors.icon-volume-muted}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -334,8 +337,8 @@ type = internal/battery
 battery = BAT0
 adapter = AC0
 full-at = 98
-format-charging-margin = 2
-format-discharging-margin = 2
+format-charging-margin = 0
+format-discharging-margin = 0
 
 format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
