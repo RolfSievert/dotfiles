@@ -254,15 +254,12 @@ interface = wlp3s0
 ; Seconds to sleep between updates
 interval = 3.0
 
-;format-connected = <ramp-signal> <label-connected>
-format-connected = <label-connected>
+; Bind an action to a label that activates upon click
+format-connected = %{A:i3-sensible-terminal -- nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
-;label-connected = %signal%
 label-connected = 蠟 %signal%
-format-connected-underline = #9f78e1
-click-left = notify-send "CLICKED" &
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
+click-left = /usr/bin/notify-send 'Hello world!' 'This is an example notification.' &
+format-disconnected = %{A:i3-sensible-terminal -- nmtui-connect&:}<label-disconnected>%{A}
 label-disconnected = 來
 label-disconnected-foreground = ${colors.icon-wifi}
 
