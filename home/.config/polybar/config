@@ -21,11 +21,9 @@
 background = ${xrdb:background}
 backgrounda = ${xrdb:polybarbg}
 alert = ${xrdb:color4}
-font-color= ${xrdb:color15}
-background-alt = ${xrdb:color8}
-background-blue = ${xrdb:color1}
+foreground = ${xrdb:color8}
+foreground-alt = ${xrdb:color15}
 white = #fff
-foreground-alt = #55aa55
 black = #000
 
 ; Spotify color
@@ -48,6 +46,7 @@ icon-memory = ${xrdb:color4}
 icon-wifi = ${xrdb:color8}
 icon-battery = ${xrdb:color3}
 icon-volume-muted = ${xrdb:color8}
+icon-bluetooth = ${xrdb:color8}
 
 [bar/bar]
 ;DEFAULT
@@ -80,7 +79,7 @@ line-color = #f00
 ;border-bottom-size = 0
 
 border-color = #00000000
-padding-left = 2
+padding-left = 1
 padding-right = 2
 
 module-margin-left = 2
@@ -96,9 +95,9 @@ font-1 = "Material Design Icons:style=Regular:pixelsize=15;4"
 ; can use like custom bars (completely filled characters)
 ; font-2 = "Symbola:style=regular:pixelsize=11;2"
 
-modules-left = date
+modules-left = date 
 modules-center = i3
-modules-right = battery cpu memory volume wireless-network
+modules-right = battery cpu memory volume bluetooth wireless-network
 
 ;tray-position = right
 ;tray-padding = 2
@@ -238,6 +237,13 @@ ramp-used-5 = 瑱
 ramp-used-6 = 甆
 ramp-used-7 = 画
 ramp-used-8 = 瘝
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/bluetooth-label.sh
+format-foreground = ${colors.icon-bluetooth}
+interval = 2
+click-left = i3-sensible-terminal -- bluetoothctl &
 
 [module/wlan]
 type = internal/network
@@ -401,27 +407,6 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
-type = custom/menu
-
-format-spacing = 1
-
-expand-right = false
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  Cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = Logout 
-menu-0-0-exec = exit
-menu-0-1 = Reboot
-menu-0-1-exec = systemctl reboot
-menu-0-2 = Shutdown
-menu-0-2-exec = systemctl poweroff
 
 [module/nm]
 type = custom/script
