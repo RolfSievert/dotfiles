@@ -86,8 +86,13 @@ padding-right = 2
 module-margin-left = 2
 module-margin-right = 0
 
+; Use fc-list to display the correct name of the font
 font-0 = Inconsolata-g:pixelsize=12;1
-font-1 = "FontAwesome:style=regular:pixelsize=11;2"
+; Material Design Icons
+; ttf-material-design-icons-git
+; https://materialdesignicons.com/
+font-1 = "Material Design Icons:style=Regular:pixelsize=16;5"
+; neccessary as custom bars (completely filled characters)
 font-2 = "Symbola:style=regular:pixelsize=11;2"
 
 modules-left = date
@@ -130,10 +135,11 @@ pin-workspaces = true
 
 ;label-mode-padding = 3
 ;label-mode-background = ${colors.primary}
-label-mode-font = 2
 ; focused = Active workspace on focused monitor
 ;label-focused = 
-label-focused = ""
+;label-focused = 
+label-focused = 
+;label-focused = ﻟ
 label-focused-background = ${colors.ws-focused}
 label-separator = " "
 label-separator-background = ${colors.ws-separator}
@@ -142,7 +148,8 @@ label-focused-foreground = ${colors.ws-focused-icon}
 label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = ""
+;label-unfocused = 
+label-unfocused = 
 ;label-unfocused = 
 label-unfocused-padding = 3
 ;label-unfocused-underline = #ff0000
@@ -200,34 +207,36 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = <label> <ramp-load>
+format = <ramp-load>
 label-foreground = ${colors.icon-cpu}
-label = 
+label = 
 ramp-load-foreground = ${colors.icon-cpu}
-ramp-load-0 = ▁
-ramp-load-1 = ▂
-ramp-load-2 = ▃
-ramp-load-3 = ▄
-ramp-load-4 = ▅
-ramp-load-5 = ▆
-ramp-load-6 = ▇
-ramp-load-7 = █
+ramp-load-0 = 
+ramp-load-1 = 瞧
+ramp-load-2 = 爵
+ramp-load-3 = 犯
+ramp-load-4 = 猪
+ramp-load-5 = 瑱
+ramp-load-6 = 甆
+ramp-load-7 = 画
+ramp-load-8 = 瘝
 
 [module/memory]
 type = internal/memory
 interval = 2
-format = <label> <ramp-used>
+format = <ramp-used>
 label-foreground = ${colors.icon-memory}
-label = 
+label = 
 ramp-used-foreground = ${colors.icon-memory}
-ramp-used-0 = ▁
-ramp-used-1 = ▂
-ramp-used-2 = ▃
-ramp-used-3 = ▄
-ramp-used-4 = ▅
-ramp-used-5 = ▆
-ramp-used-6 = ▇
-ramp-used-7 = █
+ramp-used-0 = 
+ramp-used-1 = 瞧
+ramp-used-2 = 爵
+ramp-used-3 = 犯
+ramp-used-4 = 猪
+ramp-used-5 = 瑱
+ramp-used-6 = 甆
+ramp-used-7 = 画
+ramp-used-8 = 瘝
 
 [module/wlan]
 type = internal/network
@@ -244,23 +253,23 @@ interface = wlp3s0
 ; Seconds to sleep between updates
 interval = 3.0
 
+;format-connected = <ramp-signal> <label-connected>
 format-connected = <label-connected>
 label-connected-foreground = ${colors.icon-wifi}
-;label-connected =  %signal% %essid%
-label-connected =  %signal%
-;format-connected = <label-connected>
+;label-connected = %signal%
+label-connected = 蠟 %signal%
 format-connected-underline = #9f78e1
-click-left = notify-send "CLICKED!"
+click-left = notify-send "CLICKED" &
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
+label-disconnected = 來
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 0x00e259
-ramp-signal-2 = 0x00e25a
-ramp-signal-3 = 0x00e25b
-ramp-signal-4 = 0x00e25c
+ramp-signal-0 = 冷
+ramp-signal-1 = 爛
+ramp-signal-2 = 嵐
+ramp-signal-3 = 襤
+ramp-signal-4 = 蠟
 ramp-signal-foreground = ${colors.icon-wifi}
 
 [module/eth]
@@ -298,15 +307,21 @@ label-foreground = ${colors.icon-time}
 type = internal/alsa
 
 format-muted-margin = 0
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume><label-volume>
 ;format-volume = <bar-volume>
 ;label-volume = VOL
 ;label-volume-foreground = ${root.foreground}
 
 format-muted= <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
-label-muted =  %percentage%%
+label-muted = %percentage%%
 label-muted-foreground = ${colors.icon-volume-muted}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = 
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -325,13 +340,6 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -344,26 +352,36 @@ format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
 label-charging-foreground = ${colors.icon-battery}
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity><label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
 label-discharging-foreground = ${colors.icon-battery}
 
-label-full =  %percentage%%
+label-full =  %percentage%%
 label-full-foreground = ${colors.icon-battery}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
 ramp-capacity-foreground = ${colors.icon-battery}
 ramp-capacity-0-foreground = ${colors.alert}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+animation-charging-9 = 
 animation-charging-foreground = ${colors.icon-battery}
 animation-charging-framerate = 750
 
