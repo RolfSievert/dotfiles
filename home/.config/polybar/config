@@ -53,32 +53,27 @@ icon-bluetooth = ${xrdb:color8}
 ;width = 100%
 ;height = 20
 bottom = true
+background = ${colors.backgrounda}
+foreground = ${colors.foreground}
 
 ;OPTIONAL
 ;monitor = ${env:MONITOR:HDMI-1}
-;offset-x = 100
 ;override-redirect = true
 ;wm-restack = i3
-;offset-y = 0
-;radius = 10
-;fixed-center = true
 ;enable-ipc = true
-
-;EXPERIMENTAL
-
-background = ${colors.backgrounda}
-foreground = ${colors.white}
-
-line-size = rgba(0, 0, 0, 0)
-line-color = #f00
-
+;fixed-center = true
+;radius = 10
+;offset-x = 100
+;offset-y = 0
+;line-size = rgba(0, 0, 0, 0)
+;line-color = #f00
 ;border-size = 0
 ;border-left-size=10%
 ;border-right-size=10%
 ;border-top-size=2%
 ;border-bottom-size = 0
+;border-color = #00000000
 
-border-color = #00000000
 padding-left = 1
 padding-right = 2
 
@@ -88,7 +83,7 @@ module-margin-right = 0
 ; Use fc-list to display the correct name of the font
 font-0 = Inconsolata-g:pixelsize=12;2
 ; Material Design Icons
-; ttf-material-design-icons-git
+; AUR: ttf-material-design-icons-git
 ; https://materialdesignicons.com/
 font-1 = "Material Design Icons:style=Regular:pixelsize=15;4"
 
@@ -133,41 +128,31 @@ strip-wsnumbers = true
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
 
-;label-mode-padding = 3
-;label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
-;label-focused = 
-;label-focused = 
 label-focused = 
-;label-focused = ﻟ
-label-focused-background = ${colors.ws-focused}
-label-separator = " "
-label-separator-background = ${colors.ws-separator}
-label-separator-foreground = ${colors.ws-separator-icon}
-label-focused-foreground = ${colors.ws-focused-icon}
 label-focused-padding = 3
+label-focused-background = ${colors.ws-focused}
+label-focused-foreground = ${colors.ws-focused-icon}
 
 ; unfocused = Inactive workspace on any monitor
-;label-unfocused = 
 label-unfocused = 
-;label-unfocused = 
 label-unfocused-padding = 3
-;label-unfocused-underline = #ff0000
 label-unfocused-background = ${colors.ws-unfocused}
 label-unfocused-foreground = ${colors.ws-unfocused-icon}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
-label-visible-background = ${self.label-focused-background}
-label-visible-padding = 2
+label-visible-padding = 3
+label-visible-background = ${colors.ws-unfocused}
+label-visible-foreground = ${colors.ws-unfocused-icon}
 label-visible-offset = 5
 
 ; urgent = Workspace with urgency hint set
-label-urgent = " "
+label-urgent = 
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-;ws-icon-default = 
+;ws-icon-default = 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
 ;ws-icon-2 = 3;
@@ -183,11 +168,11 @@ format-foreground = ${colors.spotify}
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -196,18 +181,14 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label>
-label =  %percentage%%
+label =  %percentage%%
 label-foreground = ${colors.icon-light}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = <ramp-load>
+; Click opens htop
+format = %{A:i3-sensible-terminal -- htop&:}<ramp-load>%{A}
 label-foreground = ${colors.icon-cpu}
 label = 
 ramp-load-foreground = ${colors.icon-cpu}
@@ -264,7 +245,6 @@ interval = 3.0
 format-connected = %{A:i3-sensible-terminal -- nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
 label-connected = 蠟 %signal%
-click-left = /usr/bin/notify-send 'Hello world!' 'This is an example notification.' &
 format-disconnected = %{A:i3-sensible-terminal -- nmtui-connect&:}<label-disconnected>%{A}
 label-disconnected = 來
 label-disconnected-foreground = ${colors.icon-wifi}
@@ -281,9 +261,8 @@ type = internal/network
 interface = 
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -295,14 +274,14 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 5
-format-margin = 0
+;format-margin = 0
 
 date = %dth %b
 time = " %H:%M -"
 
 ;format-prefix = 
-format-prefix-foreground = ${colors.icon-time}
-format-underline = #0a6cf5
+;format-prefix-foreground = ${colors.icon-time}
+;format-underline = #0a6cf5
 
 label = %time% %date%
 label-foreground = ${colors.icon-time}
@@ -310,39 +289,23 @@ label-foreground = ${colors.icon-time}
 [module/volume]
 type = internal/alsa
 
-format-muted-margin = 0
 format-volume = <ramp-volume><label-volume>
-;format-volume = <bar-volume>
+format-volume-foreground = ${colors.foreground-alt}
 ;label-volume = VOL
-;label-volume-foreground = ${root.foreground}
 
 format-muted= <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = %percentage%%
 label-muted-foreground = ${colors.icon-volume-muted}
 
+format-headphones = <ramp-headphones><label-headphones>
+format-headphones-foreground = ${colors.foreground-alt}
+
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
 ramp-headphones-0 = 
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-;bar-volume-indicator = |
-;bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -353,11 +316,9 @@ format-charging-margin = 0
 format-discharging-margin = 0
 
 format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
 label-charging-foreground = ${colors.icon-battery}
 
 format-discharging = <ramp-capacity><label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
 label-discharging-foreground = ${colors.icon-battery}
 
 label-full =  %percentage%%
