@@ -11,7 +11,9 @@ import subprocess
 
 i3 = i3ipc.Connection()
 
-TERMINAL = "gnome-terminal"
+TERMINAL = "/usr/bin/gnome-terminal"
+EDITOR = "nvim"
+SHELL = "/usr/bin/zsh"
 focused = i3.get_tree().find_focused().workspace().name
 
 # Check number of arguments
@@ -28,10 +30,10 @@ command = ["i3-msg", "workspace " + focused + "; append_layout " + layout_path]
 process = subprocess.Popen(command, stdout=subprocess.PIPE)
 output, error = process.communicate()
 
-# Run terminals
-process = subprocess.Popen([TERMINAL, "--working-directory", project_folder, "--", "nvim"], stdout=subprocess.PIPE)
+# Run terminals ($SHELL -ic nvim is used to source .zshrc)
+process = subprocess.Popen([TERMINAL, "--working-directory", project_folder, "--", SHELL, "-ic", EDITOR], stdout=subprocess.PIPE)
 output, error = process.communicate()
-process = subprocess.Popen([TERMINAL, "--working-directory", project_folder, "--", "nvim"], stdout=subprocess.PIPE)
+process = subprocess.Popen([TERMINAL, "--working-directory", project_folder, "--", SHELL, "-ic", EDITOR], stdout=subprocess.PIPE)
 output, error = process.communicate()
 process = subprocess.Popen([TERMINAL, "--working-directory", project_folder], stdout=subprocess.PIPE)
 output, error = process.communicate()

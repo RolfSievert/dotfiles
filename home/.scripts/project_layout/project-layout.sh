@@ -5,6 +5,7 @@
 #
 # Distributed under terms of the MIT license.
 #
+source ~/.zshrc
 
 res=$(find ~/${1:-.} -type d 2> /dev/null | fzf +m)
-python $(dirname $0)/open-layout.py $res
+/usr/bin/python $(dirname $0)/open-layout.py $res
