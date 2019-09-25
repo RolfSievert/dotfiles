@@ -112,7 +112,7 @@ alias nv='nvim'
 #python3 .scripts/cowsay/cowsay.py | cowsay -f moose
 
 # Show todolist
-todolist l
+# todolist l
 
 # Set vim as editor
 export EDITOR=vim
@@ -149,7 +149,7 @@ package_sizes() {
 }
 
 nn() {
-    gnome-terminal --working-directory=$(pwd) &
+    gnome-terminal --working-directory=$(pwd) >/dev/null &
 }
 
 # export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'

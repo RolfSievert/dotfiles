@@ -32,6 +32,8 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 " Fuzzy search for vim
 Plug 'ctrlpvim/ctrlp.vim'
+" Better folding
+Plug 'Konfekt/FastFold'
 " Snippets
 Plug 'honza/vim-snippets'
 call plug#end()
@@ -56,11 +58,11 @@ colorscheme wal
 " ALE
 call ale#Set('cpp_gcc_executable', 'gcc')
 call ale#Set('cpp_gcc_options', '-std=c++17 -Wall -Wextra')
-let g:ale_linters = {'cpp': ['g++']}
+let g:ale_linters = {'cpp': ['g++'], 'python': ['pylint']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
-let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format']}
+let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'python': ['yapf']}
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
 
@@ -72,7 +74,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 " close nerdtree when opening a file
 let NERDTreeQuitOnOpen = 1
-
 
 
 """"" BUILT IN CONFIGS """""
@@ -122,7 +123,7 @@ set tabstop=4
 set foldenable
 set foldlevelstart=1
 set foldmethod=indent
-set foldnestmax=3
+set foldnestmax=2
 
 " Searching
 set hlsearch "Highlights search
