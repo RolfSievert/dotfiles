@@ -92,6 +92,9 @@ for_window [class="Thunar"] floating enable
 for_window [class="nautilus"] floating enable
 for_window [class="gimp"] floating enable
 
+# To make special terminals have floating property by setting --role=floating_term
+for_window [window_role=floating_term] floating enable
+
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -231,7 +234,7 @@ bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.
 # Open nmtui
 bindsym $mod+n exec i3-sensible-terminal -e nmtui-connect
 # open project folder
-bindsym $mod+p exec gnome-terminal -- $HOME/.scripts/project_layout/project-layout.sh
+bindsym $mod+p exec /usr/bin/gnome-terminal -- /usr/bin/sh $HOME/.scripts/project_layout/project-layout.sh
 
 
 # show on press and hide on release
