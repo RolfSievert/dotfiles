@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'dylanaraps/wal.vim'
 " Good tabs and spaces
 Plug 'godlygeek/tabular'
-" Markdown compiler, syntax, etc 
+" Markdown compiler, syntax, etc
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
@@ -36,6 +36,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Konfekt/FastFold'
 " Snippets
 Plug 'honza/vim-snippets'
+" Arduino
+Plug 'stevearc/vim-arduino'
 call plug#end()
 
 """"" PLUG PACKAGES CONFIG """""
@@ -62,7 +64,7 @@ let g:ale_linters = {'cpp': ['g++'], 'python': ['pylint']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
-let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'python': ['yapf']}
+let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf']}
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
 
