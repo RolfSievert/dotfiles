@@ -225,7 +225,7 @@ exec = ~/.config/polybar/bluetooth-label.sh
 format-foreground = ${colors.icon-bluetooth}
 interval = 2
 ; windows with role "floating_term" are made floating in i3 (see config)
-click-left = i3-sensible-terminal --role floating_term -- /usr/bin/zsh -ic bluetoothctl &
+click-left = i3-sensible-terminal --role bluetoothctl -- /usr/bin/zsh -ic bluetoothctl &
 
 [module/wlan]
 type = internal/network
@@ -243,7 +243,7 @@ interface = wlp3s0
 interval = 3.0
 
 ; Bind an action to a label that activates upon click
-format-connected = %{A:i3-sensible-terminal --role floating_term -- nmtui-connect&:}<label-connected>%{A}
+format-connected = %{A:i3-sensible-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
 label-connected = 蠟 %signal%
 format-disconnected = %{A:i3-sensible-terminal -- nmtui-connect&:}<label-disconnected>%{A}
