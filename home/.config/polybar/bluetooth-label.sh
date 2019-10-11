@@ -7,8 +7,20 @@
 #
 
 power=`echo $(bluetoothctl show | grep Powered)`
+info=`echo $(bluetoothctl info | grep Connected)`
+icon=`echo $(bluetoothctl info | grep Icon)`
 if [ "$power" = "Powered: yes" ]; then
-    echo 
+    # If connected to a device
+    if [ "$info" = "Connected: yes" ]; then
+        if [ "$icon" = "Icon: audio-card" ]; then
+            echo 
+            #
+        else
+            echo 
+        fi
+    else
+        echo 
+    fi
 else
     echo 
 fi
