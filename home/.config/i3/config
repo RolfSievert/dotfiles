@@ -88,8 +88,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Floating windows
-for_window [class="Thunar"] floating enable resize set width 80 ppt move position center
-for_window [class="Nautilus"] floating enable resize set width 80 ppt move position center
+for_window [class="Thunar"] floating enable, resize set width 80 ppt, move position center
+for_window [class="Nautilus"] floating enable, resize set width 80 ppt, move position center
 for_window [class="gimp"] floating enable
 
 # focus the parent container
