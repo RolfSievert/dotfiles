@@ -246,7 +246,7 @@ interval = 3.0
 format-connected = %{A:i3-sensible-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
 label-connected = 蠟 %signal%
-format-disconnected = %{A:i3-sensible-terminal -- nmtui&:}<label-disconnected>%{A}
+format-disconnected = %{A:i3-sensible-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-disconnected>%{A}
 label-disconnected = 來
 label-disconnected-foreground = ${colors.icon-wifi}
 
