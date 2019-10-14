@@ -38,6 +38,8 @@ Plug 'Konfekt/FastFold'
 Plug 'honza/vim-snippets'
 " Arduino
 Plug 'stevearc/vim-arduino'
+" CSS suggestions
+Plug 'hail2u/vim-css3-syntax'
 call plug#end()
 
 """"" PLUG PACKAGES CONFIG """""
@@ -60,11 +62,12 @@ colorscheme wal
 " ALE
 call ale#Set('cpp_gcc_executable', 'gcc')
 call ale#Set('cpp_gcc_options', '-std=c++17 -Wall -Wextra')
-let g:ale_linters = {'cpp': ['g++'], 'python': ['pylint']}
+let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
+let g:ale_linters = {'cpp': ['g++'], 'python': ['pylint'], 'jsx': ['stylelint', 'eslint']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
-let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf']}
+let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf'], 'jsx': ['sylelint']}
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
 
