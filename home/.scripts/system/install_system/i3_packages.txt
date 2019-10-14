@@ -1,9 +1,7 @@
-# Window compositor
-compton
 # Graphics for windows, transparency and stuff
-compton-tryone-git
-# Terminal with transparent background
-gnome-terminal-transparent
+# compton-tryone-git
+# Terminal
+gnome-terminal
 # Locker for i3
 i3lock-color
 # Nice toolbar
@@ -11,10 +9,12 @@ polybar
 # Nice search popup
 rofi
 # Creates colorschemes based on background
-pywal
+python-pywal
 # Nice theme for cursor
 xcursor-breeze
-# Nice internet manager
-netctl
-# Automatic control for netctl
-netctl-auto
+# Editor
+neovim
+# Pdf reader
+zathura
+# Control screen brightness
+xorg-xbacklight
