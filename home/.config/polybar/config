@@ -33,7 +33,7 @@ spotify = ${xrdb:color8}
 ws-unfocused = ${xrdb:polybarbg}
 ws-unfocused-icon = ${colors.black}
 ws-focused = ${xrdb:polybarbg}
-ws-focused-icon = ${xrdb:color2}
+ws-focused-icon = ${xrdb:color6}
 ws-separator = ${xrdb:polybarbg}
 ws-separator-icon = ${xrdb:polybarbg}
 
@@ -188,7 +188,7 @@ label-foreground = ${colors.icon-light}
 type = internal/cpu
 interval = 2
 ; Click opens htop
-format = %{A:i3-sensible-terminal -- htop&:}<ramp-load>%{A}
+format = %{A:gnome-terminal -- htop&:}<ramp-load>%{A}
 label-foreground = ${colors.icon-cpu}
 label = 
 ramp-load-foreground = ${colors.icon-cpu}
@@ -225,7 +225,7 @@ exec = ~/.config/polybar/bluetooth-label.sh
 format-foreground = ${colors.icon-bluetooth}
 interval = 2
 ; windows with role "floating_term" are made floating in i3 (see config)
-click-left = i3-sensible-terminal --role bluetoothctl -- /usr/bin/zsh -ic bluetoothctl &
+click-left = gnome-terminal --role bluetoothctl -- /usr/bin/zsh -ic bluetoothctl &
 
 [module/wlan]
 type = internal/network
@@ -238,15 +238,16 @@ accumulate-stats = true
 
 [module/wireless-network]
 type = internal/network
-interface = wlp3s0
+; ip link show - list network devices
+interface = wlo1
 ; Seconds to sleep between updates
 interval = 3.0
 
 ; Bind an action to a label that activates upon click
-format-connected = %{A:i3-sensible-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-connected>%{A}
+format-connected = %{A:gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
 label-connected = 蠟 %signal%
-format-disconnected = %{A:i3-sensible-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-disconnected>%{A}
+format-disconnected = %{A:gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-disconnected>%{A}
 label-disconnected = 來
 label-disconnected-foreground = ${colors.icon-wifi}
 
