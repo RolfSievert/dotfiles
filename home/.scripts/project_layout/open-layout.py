@@ -11,7 +11,7 @@ import subprocess
 
 i3 = i3ipc.Connection()
 
-TERMINAL = "/usr/bin/i3-sensible-terminal"
+TERMINAL = "/usr/bin/gnome-terminal"
 EDITOR = "nvim"
 SHELL = "/usr/bin/zsh"
 focused = i3.get_tree().find_focused().workspace().name

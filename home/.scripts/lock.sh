@@ -18,6 +18,11 @@ T=$(echo $(awk '/\*color5:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)f
 W=$(echo $(awk '/\*color5:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Wrong color
 V=$(echo $(awk '/\*color3:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)ff) # Verify color
 
+# Load bg set by feh
+#FEH_BG_PATH=$(cat ~/.fehbg)
+#FEH_BG_PATH=${FEH_BG_PATH#*\'}
+#FEH_BG_PATH=${FEH_BG_PATH%\'*}
+
 i3lock \
 --insidevercolor=$B   \
 --ringvercolor=$V     \

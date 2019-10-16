@@ -4,6 +4,8 @@
 gnome-terminal
 # Locker for i3
 i3lock-color
+# Python interface for i3
+python-i3ipc
 # Nice toolbar
 polybar
 # Nice search popup
@@ -16,5 +18,13 @@ xcursor-breeze
 neovim
 # Pdf reader
 zathura
+zathura-pdf-poppler
 # Control screen brightness
 xorg-xbacklight
+# Graphical file explorer
+nautilus
+# Icons for nautilus
+gnome-icon-theme
+# Bluetooth
+bluez
+pulseaudio-bluetooth
