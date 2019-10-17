@@ -18,3 +18,6 @@ These services are thereafter enabled and started.
 
 ### System health check
 *health-check.sh* attempts to (obviously) check the health of the system.
+
+# Other
+Wallpaper: Photo by Roberto Shumski from Pexels
