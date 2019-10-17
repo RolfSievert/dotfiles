@@ -2,11 +2,11 @@
 
 ## Colorscheme changer
 This script (change-colorscheme.sh) uses Rofi and Pywal. 
-Edit the script *colorscheme/colorscheme-selector.sh* to select where local colorschemes are found and which file extensions to be supported. 
-There are two arrays defining these options in the script.
+Edit the script *change-colorscheme.sh* to select where local colorschemes are found and which file extensions to be supported. 
 
 ## System scripts
 Scripts located in *system/*.
+Used for installation, cleaning, maintenance, etc.
 
 ### Cleaning the system
 *clean_system.ch* does what it says, gives some cleaning options.
