@@ -1,4 +1,5 @@
 # Scripts
+Located in *~/.scripts/*
 
 ## Colorscheme changer
 This script (change-colorscheme.sh) uses Rofi and Pywal. 
