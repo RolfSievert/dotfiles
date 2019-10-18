@@ -247,7 +247,7 @@ bindsym $mod+p exec /usr/bin/gnome-terminal -- /usr/bin/sh $HOME/.scripts/projec
 # Autolock after specified time
 #exec --no-startup-id xautolock -time 9 -locker $HOME/.scripts/lock.sh
 # Dunst notifications
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec_always --no-startup-id $HOME/.config/i3/dunst_launch.sh
 # Restore previous color scheme
 exec_always --no-startup-id wal -R
 # Set background image
