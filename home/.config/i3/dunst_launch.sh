@@ -22,21 +22,36 @@ C7=$(echo $(awk '/\*color7:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)
 C8=$(echo $(awk '/\*color8:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)) # Verify color
 
 # Foreground color of low, normal, and critical notification
-FOREGROUND=$(echo -lf $C0 -nf $C1 -cf $C2)
+FOREGROUND=$(echo -lf $C9 -nf $C5 -cf $C3)
 
 # Background color of low, normal, and critical notification
-#BACKGROUND=$(echo -lb $C3 -nb $C4 -cb $C5)
+BACKGROUND=$(echo -lb $C0 -nb $C0 -cb $C5)
 
 # Frame color of low, normal, and critical notification
 FRAME=$(echo -lfr $C6 -nfr $C7 -cfr $C8)
 
 # Timeout of low, normal, and critical notification
+TIMEOUT=$(echo -lto 3 -nto 5 -cto 0)
 
 # Transparency 0-100
-TRANSPARENCY=$(echo transparency 90)
+TRANSPARENCY=$(echo transparency 20)
+
+# Shapes
+GEOMETRY=$(echo -geometry "400x120-10+40")
+
+# Text padding
+PADDING=$(echo -padding 8 -horizontal_padding 8)
+
+# Format of notification text
+# %b is body, %s is summary
+# <b> </b> is for bold
+FORMAT=$(echo -format "<b>%s</b>\n%b")
+
+# Text alignment
+TEXT_ALIGNMENT=$(echo -align "left")
 
 # Kill and re-launch dunst
-#killall -q dunst; dunst $FOREGROUND $BACKGROUND $FRAME $TRANSPARENCY &
-killall -q dunst; dunst $FOREGROUND $FRAME $TRANSPARENCY &
+# -shrink makes the geometry shrink to text width
+killall -q dunst; dunst $BACKGROUND $FOREGROUND $GEOMETRY $FORMAT $TIMEOUT $TEXT_ALIGNMENT $TRANSPARENCY $PADDING -shrink &
 
 echo "Dunst launched"
