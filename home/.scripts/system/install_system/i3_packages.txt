@@ -28,3 +28,5 @@ gnome-icon-theme
 # Bluetooth
 bluez
 pulseaudio-bluetooth
+# Notification deamon
+dunst
