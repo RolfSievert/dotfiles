@@ -1,13 +1,8 @@
 #! /bin/sh
 #
 # dunst_launch.sh
-# Copyright (C) 2019 rolfsievert <rolfsievert@manjaro>
+# Created by Rolf Sievert
 #
-# Distributed under terms of the MIT license.
-#
-
-# Kill running dunst
-
 
 #Colors path
 COL_PATH=/home/.cache/wal/colors.Xresources
@@ -21,14 +16,14 @@ C6=$(echo $(awk '/\*color6:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)
 C7=$(echo $(awk '/\*color7:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)) # Verify color
 C8=$(echo $(awk '/\*color8:(.*)/ { print $2 }' < ~/.cache/wal/colors.Xresources)) # Verify color
 
-# Foreground color of low, normal, and critical notification
-FOREGROUND=$(echo -lf $C9 -nf $C5 -cf $C3)
-
 # Background color of low, normal, and critical notification
 BACKGROUND=$(echo -lb $C0 -nb $C0 -cb $C5)
 
+# Foreground color of low, normal, and critical notification
+FOREGROUND=$(echo -lf $C9 -nf $C5 -cf $C3)
+
 # Frame color of low, normal, and critical notification
-FRAME=$(echo -lfr $C6 -nfr $C7 -cfr $C8)
+FRAME=$(echo -frame_width 0 -lfr $C6 -nfr $C7 -cfr $C8)
 
 # Timeout of low, normal, and critical notification
 TIMEOUT=$(echo -lto 3 -nto 5 -cto 0)
@@ -37,7 +32,7 @@ TIMEOUT=$(echo -lto 3 -nto 5 -cto 0)
 TRANSPARENCY=$(echo transparency 20)
 
 # Shapes
-GEOMETRY=$(echo -geometry "400x120-10+40")
+GEOMETRY=$(echo -geometry "500x120-10+40")
 
 # Text padding
 PADDING=$(echo -padding 8 -horizontal_padding 8)
@@ -50,8 +45,11 @@ FORMAT=$(echo -format "<b>%s</b>\n%b")
 # Text alignment
 TEXT_ALIGNMENT=$(echo -align "left")
 
+# Icons settings
+ICON=$(echo -icon_position "left" -max_icon_size 60)
+
 # Kill and re-launch dunst
 # -shrink makes the geometry shrink to text width
-killall -q dunst; dunst $BACKGROUND $FOREGROUND $GEOMETRY $FORMAT $TIMEOUT $TEXT_ALIGNMENT $TRANSPARENCY $PADDING -shrink &
+killall -q dunst; dunst $BACKGROUND $FOREGROUND $GEOMETRY $FRAME $FORMAT $TIMEOUT $TEXT_ALIGNMENT $TRANSPARENCY $PADDING $ICON -shrink &
 
 echo "Dunst launched"
