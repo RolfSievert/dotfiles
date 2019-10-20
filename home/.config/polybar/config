@@ -81,7 +81,9 @@ module-margin-left = 2
 module-margin-right = 0
 
 ; Use fc-list to display the correct name of the font
-font-0 = Inconsolata-g:pixelsize=12;2
+font-0 = "Bree Serif":style=Regular:pixelsize=12;3
+;font-0 = "Roboto Mono":style=Regular:pixelsize=12;3
+;font-0 = "Fantasque Sans Mono":style=Regular:pixelsize=12;3
 ; Material Design Icons
 ; AUR: ttf-material-design-icons-git
 ; https://materialdesignicons.com/
@@ -291,13 +293,15 @@ label-foreground = ${colors.icon-time}
 [module/volume]
 type = internal/alsa
 
-format-volume = <ramp-volume><label-volume>
+format-volume = <ramp-volume>
+;format-volume = <ramp-volume><label-volume>
 format-volume-foreground = ${colors.foreground-alt}
 ;label-volume = VOL
 
 format-muted= <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = %percentage%%
+label-muted = 
+;label-muted = %percentage%%
 label-muted-foreground = ${colors.icon-volume-muted}
 
 format-headphones = <ramp-headphones><label-headphones>
