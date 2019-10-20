@@ -213,8 +213,8 @@ bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/volume.sh mute #mute
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle #mute mic
 bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/volume.sh up 5 #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/volume.sh down 5 #decrease sound volume
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.config/i3/backlight.sh up 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.config/i3/backlight.sh down 10 # decrease screen brightness
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next

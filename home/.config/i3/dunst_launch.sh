@@ -46,7 +46,7 @@ FORMAT=$(echo -format "<b>%s</b>\n%b")
 TEXT_ALIGNMENT=$(echo -align "left")
 
 # Icons settings
-ICON=$(echo -icon_position "left" -max_icon_size 60 -icon_path "/usr/share/icons/Papirus-Dark-Maia/32x32/places/:/usr/share/icons/gnome/32x32/status/")
+ICON=$(echo -icon_position "left" -max_icon_size 60 -icon_path "/usr/share/icons/Papirus/32x32/status/:/usr/share/icons/gnome/32x32/status/")
 
 # Kill and re-launch dunst
 # -shrink makes the geometry shrink to text width
