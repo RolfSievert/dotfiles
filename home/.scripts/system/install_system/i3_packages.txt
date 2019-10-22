@@ -8,6 +8,8 @@ i3lock-color
 python-i3ipc
 # Nice toolbar
 polybar
+# Icons for polybar (https://materialdesignicons.com/)
+ttf-material-design-icons-git
 # Nice search popup
 rofi
 # Creates colorschemes based on background
@@ -16,6 +18,8 @@ python-pywal
 xcursor-breeze
 # Editor
 neovim
+# rmarkdown support in vim depends on
+r tk
 # Pdf reader
 zathura
 zathura-pdf-poppler

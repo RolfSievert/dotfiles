@@ -42,6 +42,9 @@ ln ~/.vimrc ~/.config/nvim/init.vim
 cd ~/.vim/plugged/YouCompleteMe/
 sudo python3 ./install.py
 
+# Install rmarkdown with R
+R install.packages("rmarkdown")
+
 # Start services
 cd
 sudo ~/.scripts/system/enable-services.sh

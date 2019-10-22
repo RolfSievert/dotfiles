@@ -11,6 +11,12 @@
 # paired-devices to list paired
 # devices to list available devices
 
+# LAYOUT
+
+# Power
+# Pair new - scan on/off
+# List paired sorted on availabe
+
 powered=`echo $(bluetoothctl show | grep Powered:)`
 paired=()
 tmp=()
@@ -62,5 +68,4 @@ else
             bluetoothctl connect $1 >/dev/null
         fi
     done
-fi
 fi
