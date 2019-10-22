@@ -24,7 +24,7 @@ function send_notification {
     bar2=$(printf "    "'%.s' $(eval "echo {0.."$(($spaces))"}"))
 
     # Send the notification
-    dunstify -u normal --icon=0 -r "$msgId" "   Brightness" "$bar2$bar1"
+    dunstify -u normal --icon="~/Downloads/brightness.png" -r "$msgId" "   Brightness" "$bar2$bar1"
 }
 
 if [[ "$1" == "up" ]]; then

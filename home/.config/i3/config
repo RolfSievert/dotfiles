@@ -196,6 +196,8 @@ smart_gaps on
 # To make special terminals have floating property by setting --role=floating_term
 for_window [window_role=bluetoothctl] floating enable, border pixel 10, resize set 40 ppt, move position center
 for_window [window_role=nmtui] floating enable, border pixel 0, resize set 40 ppt 75 ppt, move position center
+for_window [window_role=float] floating enable, move position center
+for_window [title=float] floating enable, move position center
 
 # Turn off mouse focusing
 focus_follows_mouse no
