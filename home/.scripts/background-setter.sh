@@ -44,6 +44,7 @@ function get_monitor_aspect_ratio {
 }
 
 IMAGE=$1
+SAVE_PATH="$HOME/.bg"
 
 # Check screen proportions
 # Aspect ratio of monitor
@@ -69,26 +70,25 @@ SELECTED="$(printf '%s\n' "${OPTIONS[@]}" | rofi -dmenu -mesg "Select alignment 
 ASPECTCROP=~/.scripts/aspectcrop.sh
 NO_END="${IMAGE%.*}"
 EXTENSION="${IMAGE##*.}"
-echo 
 case "$SELECTED" in
     "Center")
         feh --bg-fill $IMAGE
         ;;
     "Top")
-        $ASPECTCROP -a "${MON_AR// /:}" -g n "$IMAGE" "$NO_END-$SELECTED.$EXTENSION"
-        feh --bg-fill "$NO_END-$SELECTED.$EXTENSION"
+        $ASPECTCROP -a "${MON_AR// /:}" -g n "$IMAGE" "$SAVE_PATH.$EXTENSION"
+        feh --bg-fill "$SAVE_PATH.$EXTENSION"
         ;;
     "Bottom")
-        $ASPECTCROP -a "${MON_AR// /:}" -g s "$IMAGE" "$NO_END-$SELECTED.$EXTENSION"
-        feh --bg-fill "$NO_END-$SELECTED.$EXTENSION"
+        $ASPECTCROP -a "${MON_AR// /:}" -g s "$IMAGE" "$SAVE_PATH.$EXTENSION"
+        feh --bg-fill "$SAVE_PATH.$EXTENSION"
         ;;
     "Left")
-        $ASPECTCROP -a "${MON_AR// /:}" -g w $IMAGE "$NO_END-$SELECTED.$EXTENSION"
-        feh --bg-fill "$NO_END-$SELECTED.$EXTENSION"
+        $ASPECTCROP -a "${MON_AR// /:}" -g w "$IMAGE" "$SAVE_PATH.$EXTENSION"
+        feh --bg-fill "$SAVE_PATH.$EXTENSION"
         ;;
     "Right")
-        $ASPECTCROP -a "${MON_AR// /:}" -g e $IMAGE "$NO_END-$SELECTED.$EXTENSION"
-        feh --bg-fill "$NO_END-$SELECTED.$EXTENSION"
+        $ASPECTCROP -a "${MON_AR// /:}" -g e "$IMAGE" "$SAVE_PATH.$EXTENSION"
+        feh --bg-fill "$SAVE_PATH.$EXTENSION"
         ;;
     *)
         # Cancel operation

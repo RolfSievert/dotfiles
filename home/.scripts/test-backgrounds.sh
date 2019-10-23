@@ -6,6 +6,9 @@
 # Moves to next empty workspace and opens floating window previewing images.
 # Clicking '0' applies the image as background.
 
+REMOVE_ACTION=3
+MOVE_ACTION=1
+
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied"
@@ -24,4 +27,4 @@ width=$((16 * scale))
 height=$((9 * scale))
 
 # TODO create prompt script with rofi to retrieve input
-feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom --action ";~/.scripts/background-setter.sh %F" --action1 "mv %F ~/Media/Backgrounds/" $PATHS
+feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom --action ";~/.scripts/background-setter.sh %F" --action$MOVE_ACTION "mv %F ~/Media/Backgrounds/" --action$REMOVE_ACTION "~/.scripts/remove-prompt.sh %F" $PATHS
