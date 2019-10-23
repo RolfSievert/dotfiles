@@ -26,5 +26,5 @@ scale=40
 width=$((16 * scale))
 height=$((9 * scale))
 
-# TODO create prompt script with rofi to retrieve input
+# Call feh (use title "float" for i3 to set window to floating. see i3 config)
 feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom --action ";~/.scripts/background-setter.sh %F" --action$MOVE_ACTION "mv %F ~/Media/Backgrounds/" --action$REMOVE_ACTION "~/.scripts/remove-prompt.sh %F" $PATHS
