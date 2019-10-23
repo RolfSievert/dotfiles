@@ -21,5 +21,7 @@ python ~/.config/i3/next_empty.py
 
 scale=40
 width=$((16 * scale))
-height=$((9 * $scale))
-feh --title "float" --geometry "$width"x"$height" --scale-down --zoom fill --action "feh --bg-fill %F" $PATHS
+height=$((9 * scale))
+
+# TODO create prompt script with rofi to retrieve input
+feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom --action ";~/.scripts/background-setter.sh %F" --action1 "mv %F ~/Media/Backgrounds/" $PATHS
