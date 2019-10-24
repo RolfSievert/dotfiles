@@ -56,3 +56,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     # do dangerous stuff
 fi
+
+
+# Spotify fix for i3
+iptables -N TCP
+iptables -N UDP
+iptables -A TCP -p tcp --dport 57621 -j ACCEPT -m comment --comment spotify
+iptables -A UDP -p udp --dport 57621 -j ACCEPT -m comment --comment spotify
+iptables-save -f /etc/iptables/iptables.rules

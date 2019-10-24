@@ -24,4 +24,4 @@ if ! [[ -z "$3" ]]; then
 fi
 
 ROOT_DIR=$1
-find $ROOT_DIR -not -path '*/\.*' -type d | rofi -i -dmenu -mesg "$MESSAGE" -p "$TITLE"
+find "$ROOT_DIR" -not -path '*/\.*' -type d | rofi -i -dmenu -mesg "$MESSAGE" -p "$TITLE"
