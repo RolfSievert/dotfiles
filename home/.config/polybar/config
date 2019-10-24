@@ -47,6 +47,7 @@ icon-wifi = ${xrdb:color8}
 icon-battery = ${xrdb:color3}
 icon-volume-muted = ${xrdb:color8}
 icon-bluetooth = ${xrdb:color8}
+icon-menu = ${xrdb:color1}
 
 [bar/bar]
 ;DEFAULT
@@ -92,7 +93,7 @@ font-1 = "Material Design Icons:style=Regular:pixelsize=15;4"
 ; can use like custom bars (completely filled characters)
 ; font-2 = "Symbola:style=regular:pixelsize=11;2"
 
-modules-left = date 
+modules-left = menu date 
 modules-center = i3
 modules-right = battery cpu memory volume bluetooth wireless-network
 
@@ -103,6 +104,15 @@ modules-right = battery cpu memory volume bluetooth wireless-network
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
+
+[module/menu]
+type = custom/text
+content-foreground = ${colors.icon-menu}
+; Make icon to changing emoticons?
+;content = " "
+content = " ﾂ"
+;content = " "
+click-left = "~/.scripts/settings-menu.sh"
 
 ; show keyboard language
 [module/xkeyboard]
@@ -190,7 +200,7 @@ label-foreground = ${colors.icon-light}
 type = internal/cpu
 interval = 2
 ; Click opens htop
-format = %{A:gnome-terminal -- htop&:}<ramp-load>%{A}
+format = %{A:gnome-terminal -- /usr/bin/zsh -ic htop&:}<ramp-load>%{A}
 label-foreground = ${colors.icon-cpu}
 label = 
 ramp-load-foreground = ${colors.icon-cpu}
@@ -281,7 +291,7 @@ interval = 5
 ;format-margin = 0
 
 date = %dth %b
-time = " %H:%M -"
+time = "%H:%M -"
 
 ;format-prefix = 
 ;format-prefix-foreground = ${colors.icon-time}
