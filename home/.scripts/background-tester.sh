@@ -21,7 +21,7 @@ fi
 PATHS="$@"
 
 # Open next empty workspace
-python ~/.config/i3/next_empty.py
+#python ~/.config/i3/next_empty.py
 
 scale=40
 width=$((16 * scale))

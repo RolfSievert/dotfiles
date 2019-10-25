@@ -14,7 +14,7 @@ S=($(seq 0 0.05 1))
 B=""
 
 # Backends: colorz, schemer2, haishoku, colorthief, wal
-BACKENDS=(wal colorthief haishoku colorz schemer2)
+BACKENDS=(wal colorthief haishoku colorz)
 
 if [ ! -z "$2" ]; then
     # Check if value exists in array of backends

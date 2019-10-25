@@ -22,6 +22,11 @@ extensions=(
 colorschemes=()
 colorschemenames=()
 
+# If given folder root, override folders array
+if [ ! -z "$1" ]; then
+    folders=("$@")
+fi
+
 # Loop through folders containing colorschemes
 for folder in ${folders[@]}; do
     # Loop through items in folder
