@@ -14,8 +14,9 @@ OPTIONS=(
 SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 30 -height 2 -location 2 -lines ${#OPTIONS[@]} -dmenu -p "Menu"`
 
 if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
-    ~/.scripts/change-colorscheme.sh
+    ~/.scripts/change-colorscheme.sh > /dev/null &
 elif [[ "$SELECTION" == ${OPTIONS[1]} ]]; then
     IMG_FOLD=`$HOME/.scripts/select-folder-prompt.sh $HOME`
-    ~/.scripts/background-tester.sh $IMG_FOLD
+    # use 2>/dev/null to supress error output
+    ~/.scripts/background-tester.sh "$IMG_FOLD" >/dev/null 2>/dev/null &
 fi

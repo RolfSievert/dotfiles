@@ -7,6 +7,7 @@
 # Clicking '0' applies the image as background.
 
 REMOVE_ACTION=3
+PYWAL=2
 MOVE_ACTION=1
 
 if [ $# -eq 0 ]
@@ -27,4 +28,8 @@ width=$((16 * scale))
 height=$((9 * scale))
 
 # Call feh (use title "float" for i3 to set window to floating. see i3 config)
-feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom --action ";~/.scripts/background-setter.sh %F" --action$MOVE_ACTION "$HOME/.scripts/select-folder-prompt.sh $HOME 'Destination' 'Move image to new destination' | xargs mv %F -t" --action$REMOVE_ACTION "~/.scripts/remove-prompt.sh %F" $PATHS
+feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom \
+    --action ";~/.scripts/background-setter.sh %F" \
+    --action$MOVE_ACTION "$HOME/.scripts/select-folder-prompt.sh $HOME 'Destination' 'Move image to new destination' | xargs mv %F -t" \
+    --action$REMOVE_ACTION "~/.scripts/remove-prompt.sh %F" \
+    --action$PYWAL ";~/.scripts/wal.sh %F" $PATHS
