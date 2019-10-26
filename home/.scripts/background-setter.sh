@@ -6,6 +6,7 @@
 # http://www.fmwconcepts.com/imagemagick/aspectcrop/index.php
 
 # Set background with feh --bg-fill, but image is cropped beforehand as desired if not matching screen proportions.
+# Requires script aspectcrop.sh
 
 function gcd {
     # Calculate gcd of two numbers

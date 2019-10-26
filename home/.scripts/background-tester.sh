@@ -6,6 +6,8 @@
 # Moves to next empty workspace and opens floating window previewing images.
 # Clicking '0' applies the image as background.
 
+# Requires scripts select-folder-prompt.sh, background-setter.sh, remove-prompt.sh, wal.sh
+
 REMOVE_ACTION=3
 PYWAL=2
 MOVE_ACTION=1

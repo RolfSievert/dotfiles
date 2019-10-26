@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Runs pywal giving options with rofi
 # Usage: ./wal.sh IMAGE_PATH [backend] [saturation]
 
 if [ -z "$1" ]; then
