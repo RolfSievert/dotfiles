@@ -226,7 +226,7 @@ bindsym $mod+c workspace 1; exec firefox
 # Lock screen
 bindsym Control+$mod+l exec $HOME/.scripts/lock.sh
 # Rofi
-bindsym $mod+Tab exec rofi -show window -kb-cancel Alt_L
+bindsym $mod+Tab exec rofi -show window -show-icons -kb-cancel Alt_L
 bindsym Super_L exec rofi -show run -kb-cancel Super_L -width 25% -lines 5
 # Switch workspaces
 bindsym $mod+s exec python3 $HOME/.config/i3/swap_workspaces.py
