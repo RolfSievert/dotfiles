@@ -7,6 +7,7 @@
 #
 
 # Use this with rofi to select a color scheme
+# Usage: ./change-colorscheme.sh [*folders]
 
 # Folders conatining colorschemes
 folders=(
