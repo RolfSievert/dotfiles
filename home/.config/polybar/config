@@ -350,6 +350,7 @@ ramp-capacity-6 = 
 ramp-capacity-7 = 
 ramp-capacity-8 = 
 ramp-capacity-9 = 
+ramp-capacity-10 = 
 ramp-capacity-foreground = ${colors.icon-battery}
 ramp-capacity-0-foreground = ${colors.alert}
 
