@@ -58,6 +58,7 @@ PIC_AR=`get_aspect_ratio ${PIC_DIM[@]}`
 # If screen proportions are equal to image, set bg and return
 if [[ "${MON_AR[@]}" == "${PIC_AR[@]}" ]]; then
     feh --bg-fill $IMAGE
+    cp $IMAGE "$SAVE_PATH.jpg"
     exit
 fi
 
@@ -74,6 +75,7 @@ EXTENSION="${IMAGE##*.}"
 case "$SELECTED" in
     "Center")
         feh --bg-fill $IMAGE
+        cp $IMAGE "$SAVE_PATH.jpg"
         ;;
     "Top")
         $ASPECTCROP -a "${MON_AR// /:}" -g n "$IMAGE" "$SAVE_PATH.$EXTENSION"
