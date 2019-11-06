@@ -21,3 +21,6 @@ echo $(sudo find / -type d -path /proc -prune -o -xtype l -print)
 echo Do you want to remove the broken symlinks listed above?
 
 echo NOTE REMOVED SYMLINKS
+
+# Remove cashed packages except the most recent ones
+paccache -rk1
