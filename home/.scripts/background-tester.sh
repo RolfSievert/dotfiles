@@ -11,6 +11,7 @@
 REMOVE_ACTION=3
 PYWAL=2
 MOVE_ACTION=1
+COLOR_ANALYSIS=5
 
 if [ $# -eq 0 ]
   then
@@ -34,4 +35,5 @@ feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom \
     --action ";~/.scripts/background-setter.sh %F" \
     --action$MOVE_ACTION "$HOME/.scripts/select-folder-prompt.sh $HOME 'Destination' 'Move image to new destination' | xargs mv %F -t" \
     --action$REMOVE_ACTION "~/.scripts/remove-prompt.sh %F" \
-    --action$PYWAL ";~/.scripts/wal.sh %F" $PATHS
+    --action$PYWAL ";~/.scripts/wal.sh %F" $PATHS \
+    --action$COLOR_ANALYSIS ";python ~/.scripts/color-analysis.py %F" $PATHS
