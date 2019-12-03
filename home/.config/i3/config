@@ -235,11 +235,14 @@ bindsym $mod+o exec python3 $HOME/.config/i3/next_empty.py
 # Move focused container up 10 workspaces
 bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.py
 # Open nmtui
-bindsym $mod+n exec i3-sensible-terminal -e nmtui-connect
+bindsym $mod+n exec gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect
 # open project folder
 bindsym $mod+p exec /usr/bin/gnome-terminal -- /usr/bin/sh $HOME/.scripts/project_layout/project-layout.sh
 # Open settings menu
 bindsym $mod+m exec /usr/bin/sh $HOME/.scripts/settings-menu.sh
+
+# Screen capture
+bindsym Print exec flameshot gui
 
 
 # show on press and hide on release
