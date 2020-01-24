@@ -14,5 +14,11 @@ perl-file-mimeinfo
 gawk
 # cmake
 cmake
+# clang, for cpp linting, formatting etc
+clang
 # Python pip
 python-pip
+# nvim
+neovim
+# Python for nvim modules
+python-pynvim
