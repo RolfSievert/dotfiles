@@ -54,20 +54,22 @@ let g:ycm_enable_diagnostic_signs = 0
 
 " FZF
 " run
-nmap <silent> <C-d> :FZF<cr>
+nmap <silent> <C-s> :FZF<cr>
 
 " Wal colorscheme
 colorscheme wal
 
 " ALE
+let g:syntastic_python_pylint_post_args="--max-line-length=120"
 call ale#Set('cpp_gcc_executable', 'gcc')
 call ale#Set('cpp_gcc_options', '-std=c++17 -Wall -Wextra')
-let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
-let g:ale_linters = {'cpp': ['g++'], 'python': ['pylint'], 'jsx': ['stylelint', 'eslint']}
+let g:ale_linter_aliases = {'jsx': ['css', 'javascript', 'jsx']}
+let g:ale_linters = {'cpp': ['gcc'], 'python': ['pylint'], 'jsx': ['prettier', 'eslint']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
-let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf'], 'jsx': ['sylelint']}
+let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf'], 'jsx': ['tidy', 'prettier', 'eslint']}
+" Clang format is located in home folder, .clang-format
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
 
@@ -79,6 +81,15 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 " close nerdtree when opening a file
 let NERDTreeQuitOnOpen = 1
+
+""" Markdown Preview
+
+" use a custom markdown style must be absolute path
+"let g:mkdp_markdown_css = '~/.config/markdown-css/markdown.css'
+" use a custom highlight style must absolute path
+"let g:mkdp_highlight_css = '~/.config/markdown-css/highlight.css'
+" Set default browser
+let g:mkdp_browser = 'firefox'
 
 
 """"" BUILT IN CONFIGS """""
@@ -143,3 +154,17 @@ imap fd <ESC>
 " Cool stuff
 set showmatch "Highlight braces
 set wildmenu "Show menu alternatives
+
+" Autocenter searches
+nmap n nzz
+
+
+"""" Generating Vim help files
+"""" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL

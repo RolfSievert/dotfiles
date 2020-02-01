@@ -7,5 +7,8 @@
 #
 source ~/.zshrc
 
-res=$(find ~/${1:-.} -type d 2> /dev/null | fzf +m)
+#Include hidden files
+#OLD res=$(find ~/${1:-.} -type d 2> /dev/null | fzf +m)
+res=$(find ~/ -name '.*' -prune -o -print | fzf +m)
+# Exclude hidden files
 /usr/bin/python $(dirname $0)/open-layout.py $res

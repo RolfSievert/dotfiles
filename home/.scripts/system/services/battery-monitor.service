@@ -2,12 +2,12 @@
 Description=Send alerts on low battery
 
 [Service]
+User=rolfsievert
 Type=simple
 Environment=DISPLAY=:0
-Environment=XAUTHORITY=%h/.Xauthority
-ExecStart=/bin/bash %h/.scripts/system/low-battery-monitor.sh
+ExecStart=/home/rolfsievert/.scripts/system/low-battery-monitor.sh
 Restart=always
-RestartSec=60
+RestartSec=200
 
 [Install]
 WantedBy=default.target

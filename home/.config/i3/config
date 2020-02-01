@@ -46,8 +46,8 @@ bindsym $mod+Shift+q kill
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+odiaeresis focus right
+bindsym $mod+h focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -68,7 +68,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -244,6 +244,8 @@ bindsym $mod+m exec /usr/bin/sh $HOME/.scripts/settings-menu.sh
 # Screen capture
 bindsym Print exec flameshot gui
 
+# Tune power
+exec_always --no-startup-id sudo $HOME/.scripts/power-tunings.sh
 
 # show on press and hide on release
 # bindcde $mod exec

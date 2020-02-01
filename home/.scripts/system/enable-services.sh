@@ -14,6 +14,7 @@ for filename in $(dirname $0)/services/*.service; do
     if grep -q "WantedBy=default.target" "$(realpath $filename)"; then
         echo "Creating user service $(basename $filename .service)"
         # Create user service, overwrite if existing, and start the service now
+        echo $(realpath $filename)
         sudo systemctl --user -f enable $(realpath $filename) --now
     else # system-wide service
         # Sevice name

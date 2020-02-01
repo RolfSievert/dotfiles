@@ -237,7 +237,8 @@ exec = ~/.config/polybar/bluetooth-label.sh
 format-foreground = ${colors.icon-bluetooth}
 interval = 2
 ; windows with role "floating_term" are made floating in i3 (see config)
-click-left = gnome-terminal --role bluetoothctl -- /usr/bin/zsh -ic bluetoothctl &
+click-left = "~/.scripts/bt-autoconnect-paired.sh"
+click-right = gnome-terminal --role bluetoothctl -- /usr/bin/zsh -ic bluetoothctl &
 
 [module/wlan]
 type = internal/network
