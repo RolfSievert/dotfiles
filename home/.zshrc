@@ -152,6 +152,10 @@ nn() {
     gnome-terminal --working-directory=$(pwd) >/dev/null &
 }
 
+ptop() {
+    sudo powertop --auto-tune -r && firefox powertop.html && rm powertop.html
+}
+
 # export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'
 # GCC colors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

@@ -245,7 +245,7 @@ bindsym $mod+m exec /usr/bin/sh $HOME/.scripts/settings-menu.sh
 bindsym Print exec flameshot gui
 
 # Tune power
-exec_always --no-startup-id sudo $HOME/.scripts/power-tunings.sh
+exec_always --no-startup-id $HOME/.scripts/power-tunings.sh
 
 # show on press and hide on release
 # bindcde $mod exec
