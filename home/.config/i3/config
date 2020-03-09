@@ -31,7 +31,8 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec termite -c .cache/wal/termite
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return split horizontal, exec gnome-terminal
+bindsym $mod+Shift+Return split vertical, exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
