@@ -27,5 +27,5 @@ else
 fi
 
 if [[ "$SELECTION" == "yes" ]]; then
-    rm $1
+    rm "$1"
 fi
