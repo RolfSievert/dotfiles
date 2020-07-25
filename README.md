@@ -29,5 +29,5 @@ These services are thereafter enabled and started.
 *health-check.sh* attempts to (obviously) check the health of the system.
 
 # Other
-Wallpaper: Photo by Roberto Shumski from Pexels
-![Photo by Roberto Shumski from Pexels](https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg?cs=srgb&dl=blur-breathtaking-clouds-1903702.jpg&fm=jpg)
+Wallpaper: Photo by [Luca Bravo](https://unsplash.com/@lucabravo)
+![Photo by Luca Bravo](https://images.unsplash.com/photo-1482192505345-5655af888cc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80)
