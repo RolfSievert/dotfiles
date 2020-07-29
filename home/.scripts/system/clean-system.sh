@@ -24,13 +24,17 @@ echo Removing old logs...
 sudo journalctl --vacuum-time=7d
 
 # Remove broken symlinks
-BROKEN_SYMLINKS=$(sudo find '/' -type d \( -path '/proc' -o -path '/run' \) -prune -o -xtype l)
+#BROKEN_SYMLINKS=$(sudo find '/' -type d \( -path '/proc' -o -path '/run' \) -prune -o -xtype l)
+BROKEN_SYMLINKS=$(sudo find '/' -xtype l | grep -v "/proc" | grep -v "/run")
+#CYCLIC_SYMLINKS=$(sudo find '/' -type l -exec test ! -e {} \; -print | grep -v "/proc" | grep -v "/run")
 
-if [[ -z "${BROKEN_SYMLINKS// }" ]]; then
+
+if [[ -n "${BROKEN_SYMLINKS[@]}" ]]; then
+
+    echo Broken symlinks:
     printf '%s\n' "${BROKEN_SYMLINKS[@]}"
 
-    SYMSIZE=`sudo du -sm ${BROKEN_SYMLINKS[@]}`
-    read -p "Do you want to remove the broken symlinks listed above? ($SYMSIZE) " -r
+    read -p "Do you want to remove the broken symlinks listed above? " -r
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         sudo rm -f ${BROKEN_SYMLINKS[@]}
     fi
@@ -56,5 +60,6 @@ echo ~/.cache/ occupies $CACHE_SPACE
 read -p "Do you wish to clean cache? " -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Remove not installed cashed packages
-    sudo rm -rf ~/.cache/
+    echo "Do it yourself!!"
+    echo "sudo rm -rf ~/.cache/"
 fi
