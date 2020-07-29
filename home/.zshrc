@@ -144,8 +144,12 @@ folder_items() {
     sudo du -ax --block-size=1M "$1" | sort -n -r | head -20
 }
 
-package_sizes() {
+package_sizes_all() {
     pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}
+
+package_sizes() {
+    expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqt | sort) <({ pacman -Qqg base-devel; expac -l '\n' '%E' base; })) | sort -h
 }
 
 nn() {
@@ -159,3 +163,6 @@ ptop() {
 # export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'
 # GCC colors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Path to ruby executables
+PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"

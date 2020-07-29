@@ -22,11 +22,13 @@ Plug 'vim-pandoc/vim-rmarkdown'
 " File browser
 Plug 'scrooloose/nerdtree'
 " Autocompletion (tip: use package bear on makefile, "bear make", to link
-" project
+" project (TODO reinstall on package update)
+" cd ~/.vim/plugged/YouCompleteMe
+" python3 install.py --clangd-completer --ts-completer
 Plug 'Valloric/YouCompleteMe'
 " Use template for new files
 Plug 'aperezdc/vim-template'
-" Asynchronous linting
+" Asynchronous linting (TODO add help to linting with cmake)
 Plug 'w0rp/ale'
 " Language pack (better syntax highlighting)
 Plug 'sheerun/vim-polyglot'
@@ -40,6 +42,8 @@ Plug 'honza/vim-snippets'
 Plug 'stevearc/vim-arduino'
 " CSS suggestions
 Plug 'hail2u/vim-css3-syntax'
+" Latex preview
+Plug 'lervag/vimtex'
 call plug#end()
 
 """"" PLUG PACKAGES CONFIG """""
@@ -60,15 +64,15 @@ nmap <silent> <C-s> :FZF<cr>
 colorscheme wal
 
 " ALE
-let g:syntastic_python_pylint_post_args="--max-line-length=120"
-call ale#Set('cpp_gcc_executable', 'gcc')
-call ale#Set('cpp_gcc_options', '-std=c++17 -Wall -Wextra')
+let g:syntastic_python_pylint_post_args="--max-line-length=110"
+" GCC settings
+" For linting, check :ALEINFO and see 'Available Linters'
 let g:ale_linter_aliases = {'jsx': ['css', 'javascript', 'jsx']}
-let g:ale_linters = {'cpp': ['gcc'], 'python': ['pylint'], 'jsx': ['prettier', 'eslint']}
+let g:ale_linters = {'cpp': ['clangtidy'], 'python': ['pylint'], 'jsx': ['prettier', 'eslint']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
-let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf'], 'jsx': ['tidy', 'prettier', 'eslint']}
+let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf'], 'jsx': ['tidy', 'prettier', 'eslint'], 'latex': ['latexindent', 'textlint']}
 " Clang format is located in home folder, .clang-format
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
@@ -89,7 +93,7 @@ let NERDTreeQuitOnOpen = 1
 " use a custom highlight style must absolute path
 "let g:mkdp_highlight_css = '~/.config/markdown-css/highlight.css'
 " Set default browser
-let g:mkdp_browser = 'firefox'
+let g:mkdp_browser = 'brave'
 
 
 """"" BUILT IN CONFIGS """""
@@ -157,7 +161,7 @@ set wildmenu "Show menu alternatives
 
 " Autocenter searches
 nmap n nzz
-
+nmap N Nzz
 
 """" Generating Vim help files
 """" Put these lines at the very end of your vimrc file.
