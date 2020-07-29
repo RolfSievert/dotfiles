@@ -1,3 +1,7 @@
+configuration {{
+    font: "Noto Sans Mono 13";
+}}
+
 * {{
     active-background: {color2};
     active-foreground: @foreground;
