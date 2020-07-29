@@ -89,7 +89,7 @@ font-0 = "Noto Sans Mono":style=Regular:pixelsize=12;3
 ; Material Design Icons
 ; AUR: ttf-material-design-icons-git
 ; https://materialdesignicons.com/
-font-1 = "Material Icons:style=Regular:pixelsize=15;4"
+font-1 = "Material Design Icons:style=Regular:pixelsize=15;4"
 
 ; can use like custom bars (completely filled characters)
 ;font-2 = "Symbola:style=regular:pixelsize=11;2"
@@ -111,7 +111,7 @@ type = custom/text
 content-foreground = ${colors.icon-menu}
 ; Make icon to changing emoticons?
 ;content = " "
-content = " ﾂ"
+content = "  󰽥"
 ;content = " "
 click-left = "~/.scripts/settings-menu.sh"
 
@@ -142,13 +142,13 @@ strip-wsnumbers = true
 pin-workspaces = true
 
 ; focused = Active workspace on focused monitor
-label-focused = 
+label-focused = 󰑊
 label-focused-padding = 3
 label-focused-background = ${colors.ws-focused}
 label-focused-foreground = ${colors.ws-focused-icon}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = 
+label-unfocused = 󰑊
 label-unfocused-padding = 3
 label-unfocused-background = ${colors.ws-unfocused}
 label-unfocused-foreground = ${colors.ws-unfocused-icon}
@@ -161,7 +161,7 @@ label-visible-foreground = ${colors.ws-unfocused-icon}
 label-visible-offset = 5
 
 ; urgent = Workspace with urgency hint set
-label-urgent = 
+label-urgent = 󰑊
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -194,7 +194,7 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label>
-label =  %percentage%%
+label = 󰖨 %percentage%%
 label-foreground = ${colors.icon-light}
 
 [module/cpu]
@@ -205,15 +205,15 @@ format = %{A:gnome-terminal -- /usr/bin/zsh -ic htop&:}<ramp-load>%{A}
 label-foreground = ${colors.icon-cpu}
 label = 
 ramp-load-foreground = ${colors.icon-cpu}
-ramp-load-0 = 
-ramp-load-1 = 瞧
-ramp-load-2 = 爵
-ramp-load-3 = 犯
-ramp-load-4 = 猪
-ramp-load-5 = 瑱
-ramp-load-6 = 甆
-ramp-load-7 = 画
-ramp-load-8 = 瘝
+ramp-load-0 = 󰝦
+ramp-load-1 = 󰪞
+ramp-load-2 = 󰪟
+ramp-load-3 = 󰪠
+ramp-load-4 = 󰪡
+ramp-load-5 = 󰪢
+ramp-load-6 = 󰪣
+ramp-load-7 = 󰪤
+ramp-load-8 = 󰪥
 
 [module/memory]
 type = internal/memory
@@ -222,15 +222,15 @@ format = <ramp-used>
 label-foreground = ${colors.icon-memory}
 label = 
 ramp-used-foreground = ${colors.icon-memory}
-ramp-used-0 = 
-ramp-used-1 = 瞧
-ramp-used-2 = 爵
-ramp-used-3 = 犯
-ramp-used-4 = 猪
-ramp-used-5 = 瑱
-ramp-used-6 = 甆
-ramp-used-7 = 画
-ramp-used-8 = 瘝
+ramp-used-0 = 󰝦
+ramp-used-1 = 󰪞
+ramp-used-2 = 󰪟
+ramp-used-3 = 󰪠
+ramp-used-4 = 󰪡
+ramp-used-5 = 󰪢
+ramp-used-6 = 󰪣
+ramp-used-7 = 󰪤
+ramp-used-8 = 󰪥
 
 [module/bluetooth]
 type = custom/script
@@ -260,16 +260,16 @@ interval = 3.0
 ; Bind an action to a label that activates upon click
 format-connected = %{A:gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
-label-connected = 蠟 %signal%
+label-connected = 󰤨 %signal%
 format-disconnected = %{A:gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-disconnected>%{A}
-label-disconnected = 來
+label-disconnected = 󰤮
 label-disconnected-foreground = ${colors.icon-wifi}
 
-ramp-signal-0 = 冷
-ramp-signal-1 = 爛
-ramp-signal-2 = 嵐
-ramp-signal-3 = 襤
-ramp-signal-4 = 蠟
+ramp-signal-0 = 󰤯
+ramp-signal-1 = 󰤟
+ramp-signal-2 = 󰤢
+ramp-signal-3 = 󰤥
+ramp-signal-4 = 󰤨
 ramp-signal-foreground = ${colors.icon-wifi}
 
 [module/eth]
@@ -312,18 +312,18 @@ format-volume-foreground = ${colors.foreground-alt}
 
 format-muted= <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = 
+label-muted = 󰸈
 ;label-muted = %percentage%%
 label-muted-foreground = ${colors.icon-volume-muted}
 
 format-headphones = <ramp-headphones><label-headphones>
 format-headphones-foreground = ${colors.foreground-alt}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
 
-ramp-headphones-0 = 
+ramp-headphones-0 = 󰋋
 
 [module/battery]
 type = internal/battery
@@ -339,33 +339,34 @@ label-charging-foreground = ${colors.icon-battery}
 format-discharging = <ramp-capacity><label-discharging>
 label-discharging-foreground = ${colors.icon-battery}
 
-label-full =  %percentage%%
+label-full = 󰁹 %percentage%%
 label-full-foreground = ${colors.icon-battery}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
+ramp-capacity-0 = 󰂎
+ramp-capacity-1 = 󰁺
+ramp-capacity-2 = 󰁻
+ramp-capacity-3 = 󰁼
+ramp-capacity-4 = 󰁽
+ramp-capacity-5 = 󰁾
 ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
-ramp-capacity-9 = 
-ramp-capacity-10 = 
+ramp-capacity-7 = 󰁿
+ramp-capacity-8 = 󰂀
+ramp-capacity-9 = 󰂁
+ramp-capacity-10 = 󰂂
 ramp-capacity-foreground = ${colors.icon-battery}
 ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1-foreground = ${colors.alert}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-5 = 
-animation-charging-6 = 
-animation-charging-7 = 
-animation-charging-8 = 
-animation-charging-9 = 
+animation-charging-0 = 󰢜
+animation-charging-1 = 󰂆
+animation-charging-2 = 󰂇
+animation-charging-3 = 󰂈
+animation-charging-4 = 󰢝
+animation-charging-5 = 󰂉
+animation-charging-6 = 󰢞
+animation-charging-7 = 󰂊
+animation-charging-8 = 󰂋
+animation-charging-9 = 󰂅
 animation-charging-foreground = ${colors.icon-battery}
 animation-charging-framerate = 750
 

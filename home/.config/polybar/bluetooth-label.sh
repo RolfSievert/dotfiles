@@ -13,16 +13,16 @@ if [ "$power" = "Powered: yes" ]; then
     # If connected to a device
     if [ "$info" = "Connected: yes" ]; then
         if [ "$icon" = "Icon: audio-card" ]; then
-            echo 
+            echo 󰂰
             #
         else
-            echo 
+            echo 󰂱
         fi
     else
-        echo 
+        echo 󰂯
     fi
 else
-    echo 
+    echo 󰂲
 fi
 
 
