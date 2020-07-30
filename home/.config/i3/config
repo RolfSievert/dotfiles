@@ -230,7 +230,11 @@ bindsym $mod+c exec brave
 bindsym Control+$mod+l exec $HOME/.scripts/lock.sh
 # Rofi
 bindsym $mod+Tab exec rofi -show window -show-icons -kb-cancel Alt_L
-bindsym Super_L exec rofi -show run -kb-cancel Super_L -width 25% -lines 5
+# execute run with horizontal alignment on list elements and input string, and remove prompt
+bindsym Super_L exec "rofi -show run -kb-cancel Super_L -width 16% -lines 5 \
+    -theme-str '#element { horizontal-align: 0.5; }' \
+    -theme-str '#entry { horizontal-align: 0.5; }' \
+    -theme-str '#inputbar { children:   [ entry,case-indicator ]; }' "
 # Switch workspaces
 bindsym $mod+s exec python3 $HOME/.config/i3/swap_workspaces.py
 # Open empty workspace
