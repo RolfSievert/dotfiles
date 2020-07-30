@@ -15,7 +15,7 @@ OPTIONS=(
 
 # Get time and date
 
-SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 16 -height 2 -location 1 -lines ${#OPTIONS[@]} -dmenu -p "Menu"`
+SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 16 -height 2 -location 1 -kb-cancel 'Alt_L,Super_L,Escape' -lines ${#OPTIONS[@]} -dmenu -p "Menu"`
 
 if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
     ~/.scripts/change-colorscheme.sh > /dev/null &
