@@ -13,7 +13,9 @@ OPTIONS=(
     "Set random theme"
 )
 
-SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 30 -height 2 -location 2 -lines ${#OPTIONS[@]} -dmenu -p "Menu"`
+# Get time and date
+
+SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 16 -height 2 -location 1 -lines ${#OPTIONS[@]} -dmenu -p "Menu"`
 
 if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
     ~/.scripts/change-colorscheme.sh > /dev/null &
