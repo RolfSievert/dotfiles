@@ -48,6 +48,9 @@ call plug#end()
 
 """"" PLUG PACKAGES CONFIG """""
 
+" VimTex
+let g:vimtex_view_method = "zathura"
+
 " YCM
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
