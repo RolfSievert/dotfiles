@@ -83,7 +83,7 @@ module-margin-right = 0
 
 ; Use fc-list to display the correct name of the font
 ;font-0 = "Bree Serif":style=Regular:pixelsize=12;4
-font-0 = "Noto Sans Mono":style=Regular:pixelsize=12;3
+font-0 = "Noto Sans Mono":style=Bold:pixelsize=12;3.5
 ;Font-0 = "Roboto Mono":style=Regular:pixelsize=12;3
 ;font-0 = "Fantasque Sans Mono":style=Regular:pixelsize=13;3
 ; Material Design Icons
