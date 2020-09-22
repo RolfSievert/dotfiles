@@ -1,36 +1,49 @@
 # Graphics for windows, transparency and stuff
 # compton-tryone-git
+
 # Terminal
 gnome-terminal
+# Editor
+neovim
+# Browser
+brave
+
+##### i3 stuff #####
 # Locker for i3
 i3lock-color
 # Python interface for i3
 python-i3ipc
+
+##### polybar setup #####
 # Nice toolbar
 polybar
 # Icons for polybar (https://materialdesignicons.com/)
 ttf-material-design-icons-git
-# Nice search popup
-rofi
-# Creates colorschemes based on background
-python-pywal
-# Nice theme for cursor
-xcursor-breeze
-# Editor
-neovim
-# rmarkdown support in vim depends on
-r tk
-# Pdf reader
-zathura
-zathura-pdf-poppler
+
+##### system stuff #####
 # Control screen brightness
 xorg-xbacklight
+# Bluetooth
+bluez
+bluez-utils
+pulseaudio-bluetooth
+# Notification deamon
+dunst
+
+# Creates colorschemes based on background
+python-pywal
+
+###### not really necessary stuff #####
+# Nice search popup
+rofi
+# Nice theme for cursor
+xcursor-breeze
+# rmarkdown support in vim depends on
+#r tk
+# Pdf reader
+#zathura
+#zathura-pdf-poppler
 # Graphical file explorer
 nautilus
 # Icons for nautilus
 gnome-icon-theme
-# Bluetooth
-bluez
-pulseaudio-bluetooth
-# Notification deamon
-dunst
