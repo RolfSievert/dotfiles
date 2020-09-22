@@ -50,6 +50,7 @@ call plug#end()
 
 " VimTex
 let g:vimtex_view_method = "zathura"
+let g:tex_flavor = 'latex' " can give error if not set
 
 " YCM
 let g:ycm_server_python_interpreter = '/usr/bin/python'
