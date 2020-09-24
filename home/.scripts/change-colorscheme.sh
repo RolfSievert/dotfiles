@@ -62,7 +62,6 @@ while [ -n "$SELECTED" ]; do
             if [ "$SELECTED" == "$filename" ]; then
                 # apply colorscheme and break loop
                 wal --theme $file > /dev/null
-                polybar-msg cmd restart
                 break
             fi
         done
