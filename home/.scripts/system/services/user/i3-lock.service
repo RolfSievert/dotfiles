@@ -4,10 +4,10 @@ Before=sleep.target
 Before=suspend.target
 
 [Service]
-User=rolfsievert
+#User=rolfsievert
 Type=forking
 Environment=DISPLAY=:0
-ExecStart=/home/rolfsievert/.scripts/lock.sh
+ExecStart=%h/.scripts/lock.sh
 TimeoutSec=infinity
 
 [Install]

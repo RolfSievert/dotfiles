@@ -2,10 +2,10 @@
 Description=Send alerts on low battery
 
 [Service]
-User=rolfsievert
+#User=rolfsievert
 Type=simple
 Environment=DISPLAY=:0
-ExecStart=/home/rolfsievert/.scripts/system/low-battery-monitor.sh
+ExecStart=%h/.scripts/system/low-battery-monitor.sh
 Restart=always
 RestartSec=200
 
