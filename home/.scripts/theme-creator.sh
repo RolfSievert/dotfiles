@@ -14,6 +14,10 @@ IMG_FOLD=`$HOME/.scripts/select-folder-prompt.sh $HOME`
 IMAGE=$(~/.scripts/background-tester.sh "$IMG_FOLD")
 IMAGE=$(basename -- "$IMAGE")
 
+if [ -z "$IMAGE" ]; then
+    exit
+fi
+
 IMAGE_PATH="${IMG_FOLD}/${IMAGE}"
 echo Selected "$IMAGE_PATH"
 
@@ -21,6 +25,10 @@ echo Selected "$IMAGE_PATH"
 THEME_NAME=$(rofi -i -dmenu -p "Enter theme name")
 echo Named theme: "$THEME_NAME"
 THEME_PATH="${THEMES_FOLDER}${THEME_NAME}"
+
+if [ -z "$THEME_NAME" ]; then
+    exit
+fi
 
 # create folder and copy image to there
 if [ ! -d "$THEME_PATH" ]; then
