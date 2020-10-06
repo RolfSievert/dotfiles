@@ -1,7 +1,7 @@
 #! /bin/sh
 #
 # colorscheme-selector.sh
-# Copyright (C) 2019 hitsnapper <hitsnapper@Znap>
+# Copyright (C) 2019 Rolf Sievert
 #
 # Distributed under terms of the MIT license.
 #
@@ -14,6 +14,7 @@ folders=(
     ~/.config/wal/colorschemes
     ~/.config/wal/colorschemes/dark
     ~/.config/wal/colorschemes/light
+    ~/Media/Themes/colorschemes
 )
 # accepted extensions for pywal
 extensions=(
