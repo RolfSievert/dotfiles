@@ -14,7 +14,8 @@ folders=(
     ~/.config/wal/colorschemes
     ~/.config/wal/colorschemes/dark
     ~/.config/wal/colorschemes/light
-    ~/Media/Themes/colorschemes
+    ~/.config/wal/colorschemes/rs-dark
+    ~/.config/wal/colorschemes/rs-light
 )
 # accepted extensions for pywal
 extensions=(
