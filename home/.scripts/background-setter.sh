@@ -59,6 +59,7 @@ PIC_AR=`get_aspect_ratio ${PIC_DIM[@]}`
 if [[ "${MON_AR[@]}" == "${PIC_AR[@]}" ]]; then
     feh --bg-fill "$IMAGE"
     cp "$IMAGE" "$SAVE_PATH.jpg"
+    echo "$IMAGE"
     exit
 fi
 
