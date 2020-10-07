@@ -47,3 +47,5 @@ xcursor-breeze
 nautilus
 # Icons for nautilus
 gnome-icon-theme
+# printscreen
+flameshot

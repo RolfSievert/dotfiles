@@ -52,7 +52,7 @@ done
 SELECTED="0"
 
 while [ -n "$SELECTED" ]; do
-    SELECTED=$(printf '%s\n' "${colorschemenames[@]}" | rofi -dmenu -selected-row "${SELECTED}" -mesg "Set coloscheme with wal." -p "Colorschemes")
+    SELECTED=$(printf '%s\n' "${colorschemenames[@]}" | rofi -width 20 -dmenu -selected-row "${SELECTED}" -mesg "Set coloscheme with wal." -p "Colorschemes")
     echo "$SELECTED"
 
     # If given a file as input, change colorscheme with wal

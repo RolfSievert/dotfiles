@@ -241,14 +241,17 @@ bindsym $mod+s exec python3 $HOME/.config/i3/swap_workspaces.py
 bindsym $mod+o exec python3 $HOME/.config/i3/next_empty.py
 # Move focused container up 10 workspaces
 bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.py
+
+# -i flag somehow applies correct theme from .zshrc
+# -c flag tells that a script is to be executed or something
 # Open nmtui
-bindsym $mod+n exec gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect
+bindsym $mod+n exec gnome-terminal --role nmtui -- $SHELL -ic nmtui-connect
 # open project folder
-bindsym $mod+p exec /usr/bin/gnome-terminal -- /usr/bin/sh $HOME/.scripts/project_layout/project-layout.sh
+bindsym $mod+p exec /usr/bin/gnome-terminal -- $SHELL -ic $HOME/.scripts/project_layout/project-layout.sh
 # Open settings menu
-bindsym $mod+m exec /usr/bin/sh $HOME/.scripts/settings-menu.sh
+bindsym $mod+m exec $SHELL -c $HOME/.scripts/settings-menu.sh
 # Open themes menu
-bindsym $mod+t exec /usr/bin/sh $HOME/.scripts/theme-menu.sh
+bindsym $mod+t exec $SHELL -c $HOME/.scripts/theme-menu.sh
 
 # Screen capture
 bindsym Print exec flameshot gui
