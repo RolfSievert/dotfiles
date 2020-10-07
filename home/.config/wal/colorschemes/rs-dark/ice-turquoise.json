@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/rolfsievert/Media/Backgrounds/wallhaven-392xm9.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1b2122",
+        "foreground": "#e7e6e6",
+        "cursor": "#e7e6e6"
+    },
+    "colors": {
+        "color0": "#1b2122",
+        "color1": "#74b3d1",
+        "color2": "#89bdd7",
+        "color3": "#dfa0a0",
+        "color4": "#9bb4dd",
+        "color5": "#a0d2df",
+        "color6": "#babae8",
+        "color7": "#e7e6e6",
+        "color8": "#a1a1a1",
+        "color9": "#74b3d1",
+        "color10": "#89bdd7",
+        "color11": "#dfa0a0",
+        "color12": "#9bb4dd",
+        "color13": "#a0d2df",
+        "color14": "#babae8",
+        "color15": "#e7e6e6"
+    }
+}

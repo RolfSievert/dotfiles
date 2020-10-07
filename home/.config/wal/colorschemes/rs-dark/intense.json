@@ -1,0 +1,25 @@
+{
+  "name": "Spiritual",
+  "author": "Roffe",
+  "color": [
+    "#1F141B",
+    "#d65e1e",
+    "#cd7769",
+    "#c7a459",
+    "#9f3892",
+    "#525798",
+    "#7e7cd5",
+    "#c1b3bd",
+    "#877d84",
+    "#d65e1e",
+    "#cd7769",
+    "#c7a459",
+    "#9f3892",
+    "#525798",
+    "#7e7cd5",
+    "#c1b3bd"
+  ],
+  "foreground": "#c1b3bd",
+  "background": "#1F141B",
+  "cursor": "#c1b3bd"
+}

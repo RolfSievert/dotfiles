@@ -1,0 +1,26 @@
+{
+  "name": "Green ring",
+  "author": "Roffe",
+  "color": [
+    "#0d1016",
+    "#8e5d26",
+    "#708a4b",
+    "#166a5f",
+    "#486c85",
+    "#d5ce33",
+    "#e9a8db",
+    "#858d7c",
+    "#858d7c",
+    "#8e5d26",
+    "#708a4b",
+    "#166a5f",
+    "#486c85",
+    "#d5ce33",
+    "#e9a8db",
+    "#d7dad8"
+  ],
+  "foreground": "#d7dad8",
+  "background": "#0d1016",
+  "cursor": "#858d7c"
+}
+

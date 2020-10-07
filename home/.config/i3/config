@@ -247,6 +247,8 @@ bindsym $mod+n exec gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connec
 bindsym $mod+p exec /usr/bin/gnome-terminal -- /usr/bin/sh $HOME/.scripts/project_layout/project-layout.sh
 # Open settings menu
 bindsym $mod+m exec /usr/bin/sh $HOME/.scripts/settings-menu.sh
+# Open themes menu
+bindsym $mod+t exec /usr/bin/sh $HOME/.scripts/theme-menu.sh
 
 # Screen capture
 bindsym Print exec flameshot gui
@@ -268,7 +270,10 @@ exec_always --no-startup-id $HOME/.config/i3/dunst_launch.sh
 exec_always --no-startup-id wal -R
 # Set background image
 exec_always --no-startup-id ~/.fehbg &
+# Picom (compositor)
+exec_always --no-startup-id picom
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # Compton
 #exec_always compton --config $HOME/.config/compton/compton.conf -b --blur-method kawase

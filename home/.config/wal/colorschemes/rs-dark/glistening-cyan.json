@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/znap/Downloads/dejan-zakic-5QRHqrc_8nU-unsplash.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#091119",
+        "foreground": "#e0e3e2",
+        "cursor": "#e0e3e2"
+    },
+    "colors": {
+        "color0": "#091119",
+        "color1": "#318b93",
+        "color2": "#37a6a6",
+        "color3": "#3cb49f",
+        "color4": "#3fb7be",
+        "color5": "#6dceb6",
+        "color6": "#9fdfbf",
+        "color7": "#e0e3e2",
+        "color8": "#9c9e9e",
+        "color9": "#318b93",
+        "color10": "#37a6a6",
+        "color11": "#3cb49f",
+        "color12": "#3fb7be",
+        "color13": "#6dceb6",
+        "color14": "#9fdfbf",
+        "color15": "#e0e3e2"
+    }
+}

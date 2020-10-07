@@ -1,0 +1,26 @@
+{
+  "name": "Frosty",
+  "author": "Roffe",
+  "color": [
+    "#131719",
+    "#3c559b",
+    "#368d76",
+    "#bd78bc",
+    "#bcbd66",
+    "#ceb183",
+    "#7dceaf",
+    "#cdccd1",
+    "#55535b",
+    "#3c559b",
+    "#368d76",
+    "#bd78bc",
+    "#bcbd66",
+    "#ceb183",
+    "#7dceaf",
+    "#cdccd1"
+  ],
+  "foreground": "#cdccd1",
+  "background": "#131719",
+  "cursor": "#cdccd1"
+}
+
