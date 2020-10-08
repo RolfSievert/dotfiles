@@ -27,6 +27,7 @@ updateThemes
 OPTIONS=(
     "Add colorschemes" 
     "Remove colorschemes"
+    "Apply background"
     "Remove theme"
 )
 
@@ -34,7 +35,7 @@ SELECTED_THEME="0"
 
 # loop over themes until escaped
 while true; do
-    SELECTED_THEME=$(printf '%s\n' "${THEMES[@]}" | rofi -dmenu -selected-row "${SELECTED_THEME}" -mesg "Select theme to edit." -p "Themes")
+    SELECTED_THEME=$(printf '%s\n' "${THEMES[@]}" | rofi -width 20 -dmenu -selected-row "${SELECTED_THEME}" -mesg "Select theme to edit." -p "Themes")
 
     if [ -z "$SELECTED_THEME" ]; then
         exit
@@ -59,7 +60,11 @@ while true; do
                 rm "$c"
             done
         elif [[ "$SELECTION" == ${OPTIONS[2]} ]]; then
-            PROMPT=`printf "yes\nno" | rofi -dmenu -p "DELETE THEME '$THEME_PATH'" -mesg "Are you sure you want to remove this theme? No undos!"`
+                images=($THEME_PATH/{*.jpg,*.png})
+                # set first image as background
+                ~/.scripts/background-setter.sh "$images"
+        elif [[ "$SELECTION" == ${OPTIONS[3]} ]]; then
+            PROMPT=`printf "no\nyes" | rofi -dmenu -p "DELETE THEME '$THEME_PATH'" -mesg "Are you sure you want to remove this theme? No undos!"`
             if [[ "$PROMPT" == "yes" ]]; then
                 # remove theme
                 rm -rf "$THEME_PATH"

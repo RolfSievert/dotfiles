@@ -69,7 +69,7 @@ while [ -n "$SELECTED" ]; do
     done
 
     #SELECTED=$(printf '[ ] %s\n' "${colorschemenames[@]}" | rofi -dmenu -selected-row "${SELECTED}" -mesg "Set coloscheme with wal." -p "Colorschemes")
-    SELECTED=$(printf '%s\n' "${OPTIONS[@]}" | rofi -dmenu -selected-row "${SELECTED}" -mesg "Select colorschemes to preview." -p "Colorschemes")
+    SELECTED=$(printf '%s\n' "${OPTIONS[@]}" | rofi -width 20 -dmenu -selected-row "${SELECTED}" -mesg "Select colorschemes to preview." -p "Colorschemes")
     # Check if selected item is checked
     if [ "${SELECTED:1:1}" == "x" ]; then
         CHECKED=true

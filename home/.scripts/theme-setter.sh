@@ -24,7 +24,7 @@ SELECTED_INDEX="0"
 
 while true; do
     # run rofi and select between themes
-    BG=`printf '%s\n' "${THEME_NAMES[@]}" | rofi -dmenu -selected-row $SELECTED_INDEX -p "Theme"`
+    BG=`printf '%s\n' "${THEME_NAMES[@]}" | rofi -width 20 -dmenu -selected-row $SELECTED_INDEX -p "Theme"`
     theme_folder=""
 
     if [ -z "$BG" ]; then
