@@ -7,7 +7,7 @@
 msgId="991050"
 
 function get_brightness {
-    float=`xbacklight`
+    float=`xbacklight -get`
     echo ${float%.*}
 }
 
@@ -28,9 +28,21 @@ function send_notification {
 }
 
 if [[ "$1" == "up" ]]; then
-    xbacklight -inc $2
+    xbacklight -inc "$2"
+elif [[ "$1" == "down" ]]; then
+    xbacklight -dec "$2"
+elif [[ "$1" == "bright" ]]; then
+    display=`xrandr | grep -w connected | cut -f '1' -d ' '`
+    xrandr --output $display --brightness "$2"
 else
-    xbacklight -dec $2
+    echo warning: input not recognized
+    echo usage: 
+    echo -e "\tup, down - increase/decrease brightness"
+    echo -e "\tbright - set percieved screen brightness"
+    exit
 fi
 
 send_notification
+
+# TODO use following to fake brightness above 100%
+# xrandr --output output_name --brightness 2
