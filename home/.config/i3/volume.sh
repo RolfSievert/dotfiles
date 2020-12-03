@@ -17,6 +17,11 @@ function is_mute {
     pacmd list-sinks | awk '/muted/ { print $2 }'
 }
 
+function get_sink {
+    sink=$(pactl info | grep "Default Sink: ")
+    echo "${sink#"Default Sink: "}"
+}
+
 # Difference to change volume with
 vdiff=$2
 function send_notification {
@@ -38,24 +43,25 @@ function send_notification {
     fi
 }
 
+sink=`get_sink`
 case $1 in
     up)
         # Up the volume
         volume=`get_volume`
         if [[ $volume -ge 95 ]]; then
-            pactl set-sink-volume 0 100%
+            pactl set-sink-volume $sink 100%
         else
-            pactl set-sink-volume 0 +$vdiff%
+            pactl set-sink-volume $sink +$vdiff%
         fi
         send_notification
         ;;
     down)
-        pactl set-sink-volume 0 -$vdiff%
+        pactl set-sink-volume $sink -$vdiff%
 	    send_notification
 	    ;;
     mute)
     	# Toggle mute
-        pactl set-sink-mute 0 toggle
+        pactl set-sink-mute $sink toggle
         send_notification
 	    ;;
 esac
