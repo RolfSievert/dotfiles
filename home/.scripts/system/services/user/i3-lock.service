@@ -2,6 +2,7 @@
 Description = Lock screen when going to sleep/suspend
 Before=sleep.target
 Before=suspend.target
+Before=hibernate.target
 
 [Service]
 #User=rolfsievert
@@ -13,3 +14,4 @@ TimeoutSec=infinity
 [Install]
 WantedBy=sleep.target
 WantedBy=suspend.target
+WantedBy=hibernate.target

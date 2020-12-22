@@ -1,10 +1,13 @@
+# Settings from https://wiki.archlinux.org/index.php/powertop
+
 [Unit]
 Description=Powertop tunings
 
 [Service]
-Type=exec
+Type=oneshot
+#Type=exec
 ExecStart=/usr/bin/powertop --auto-tune
-RemainAfterExit=true
+#RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target

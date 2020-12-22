@@ -17,7 +17,7 @@ for filename in $(dirname $0)/services/user/*.service; do
     echo "$filename"
     echo $(basename -- "$filename")
     cp -f "$filename" ~/.config/systemd/user/
-    systemctl --user enable -f $(basename -- "$filename") --now
+    systemctl --user enable -f $(basename -- "$filename")
 
     #sudo systemctl enable -f "$(realpath $filename)" --now
 done
