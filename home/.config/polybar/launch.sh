@@ -7,6 +7,7 @@ killall -q polybar
 while pgrep -x polybar > ~/.config/polybar/launch_log.txt; do sleep 1; done
 
 # Launch bar1 and bar2
-polybar bar &
+echo "---" | tee -a /tmp/polybar.log
+polybar bar 2>&1 | tee -a /tmp/polybar.log & disown
 
 echo "Bars launched..."
