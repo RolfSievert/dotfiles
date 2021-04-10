@@ -93,6 +93,7 @@ bindsym $mod+space focus mode_toggle
 for_window [class="Thunar"] floating enable, resize set 60 ppt 80 ppt, move position center
 for_window [class="Nautilus"] floating enable, resize set 60 ppt 80 ppt, move position center
 for_window [class="gimp"] floating enable
+for_window [class="Blueman-manager"] floating enable, resize set 20 ppt 60 ppt, move position center
 
 # focus the parent container
 bindsym $mod+a focus parent
