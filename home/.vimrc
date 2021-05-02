@@ -20,7 +20,8 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vim-pandoc/vim-rmarkdown'
 " File browser
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree' |
+    \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Autocompletion (tip: use package bear on makefile, "bear make", to link
 " project (TODO reinstall on package update)
 " cd ~/.vim/plugged/YouCompleteMe
@@ -29,7 +30,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-com
 " Use template for new files
 Plug 'aperezdc/vim-template'
 " Asynchronous linting (TODO add help to linting with cmake)
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Language pack (better syntax highlighting)
 Plug 'sheerun/vim-polyglot'
 " Fuzzy search for vim
@@ -44,7 +45,16 @@ Plug 'stevearc/vim-arduino'
 Plug 'hail2u/vim-css3-syntax'
 " Latex preview
 Plug 'lervag/vimtex'
+" Useful git tools, such as :Git blame
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
+""""" IDEAS & TODOS """""
+
+" Toggle vertical cursor centering, with e.g. Ctrl+z
+" Assign random colors to the bar containing the current file-name to help separate windows
+" Add grammar check in latex and md
+
 
 """"" PLUG PACKAGES CONFIG """""
 
@@ -53,12 +63,16 @@ let g:vimtex_view_method = "zathura"
 let g:tex_flavor = 'latex' " can give error if not set
 
 " YCM
+" In a c++ project, link the compile_commands.json to the project root.
+" It contains the paths necessary for YCM to find the project files.
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 nmap <silent> gd :YcmCompleter GoTo<CR>
 " disagble diagnostics
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_enable_diagnostic_signs = 0
+" Disable YCM
+" let g:loaded_youcompleteme = 1
 
 " FZF
 " run
@@ -69,10 +83,11 @@ colorscheme wal
 
 " ALE
 let g:syntastic_python_pylint_post_args="--max-line-length=110"
+let g:ale_python_pylint_options="--max-line-length=110"
 " GCC settings
 " For linting, check :ALEINFO and see 'Available Linters'
 let g:ale_linter_aliases = {'jsx': ['css', 'javascript', 'jsx']}
-let g:ale_linters = {'cpp': ['clangtidy'], 'python': ['pylint'], 'jsx': ['prettier', 'eslint']}
+let g:ale_linters = {'cpp': ['clangd'], 'python': ['pylint'], 'jsx': ['prettier', 'eslint']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
@@ -80,6 +95,10 @@ let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': [
 " Clang format is located in home folder, .clang-format
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
+" Find virtual environment automatically
+let g:ale_python_auto_pipenv = 1
+" Enable completion
+" let g:ale_completion_enabled = 1
 
 " NerdTree
 " open nerdtree if no files are specified
@@ -89,6 +108,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 " close nerdtree when opening a file
 let NERDTreeQuitOnOpen = 1
+" NerdTree position
+let g:NERDTreeWinPos = "right"
 
 """ Markdown Preview
 
