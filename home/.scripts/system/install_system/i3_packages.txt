@@ -49,3 +49,5 @@ nautilus
 gnome-icon-theme
 # printscreen
 flameshot
+# Load multihead configurations automatically on display connect/disconnect
+autorandr
