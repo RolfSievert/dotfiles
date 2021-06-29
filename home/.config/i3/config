@@ -124,6 +124,9 @@ set $ws18 "18"
 set $ws19 "19"
 set $ws20 "20"
 
+# Priority of workspace display placement
+workspace 1 output HDMI1 eDP1
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
