@@ -138,6 +138,7 @@ label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
 [module/i3]
+; TODO change color of toolbar when in resize mode
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
