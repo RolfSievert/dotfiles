@@ -1,3 +1,6 @@
+" Tip: run :checkhealth
+
+
 " Automatic install of plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -26,7 +29,7 @@ Plug 'preservim/nerdtree' |
 " project (TODO reinstall on package update)
 " cd ~/.vim/plugged/YouCompleteMe
 " python3 install.py --clangd-completer --ts-completer
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer --enable-dart --enable-bash' }
 " Use template for new files
 Plug 'aperezdc/vim-template'
 " Asynchronous linting (TODO add help to linting with cmake)
@@ -43,7 +46,7 @@ Plug 'honza/vim-snippets'
 Plug 'stevearc/vim-arduino'
 " CSS suggestions
 Plug 'hail2u/vim-css3-syntax'
-" Latex preview
+" Latex preview, requires 'pip3 install neovim-remote' for callbacks to work with neovim
 Plug 'lervag/vimtex'
 " Useful git tools, such as :Git blame
 Plug 'tpope/vim-fugitive'
@@ -51,16 +54,17 @@ call plug#end()
 
 """"" IDEAS & TODOS """""
 
-" Toggle vertical cursor centering, with e.g. Ctrl+z
-" Assign random colors to the bar containing the current file-name to help separate windows
+" Assign random colors to the bar containing the current file-name to help separate windows (statusline)
 " Add grammar check in latex and md
 
 
 """"" PLUG PACKAGES CONFIG """""
 
 " VimTex
-let g:vimtex_view_method = "zathura"
+let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex' " can give error if not set
+" desired by VimTex for some reason
+let g:vimtex_compiler_progname = 'nvr'
 
 " YCM
 " In a c++ project, link the compile_commands.json to the project root.
@@ -71,6 +75,15 @@ nmap <silent> gd :YcmCompleter GoTo<CR>
 " disagble diagnostics
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_enable_diagnostic_signs = 0
+
+let g:ycm_language_server = [
+  \   {
+  \     'name': 'dart',
+  \     'cmdline': [ 'dart', '--lsp' ],
+  \     'filetypes': [ 'dart' ],
+  \   },
+  \ ]
+
 " Disable YCM
 " let g:loaded_youcompleteme = 1
 
@@ -87,11 +100,21 @@ let g:ale_python_pylint_options="--max-line-length=110"
 " GCC settings
 " For linting, check :ALEINFO and see 'Available Linters'
 let g:ale_linter_aliases = {'jsx': ['css', 'javascript', 'jsx']}
-let g:ale_linters = {'cpp': ['clangd'], 'python': ['pylint'], 'jsx': ['prettier', 'eslint']}
+let g:ale_linters = {
+            \ 'cpp': ['clangd'],
+            \ 'python': ['pylint'], 
+            \ 'jsx': ['prettier', 'eslint'],
+            \ 'dart': ['analysis_server', 'dartanalyzer', 'language_server']}
 " jump to warning/error
 nmap <silent> <C-j> :ALENext<CR>
 nmap <silent> <C-k> :ALEPrevious<CR>
-let g:ale_fixers = {'*' : ['remove_trailing_lines', 'trim_whitespace'], 'cpp': ['clang-format'], 'arduino': ['clang-format'], 'python': ['yapf'], 'jsx': ['tidy', 'prettier', 'eslint'], 'latex': ['latexindent', 'textlint']}
+let g:ale_fixers = {
+            \ '*' : ['remove_trailing_lines', 'trim_whitespace'], 
+            \ 'cpp': ['clang-format'], 
+            \ 'arduino': ['clang-format'], 
+            \ 'python': ['yapf'], 'jsx': ['tidy', 'prettier', 'eslint'], 
+            \ 'latex': ['latexindent', 'textlint'],
+            \ 'dart': ['dartfmt']}
 " Clang format is located in home folder, .clang-format
 call ale#Set('c_clangformat_options', '-style=file')
 nmap <silent> <F8> :ALEFix<CR>
@@ -110,6 +133,7 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 " NerdTree position
 let g:NERDTreeWinPos = "right"
+nmap ,f :NERDTreeFind<CR>
 
 """ Markdown Preview
 
@@ -120,6 +144,8 @@ let g:NERDTreeWinPos = "right"
 " Set default browser
 let g:mkdp_browser = 'brave'
 
+""" Vim fugitive (git tools)
+nmap ,d :Gdiff !~<CR>
 
 """"" BUILT IN CONFIGS """""
 " Indent and syntax highlighting
@@ -187,6 +213,32 @@ set wildmenu "Show menu alternatives
 " Autocenter searches
 nmap n nzz
 nmap N Nzz
+
+" Toggle vertical cursor centering
+fu! ToggleCentering()
+    if &scrolloff
+        set scrolloff=0
+    else
+        set scrolloff=999
+    endif
+endfunction
+
+nmap gc :call ToggleCentering()<CR>
+
+" Assign random color to statusbar
+" TODO
+fu! Rand(num)
+    py3 import random
+    let res = py3eval(random.randint(0, a:num))
+    return py3eval(import random; print(random.randint(0, a:num)))
+endfunction
+
+fu! RandomStatusbarColor()
+    let seed = Rand(10)
+    echo &seed
+
+endfunction
+
 
 """" Generating Vim help files
 """" Put these lines at the very end of your vimrc file.
