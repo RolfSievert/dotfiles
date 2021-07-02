@@ -166,3 +166,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # Path to ruby executables
 PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+
+# Path to flutter and other flutter settings
+PATH="$PATH:$HOME/Programs/flutter/bin"
+export CHROME_EXECUTABLE=brave
