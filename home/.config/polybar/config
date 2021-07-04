@@ -101,7 +101,7 @@ font-1 = "Material Design Icons:style=Regular:pixelsize=15;4"
 
 modules-left = menu date 
 modules-center = i3
-modules-right = battery cpu memory volume bluetooth wireless-network
+modules-right = xkeyboard battery cpu memory volume bluetooth wireless-network
 
 ;tray-position = right
 ;tray-padding = 2
@@ -123,19 +123,18 @@ click-left = "~/.scripts/settings-menu.sh"
 ; show keyboard language
 [module/xkeyboard]
 type = internal/xkeyboard
+; List of indicators to ignore
 blacklist-0 = num lock
+blacklist-1 = scroll lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+;format-prefix = " "
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-foreground = ${colors.foreground}
+label-layout-padding = 0
 
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
 
 [module/i3]
 ; TODO change color of toolbar when in resize mode
