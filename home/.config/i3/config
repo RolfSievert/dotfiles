@@ -257,6 +257,9 @@ bindsym $mod+m exec $SHELL -c $HOME/.scripts/settings-menu.sh
 # Open themes menu
 bindsym $mod+t exec $SHELL -c $HOME/.scripts/theme-menu.sh
 
+# Switch keyboard layout, with arguments as alternatives
+bindsym $mod+b exec $SHELL -c "$HOME/.config/i3/switch_keyboard_layout.sh se us"
+
 # Screen capture
 bindsym Print exec flameshot gui
 
