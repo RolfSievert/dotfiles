@@ -29,7 +29,7 @@ Plug 'preservim/nerdtree' |
 " project (TODO reinstall on package update)
 " cd ~/.vim/plugged/YouCompleteMe
 " python3 install.py --clangd-completer --ts-completer
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer --enable-dart --enable-bash' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer' }
 " Use template for new files
 Plug 'aperezdc/vim-template'
 " Asynchronous linting (TODO add help to linting with cmake)
