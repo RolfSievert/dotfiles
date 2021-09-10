@@ -84,6 +84,9 @@ let g:ycm_language_server = [
   \   },
   \ ]
 
+" Go to header of file
+nmap gh :YcmCompleter GoToInclude<cr>
+
 " Disable YCM
 " let g:loaded_youcompleteme = 1
 
@@ -146,6 +149,10 @@ let g:mkdp_browser = 'brave'
 
 """ Vim fugitive (git tools)
 nmap ,d :Gdiff !~<CR>
+
+
+
+
 
 """"" BUILT IN CONFIGS """""
 " Indent and syntax highlighting
@@ -238,6 +245,9 @@ fu! RandomStatusbarColor()
     echo &seed
 
 endfunction
+
+" cursor row number color
+hi CursorLineNR ctermfg=5
 
 
 """" Generating Vim help files
