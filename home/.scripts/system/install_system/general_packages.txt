@@ -24,3 +24,5 @@ neovim
 python-pynvim
 # Colorscheme editor and color picker
 gpick
+# automatically detect and swap display settings based on connected devices
+autorandr
