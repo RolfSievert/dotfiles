@@ -29,11 +29,19 @@ OPTIONS=(
     "Set random theme"
 )
 
-# Get time and date
+ROFI_THEME=(
+    -theme-str "window { width: 16%; }"
+    -theme-str "listview { lines: ${#OPTIONS[@]}; }"
+)
+
+ROFI_OPTIONS=(
+    -location 1
+    -kb-cancel 'Super_L,Escape'
+)
 
 SELECTION="1"
 while [ ! -z "$SELECTION" ]; do
-    SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 16 -height 2 -location 1 -kb-cancel 'Super_L,Escape' -lines ${#OPTIONS[@]} -dmenu -p "Theme Menu"`
+    SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i "${ROFI_OPTIONS[@]}" "${ROFI_THEME[@]}" -dmenu -p 'Theme Menu'`
 
     if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
         ~/.scripts/theme-creator.sh > /dev/null

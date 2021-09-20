@@ -13,9 +13,17 @@ OPTIONS=(
     "Set random theme"
 )
 
-# Get time and date
+ROFI_THEME=(
+    -theme-str "window { width: 16%; }"
+    -theme-str "listview { lines: ${#OPTIONS[@]}; }"
+)
 
-SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 16 -height 2 -location 1 -kb-cancel 'Super_L,Escape' -lines ${#OPTIONS[@]} -dmenu -p "Menu"`
+ROFI_OPTIONS=(
+    -location 1
+    -kb-cancel 'Super_L,Escape'
+)
+
+SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i "${ROFI_OPTIONS[@]}" "${ROFI_THEME[@]}" -dmenu -p "Menu"`
 
 if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
     ~/.scripts/change-colorscheme.sh > /dev/null &
