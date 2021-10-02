@@ -27,20 +27,22 @@ vdiff=$2
 function send_notification {
     volume=`get_volume`
     # Calculate number of dashes and spaces
-    barsize=10
+    barsize=5
     dashes=$(($volume / $barsize))
     spaces=$((((100 / $barsize)) - $dashes))
     # Make the bar with special character ─ (not dash -)
-    bar1=$(printf "─"'%.s' $(eval "echo {0.."$(($dashes))"}"))
+    bar1=$(printf "█"'%.s' $(eval "echo {0.."$(($dashes))"}"))
     # Create spaces to make notification size constant
-    bar2=$(printf "    "'%.s' $(eval "echo {0.."$(($spaces))"}"))
+    bar2=$(printf " "'%.s' $(eval "echo {0.."$(($spaces))"}"))
 
-    # Send the notification
+    # Set title
     if [[ "$(is_mute)" == *"yes"* ]]; then
-        dunstify -u normal --icon=0 -r "$msgId" "   Volume Muted" "$bar2$bar1"
+        title="     Volume Muted"
     else
-        dunstify -u normal --icon=0 -r "$msgId" "   Volume $volume%" "$bar2$bar1"
+        title="        Volume"
     fi
+    # Send the notification
+    dunstify -u normal --icon=0 -r "$msgId" "$title" "$bar2$bar1"
 }
 
 sink=`get_sink`
