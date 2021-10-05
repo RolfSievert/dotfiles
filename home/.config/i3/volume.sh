@@ -36,7 +36,7 @@ function send_notification {
         title="Volume"
     fi
 
-    send_notification_message_bar $volume $title $msgId
+    send_notification_message_bar "$volume" "$title" "$msgId"
 }
 
 sink=`get_sink`
