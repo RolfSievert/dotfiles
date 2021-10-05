@@ -5,6 +5,8 @@
 # $./volume.sh down vol
 # $./volume.sh mute
 
+source $(dirname $0)/message_bar.sh
+
 # Arbitrary but unique message id
 msgId="991049"
 
@@ -26,23 +28,15 @@ function get_sink {
 vdiff=$2
 function send_notification {
     volume=`get_volume`
-    # Calculate number of dashes and spaces
-    barsize=5
-    dashes=$(($volume / $barsize))
-    spaces=$((((100 / $barsize)) - $dashes))
-    # Make the bar with special character ─ (not dash -)
-    bar1=$(printf "█"'%.s' $(eval "echo {0.."$(($dashes))"}"))
-    # Create spaces to make notification size constant
-    bar2=$(printf " "'%.s' $(eval "echo {0.."$(($spaces))"}"))
 
     # Set title
     if [[ "$(is_mute)" == *"yes"* ]]; then
-        title="     Volume Muted"
+        title="Volume Muted"
     else
-        title="        Volume"
+        title="Volume"
     fi
-    # Send the notification
-    dunstify -u normal --icon=0 -r "$msgId" "$title" "$bar2$bar1"
+
+    send_notification_message_bar $volume $title $msgId
 }
 
 sink=`get_sink`

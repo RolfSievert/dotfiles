@@ -3,6 +3,8 @@
 # Script usage:
 # ./backlight.sh [up/down] [val]
 
+source $(dirname $0)/message_bar.sh
+
 # Arbitrary but unique message id
 msgId="991050"
 
@@ -14,17 +16,9 @@ function get_brightness {
 # Difference to change volume with
 function send_notification {
     brightness=`get_brightness`
-    # Calculate number of dashes and spaces
-    barsize=10
-    dashes=$(($brightness / $barsize))
-    spaces=$((((100 / $barsize)) - $dashes))
-    # Make the bar with special character ─ (not dash -)
-    bar1=$(printf "─"'%.s' $(eval "echo {0.."$(($dashes))"}"))
-    # Create spaces to make notification size constant
-    bar2=$(printf "    "'%.s' $(eval "echo {0.."$(($spaces))"}"))
 
     # Send the notification
-    dunstify -u normal --icon="~/Downloads/brightness.png" -r "$msgId" "   Brightness" "$bar2$bar1"
+    send_notification_message_bar $brightness "Brightness" $msgId
 }
 
 if [[ "$1" == "up" ]]; then
