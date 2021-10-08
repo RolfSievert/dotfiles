@@ -11,7 +11,7 @@ source $(dirname $0)/message_bar.sh
 msgId="991049"
 
 function get_volume {
-    pactl list sinks | grep '^[[:space:]]Volume:' | \
+    pactl get-sink-volume $(get_default_sink) | \
         head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
 }
 
@@ -19,9 +19,8 @@ function is_mute {
     pacmd list-sinks | awk '/muted/ { print $2 }'
 }
 
-function get_sink {
-    sink=$(pactl info | grep "Default Sink: ")
-    echo "${sink#"Default Sink: "}"
+function get_default_sink {
+    echo "$(pactl get-default-sink)"
 }
 
 # Difference to change volume with
@@ -39,25 +38,25 @@ function send_notification {
     send_notification_message_bar "$volume" "$title" "$msgId"
 }
 
-sink=`get_sink`
+sink=`get_default_sink`
 case $1 in
     up)
         # Up the volume
         volume=`get_volume`
         if [[ $volume -ge 95 ]]; then
-            pactl set-sink-volume $sink 100%
+            pactl set-sink-volume "$sink" 100%
         else
-            pactl set-sink-volume $sink +$vdiff%
+            pactl set-sink-volume "$sink" +$vdiff%
         fi
         send_notification
         ;;
     down)
-        pactl set-sink-volume $sink -$vdiff%
+        pactl set-sink-volume "$sink" -$vdiff%
 	    send_notification
 	    ;;
     mute)
     	# Toggle mute
-        pactl set-sink-mute $sink toggle
+        pactl set-sink-mute "$sink" toggle
         send_notification
 	    ;;
 esac
