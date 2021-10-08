@@ -1,15 +1,20 @@
 #! /bin/sh
 
-if [ $# -eq 0 ]; then
+OPTIONS=(
+    "se" 
+    "us"
+)
+
+if ! [[ $# -eq 0 ]]; then
     # No arguments supplied
-    OPTIONS=(
-        "se" 
-        "us"
-    )
-else
     OPTIONS=( "$@" )
 fi
 
+ROFI_THEME=(
+    -theme-str "window { width: 16%; }"
+    -theme-str "listview { lines: ${#OPTIONS[@]}; }"
+    #-theme-str "textbox-prompt-colon { str: ' '; }"
+)
 
 # -o is print only the match and not the search
 # -P perl regexp
@@ -26,7 +31,7 @@ done
 
 echo $OPTIONS
 
-SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i -width 16 -height 2 -location 3 -kb-cancel 'Super_L,Escape' -lines ${#OPTIONS[@]} -dmenu -p "Keyboard layout: $CURRENT_LAYOUT"`
+SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i "${ROFI_THEME[@]}" -location 3 -kb-cancel 'Super_L,Escape' -lines ${#OPTIONS[@]} -dmenu -p "Keyboard layout ($CURRENT_LAYOUT)"`
 
 setxkbmap $SELECTION
 
