@@ -8,10 +8,11 @@
 #   - copy selected colorschemes to theme folder
 
 THEMES_FOLDER="$HOME/Media/Themes/"
+SCRIPTS_FOLDER="$HOME/.scripts/"
 
 # select image
-IMG_FOLD=`$HOME/.scripts/select-folder-prompt.sh $HOME`
-IMAGE=$(~/.scripts/background-tester.sh "$IMG_FOLD")
+IMG_FOLD=`$SCRIPTS_FOLDER/select-folder-prompt.sh $HOME`
+IMAGE=$($SCRIPTS_FOLDER/background-tester.sh "$IMG_FOLD")
 IMAGE=$(basename -- "$IMAGE")
 
 if [ -z "$IMAGE" ]; then
@@ -36,10 +37,12 @@ if [ ! -d "$THEME_PATH" ]; then
 fi
 cp "$IMAGE_PATH" "$THEME_PATH"
 
-# select colorschemes and copy to folder
-COLORSCHEMES=($(~/.scripts/colorscheme-selector.sh))
+# select colorschemes and symlink to folder
+COLORSCHEMES=($($SCRIPTS_FOLDER/colorscheme-selector.sh))
 echo Selected themes:
 for c in "${COLORSCHEMES[@]}"; do
     echo " - $c"
-    cp "$c" "$THEME_PATH"
+    ln -s "$c" "$THEME_PATH"
 done
+
+# TODO save names of colorschemes to colorschemes.txt under current theme

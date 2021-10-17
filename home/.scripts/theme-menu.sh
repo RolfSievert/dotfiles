@@ -39,17 +39,19 @@ ROFI_OPTIONS=(
     -kb-cancel 'Super_L,Escape'
 )
 
+THEME_SCRIPTS_DIR=$(dirname $0)/theme/
+
 SELECTION="1"
 while [ ! -z "$SELECTION" ]; do
     SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i "${ROFI_OPTIONS[@]}" "${ROFI_THEME[@]}" -dmenu -p 'Theme Menu'`
 
     if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
-        ~/.scripts/theme-creator.sh > /dev/null
+        $THEME_SCRIPTS_DIR/theme-creator.sh > /dev/null
     elif [[ "$SELECTION" == ${OPTIONS[1]} ]]; then
-        ~/.scripts/theme-editor.sh >/dev/null
+        $THEME_SCRIPTS_DIR/theme-editor.sh >/dev/null
     elif [[ "$SELECTION" == ${OPTIONS[2]} ]]; then
-        ~/.scripts/theme-setter.sh >/dev/null
+        $THEME_SCRIPTS_DIR/theme-setter.sh >/dev/null
     elif [[ "$SELECTION" == ${OPTIONS[3]} ]]; then
-        ~/.scripts/theme-randomizer.sh >/dev/null
+        $THEME_SCRIPTS_DIR/theme-randomizer.sh >/dev/null
     fi
 done
