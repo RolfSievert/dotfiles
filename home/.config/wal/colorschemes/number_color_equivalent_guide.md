@@ -9,7 +9,7 @@
 3. Types
 4. #include
 5. Predefined values and builtin functionality, \n, true, if, switch
-6. Not used
+6. class, struct
 7. Default text color
 8. Comments
 9-14. Flavours of 1-6 respectively
