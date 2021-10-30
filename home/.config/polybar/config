@@ -206,7 +206,7 @@ label-foreground = ${colors.icon-light}
 type = internal/cpu
 interval = 2
 ; Click opens htop
-format = %{A:gnome-terminal -- /usr/bin/zsh -ic htop&:}<ramp-load>%{A}
+format = %{A:alacritty --class htop -e $SHELL -ic htop&:}<ramp-load>%{A}
 label-foreground = ${colors.icon-cpu}
 label = 
 ramp-load-foreground = ${colors.icon-cpu}
@@ -245,7 +245,7 @@ interval = 2
 ; windows with role "floating_term" are made floating in i3 (see config)
 click-left = blueman-manager
 #"~/.scripts/bt-autoconnect-paired.sh"
-click-right = gnome-terminal --role bluetoothctl -- /usr/bin/zsh -ic bluetoothctl &
+click-right = alacritty --class bluetoothctl -e $SHELL -ic bluetoothctl &
 
 [module/wlan]
 type = internal/network
@@ -264,10 +264,10 @@ interface = wlo1
 interval = 3.0
 
 ; Bind an action to a label that activates upon click
-format-connected = %{A:gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-connected>%{A}
+format-connected = %{A:alacritty --class nmtui -e $SHELL -ic nmtui-connect&:}<label-connected>%{A}
 label-connected-foreground = ${colors.icon-wifi}
 label-connected = 󰤨 %signal%
-format-disconnected = %{A:gnome-terminal --role nmtui -- /usr/bin/zsh -ic nmtui-connect&:}<label-disconnected>%{A}
+format-disconnected = %{A:alacritty --class nmtui -e $SHELL -ic nmtui-connect&:}<label-disconnected>%{A}
 label-disconnected = 󰤮
 label-disconnected-foreground = ${colors.icon-wifi}
 
