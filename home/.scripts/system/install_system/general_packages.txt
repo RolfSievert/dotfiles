@@ -2,6 +2,7 @@
 homesick
 # Pdf reader with vim bindings
 zathura
+#zathura-pdf-poppler
 # Good browser
 brave
 # Expansion of bash isch
@@ -18,7 +19,7 @@ cmake
 clang
 # Python pip
 python-pip
-# nvim
+# Editor nvim
 neovim
 # Python for nvim modules
 python-pynvim
@@ -26,3 +27,11 @@ python-pynvim
 gpick
 # automatically detect and swap display settings based on connected devices
 autorandr
+# Graphical file explorer
+nautilus
+# Icons for nautilus
+gnome-icon-theme
+# printscreen
+flameshot
+# Creates colorschemes based on background
+python-pywal

@@ -1,12 +1,8 @@
 # Graphics for windows, transparency and stuff
-# compton-tryone-git
+# picom
 
 # Terminal
-gnome-terminal
-# Editor
-neovim
-# Browser
-brave
+alacritty
 
 ##### i3 stuff #####
 # Locker for i3
@@ -30,9 +26,6 @@ pulseaudio-bluetooth
 # Notification deamon
 dunst
 
-# Creates colorschemes based on background
-python-pywal
-
 ###### not really necessary stuff #####
 # Nice search popup
 rofi
@@ -40,14 +33,3 @@ rofi
 xcursor-breeze
 # rmarkdown support in vim depends on
 #r tk
-# Pdf reader
-#zathura
-#zathura-pdf-poppler
-# Graphical file explorer
-nautilus
-# Icons for nautilus
-gnome-icon-theme
-# printscreen
-flameshot
-# Load multihead configurations automatically on display connect/disconnect
-autorandr
