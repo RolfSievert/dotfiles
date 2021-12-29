@@ -9,14 +9,17 @@ function send_notification_message_bar {
     dashes=$(($value / $barsize))
     spaces=$(((100 / $barsize) - $dashes))
     # Make the bar with special character ─ (not dash -)
+    # NOTE: this creates at least one character
     bar1=$(printf "█"'%.s' $(eval "echo {0.."$(($dashes))"}"))
     # Create spaces to make notification size constant
     bar2=$(printf " "'%.s' $(eval "echo {0.."$(($spaces))"}"))
+
+    echo \"$bar2\"
 
     # Center the title
     title_indent_count=$((((100 / $barsize) - ${#title}) / 2))
     title_indent=$(printf " "'%.s' $(eval "echo {0.."$(($title_indent_count))"}"))
 
-    # Send the notification
-    dunstify -u normal --icon=0 -r "$msgId" "$title_indent$title" "$bar2$bar1"
+    # Send the notification, -r is int reference value
+    dunstify --appname=custom-bar -u normal --icon=0 -r "$msgId" "$title" "${bar2:1}$bar1"
 }
