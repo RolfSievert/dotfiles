@@ -319,6 +319,16 @@
     alignment = center
     timeout = 2
 
+[Spotify]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    appname = Spotify
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 6
+    # Icon for notifications with low urgency, uncomment to enable
+    #default_icon = /path/to/icon
+
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 #
