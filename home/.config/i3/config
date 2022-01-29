@@ -209,6 +209,7 @@ for_window [title=float] floating enable, move position center
 
 # use --class float to make window floating with alacritty
 for_window [class="Alacritty" instance="float"] floating enable
+for_window [class="Alacritty" instance="notes"] floating enable, border pixel 0, resize set 30 ppt 60 ppt, move position center
 for_window [class="Alacritty" instance="nmtui"] floating enable, border pixel 0, resize set 30 ppt 75 ppt, move position center
 for_window [class="Alacritty" instance="bluetoothctl"] floating enable, border pixel 10, resize set 40 ppt, move position center
 for_window [class="Alacritty" instance="htop"] floating enable, border pixel 0, resize set 80 ppt 80 ppt, move position center
@@ -258,7 +259,9 @@ bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.
 # -i flag somehow applies correct theme from .zshrc
 # -c flag tells that a script is to be executed or something
 # Open nmtui
-bindsym $mod+n exec $terminal --class nmtui -e $SHELL -ic nmtui-connect
+# bindsym $mod+n exec $terminal --class nmtui -e $SHELL -ic nmtui-connect
+# open quick notes
+bindsym $mod+n exec $HOME/.scripts/quick_notes/notes.sh
 # open project folder
 bindsym $mod+p exec $terminal -e $SHELL -ic $HOME/.scripts/project_layout/project-layout.sh
 # Open settings menu
