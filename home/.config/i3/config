@@ -256,8 +256,12 @@ bindsym $mod+o exec python3 $HOME/.config/i3/next_empty.py
 # Move focused container up 10 workspaces
 bindsym $mod+Shift+s exec python3 $HOME/.config/i3/shift_container_to_workspace.py
 
+
+# shell flag info
 # -i flag somehow applies correct theme from .zshrc
 # -c flag tells that a script is to be executed or something
+
+
 # Open nmtui
 # bindsym $mod+n exec $terminal --class nmtui -e $SHELL -ic nmtui-connect
 # open quick notes
@@ -275,8 +279,6 @@ bindsym $mod+b exec $SHELL -c "$HOME/.config/i3/switch_keyboard_layout.sh se us"
 # Screen capture
 bindsym Print exec flameshot gui
 
-# Tune power
-#exec_always --no-startup-id $HOME/.scripts/power-tunings.sh
 
 # show on press and hide on release
 # bindcde $mod exec
