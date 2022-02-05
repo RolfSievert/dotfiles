@@ -11,7 +11,7 @@ THEMES_FOLDER="$HOME/Media/Themes/"
 SCRIPTS_FOLDER="$HOME/.scripts/"
 
 # select image
-IMG_FOLD=`$SCRIPTS_FOLDER/select-folder-prompt.sh $HOME`
+IMG_FOLD=$($SCRIPTS_FOLDER/select-folder-prompt.sh $HOME "Select folder to search for images")
 IMAGE=$($SCRIPTS_FOLDER/background-tester.sh "$IMG_FOLD")
 IMAGE=$(basename -- "$IMAGE")
 

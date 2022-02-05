@@ -9,8 +9,8 @@
 # Prompt to select visible folder recursively from provided path.
 # Usage: ./select-folder-prompt.sh ROOT_DIR [rofi title] [rofi message]
 
-TITLE="Folder"
-MESSAGE="Select a folder"
+TITLE="Select a folder"
+MESSAGE=""
 
 if [[ -z "$1" ]]; then
     echo "Search folder not provided!"
@@ -23,5 +23,29 @@ if ! [[ -z "$3" ]]; then
     MESSAGE=$3
 fi
 
+ROFI_THEME=(
+    -theme-str "window { width: 20%; }"
+)
+
+ROFI=(
+    rofi
+    -i # case insensitive
+    -dmenu
+    -location 0
+    -p "$TITLE"
+    #-kb-cancel 'Super_L,Escape'
+)
+# Add message if provided
+if ! [[ -z "$MESSAGE" ]]; then
+    ROFI+=(-mesg "$MESSAGE")
+fi
+
 ROOT_DIR=$1
-find "$ROOT_DIR" -not -path '*/\.*' -type d | rofi -i -dmenu -mesg "$MESSAGE" -p "$TITLE"
+FOLDERS=$(cd "$ROOT_DIR" && find * -not -path '*/\.*' -type d)
+
+RESULT=$(echo "$FOLDERS" | "${ROFI[@]}" "${ROFI_THEME[@]}")
+
+# only print if any selection was made
+if ! [[ -z "$RESULT" ]]; then
+    echo $ROOT_DIR/$RESULT
+fi

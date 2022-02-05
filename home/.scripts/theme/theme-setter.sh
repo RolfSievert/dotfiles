@@ -20,24 +20,36 @@ for theme in ${THEMES[@]}; do
     fi
 done
 
+ROFI_THEME=(
+    -theme-str "window { width: 16%; }"
+    -theme-str "listview { columns: 2; }"
+)
+
+ROFI_OPTIONS=(
+    -p "Theme" # query title
+    -location 0
+    -i # case insensitive search
+    #-kb-cancel 'Super_L,Escape'
+)
+
 SELECTED_INDEX="0"
 
 while true; do
     # run rofi and select between themes
-    BG=`printf '%s\n' "${THEME_NAMES[@]}" | rofi -width 20 -dmenu -selected-row $SELECTED_INDEX -p "Theme"`
+    SELECTION=$(printf '%s\n' "${THEME_NAMES[@]}" | rofi "${ROFI_OPTIONS[@]}" "${ROFI_THEME[@]}" -dmenu -selected-row $SELECTED_INDEX)
     theme_folder=""
 
-    if [ -z "$BG" ]; then
+    if [ -z "$SELECTION" ]; then
         # Return if none is selected
         exit
     else
         # If given a valid folder as input, set background
 
         # Find folder with matching basename
-        for fold_i in ${!THEMES[@]}; do
+        for fold_i in "${!THEMES[@]}"; do
             # check if basename matches with theme name
             foldname=$(basename -- "${THEMES[fold_i]}")
-            if [ "$BG" == "$foldname" ]; then
+            if [ "$SELECTION" == "$foldname" ]; then
                 SELECTED_INDEX="$fold_i"
                 # save folder path
                 theme_folder=${THEMES[fold_i]}
