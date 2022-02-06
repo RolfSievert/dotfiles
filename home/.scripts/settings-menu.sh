@@ -1,10 +1,14 @@
 #! /bin/sh
 #
 # settings-menu.sh
-# Copyright (C) 2019 rolfsievert <rolfsievert@manjaro>
 #
-# Distributed under terms of the MIT license.
-#
+
+ROOT_FOLDER=$(dirname "$0")
+CHANGE_COLORSCHEME_SCRIPT=($ROOT_FOLDER/colorscheme/change-colorscheme.sh)
+BACKGROUND_TESTER_SCRIPT=($ROOT_FOLDER/background-tester.sh)
+THEME_SETTER_SCRIPT=($ROOT_FOLDER/theme/theme-setter.sh)
+THEME_RANDOMIZER_SCRIPT=($ROOT_FOLDER/theme/theme-randomizer.sh)
+SELECT_FOLDER_SCRIPT=($ROOT_FOLDER/select-folder-prompt.sh)
 
 OPTIONS=(
     "Change Colorscheme" 
@@ -26,13 +30,13 @@ ROFI_OPTIONS=(
 SELECTION=`printf '%s\n' "${OPTIONS[@]}" | rofi -i "${ROFI_OPTIONS[@]}" "${ROFI_THEME[@]}" -dmenu -p "Menu"`
 
 if [[ "$SELECTION" == ${OPTIONS[0]} ]]; then
-    ~/.scripts/change-colorscheme.sh > /dev/null &
+    $CHANGE_COLORSCHEME_SCRIPT > /dev/null &
 elif [[ "$SELECTION" == ${OPTIONS[1]} ]]; then
-    IMG_FOLD=`$HOME/.scripts/select-folder-prompt.sh $HOME`
+    IMG_FOLD=$($SELECT_FOLDER_SCRIPT $HOME)
     # use 2>/dev/null to supress error output
-    ~/.scripts/background-tester.sh "$IMG_FOLD" >/dev/null 2>/dev/null &
+    $BACKGROUND_TESTER_SCRIPT "$IMG_FOLD" >/dev/null 2>/dev/null &
 elif [[ "$SELECTION" == ${OPTIONS[2]} ]]; then
-    ~/.scripts/theme-setter.sh >/dev/null &
+    $THEME_SETTER_SCRIPT >/dev/null &
 elif [[ "$SELECTION" == ${OPTIONS[3]} ]]; then
-    ~/.scripts/theme-randomizer.sh >/dev/null &
+    $THEME_RANDOMIZER_SCRIPT >/dev/null &
 fi

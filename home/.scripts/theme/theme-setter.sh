@@ -63,6 +63,6 @@ while true; do
     fi
 
     # run rofi and select colorscheme
-    ~/.scripts/change-colorscheme.sh $theme_folder
+    ~/.scripts/colorscheme/change-colorscheme.sh $theme_folder
 
 done

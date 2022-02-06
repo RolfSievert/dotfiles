@@ -8,7 +8,9 @@
 #   - copy selected colorschemes to theme folder
 
 THEMES_FOLDER="$HOME/Media/Themes/"
-SCRIPTS_FOLDER="$HOME/.scripts/"
+SCRIPTS_FOLDER="$(dirname $0)/../"
+
+COLORSCHEME_SELECTOR_SCRIPT=($SCRIPTS_FOLDER/colorscheme/colorscheme-selector.sh)
 
 # select image
 IMG_FOLD=$($SCRIPTS_FOLDER/select-folder-prompt.sh $HOME "Select folder to search for images")
@@ -38,7 +40,7 @@ fi
 cp "$IMAGE_PATH" "$THEME_PATH"
 
 # select colorschemes and symlink to folder
-COLORSCHEMES=($($SCRIPTS_FOLDER/colorscheme-selector.sh))
+COLORSCHEMES=($($COLORSCHEME_SELECTOR_SCRIPT))
 echo Selected themes:
 for c in "${COLORSCHEMES[@]}"; do
     echo " - $c"

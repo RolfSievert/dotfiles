@@ -1,9 +1,6 @@
 #! /bin/sh
 #
-# colorscheme-selector.sh
-# Copyright (C) 2019 Rolf Sievert
-#
-# Distributed under terms of the MIT license.
+# change-colorscheme.sh
 #
 
 # Use this with rofi to select a color scheme
@@ -20,6 +17,19 @@ folders=(
 # accepted extensions for pywal
 extensions=(
     json
+)
+
+ROFI_THEME=(
+    -theme-str "window { width: 20%; }"
+)
+
+ROFI=(
+    rofi
+    -dmenu
+    -location 0
+    -kb-cancel 'Escape'
+    -mesg "Set colorscheme with wal."
+    -p "Colorscheme"
 )
 
 colorschemes=()
@@ -52,7 +62,7 @@ done
 SELECTED="0"
 
 while [ -n "$SELECTED" ]; do
-    SELECTED=$(printf '%s\n' "${colorschemenames[@]}" | rofi -width 20 -dmenu -selected-row "${SELECTED}" -mesg "Set coloscheme with wal." -p "Colorschemes")
+    SELECTED=$(printf '%s\n' "${colorschemenames[@]}" | "${ROFI[@]}" "${ROFI_THEME[@]}" -selected-row "${SELECTED}")
     echo "$SELECTED"
 
     # If given a file as input, change colorscheme with wal

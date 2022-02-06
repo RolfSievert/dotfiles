@@ -1,9 +1,6 @@
 #! /bin/sh
 #
 # colorscheme-selector.sh
-# Copyright (C) 2019 Rolf Sievert
-#
-# Distributed under terms of the MIT license.
 #
 
 # Use this with rofi to select a color scheme
@@ -23,6 +20,19 @@ folders=(
 # accepted extensions for pywal
 extensions=(
     json
+)
+
+ROFI_THEME=(
+    -theme-str "window { width: 20%; }"
+)
+
+ROFI=(
+    rofi
+    -dmenu
+    -location 0
+    -kb-cancel 'Escape'
+    -mesg "Select and preview colorschemes."
+    -p "Colorscheme"
 )
 
 colorschemes=()
@@ -69,7 +79,7 @@ while [ -n "$SELECTED" ]; do
     done
 
     #SELECTED=$(printf '[ ] %s\n' "${colorschemenames[@]}" | rofi -dmenu -selected-row "${SELECTED}" -mesg "Set coloscheme with wal." -p "Colorschemes")
-    SELECTED=$(printf '%s\n' "${OPTIONS[@]}" | rofi -width 20 -dmenu -selected-row "${SELECTED}" -mesg "Select colorschemes to preview." -p "Colorschemes")
+    SELECTED=$(printf '%s\n' "${OPTIONS[@]}" | "${ROFI[@]}" "${ROFI_THEME[@]}" -selected-row "${SELECTED}")
     # Check if selected item is checked
     if [ "${SELECTED:1:1}" == "x" ]; then
         CHECKED=true
