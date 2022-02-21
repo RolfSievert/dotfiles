@@ -21,7 +21,7 @@ for theme in ${THEMES[@]}; do
 done
 
 ROFI_THEME=(
-    -theme-str "window { width: 16%; }"
+    -theme-str "window { width: 22%; }"
     -theme-str "listview { columns: 2; }"
 )
 
