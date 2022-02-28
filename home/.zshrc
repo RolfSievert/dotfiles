@@ -105,7 +105,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-export PATH=$PATH:~/Programs/Piskel-0.14.0-64bits/
 alias nv='nvim'
 
 # cowsay
@@ -168,5 +167,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # Path to flutter and other flutter settings
-PATH="$PATH:$HOME/Programs/flutter/bin"
+# TODO use alias instead to not add unnecessary files in folder
+PATH="$PATH:$HOME/Programs/flutter/bin/"
 export CHROME_EXECUTABLE=brave
+
+# TODO add separate file for including programs and aliases etc
+
+alias aseprite="$HOME/.local/share/Steam/steamapps/common/Aseprite/aseprite"
