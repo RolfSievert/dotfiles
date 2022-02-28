@@ -148,7 +148,9 @@ nmap ,f :NERDTreeFind<CR>
 let g:mkdp_browser = 'brave'
 
 """ Vim fugitive (git tools)
-nmap ,d :Gdiff !~<CR>
+" what is the !~ for?
+nmap ,d :Gvdiffsplit !~<CR>
+nmap ,D :Ghdiffsplit !~<CR>
 
 
 
@@ -234,17 +236,34 @@ nmap gc :call ToggleCentering()<CR>
 
 " Assign random color to statusbar
 " TODO
-fu! Rand(num)
-    py3 import random
-    let res = py3eval(random.randint(0, a:num))
-    return py3eval(import random; print(random.randint(0, a:num)))
+function! Rand(num)
+    " Get variable from vim:
+    "   vim.eval('a:Low')
+    " Set variable in vim:
+    "   vim.command(f"let index = {var}")
+    " How to evaluate python code from vim:
+    "   py3eval(import random; print(random.randint(0, a:num)))
+
+py3 << EOF
+import vim
+import random
+
+def PyRand():
+    r = random.randint(0, int(vim.eval('a:num')))
+    vim.command(f"let s:res = {r}")
+    print(r)
+EOF
+    "echo s:res
+    "echo py3eval('r')
 endfunction
 
 fu! RandomStatusbarColor()
     let seed = Rand(10)
     echo &seed
-
 endfunction
+
+" echo Rand(10)
+" echo RandomStatusbarColor()
 
 " cursor row number color
 hi CursorLineNR ctermfg=5
