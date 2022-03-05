@@ -223,6 +223,24 @@ set wildmenu "Show menu alternatives
 nmap n nzz
 nmap N Nzz
 
+" Focus new window (focus right and below)
+set splitbelow
+set splitright
+
+" Search and replace
+nmap ,r :%s/<c-r><c-w>//gc<left><left><left>
+
+" Search for visual selection
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Enable cursor highlight
+set cursorline
+" How the line is highlighted
+set cursorlineopt=number
+" Color of cursor line
+" ctermfg is tui colors and cterm is font type (none, bold, etc)
+highlight CursorLineNr cterm=none ctermfg=6
+
 " Toggle vertical cursor centering
 fu! ToggleCentering()
     if &scrolloff
@@ -232,7 +250,7 @@ fu! ToggleCentering()
     endif
 endfunction
 
-nmap gc :call ToggleCentering()<CR>
+nmap ,c :call ToggleCentering()<CR>
 
 " Assign random color to statusbar
 " TODO
@@ -264,10 +282,6 @@ endfunction
 
 " echo Rand(10)
 " echo RandomStatusbarColor()
-
-" cursor row number color
-hi CursorLineNR ctermfg=5
-
 
 """" Generating Vim help files
 """" Put these lines at the very end of your vimrc file.
