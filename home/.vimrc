@@ -241,6 +241,11 @@ set cursorlineopt=number
 " ctermfg is tui colors and cterm is font type (none, bold, etc)
 highlight CursorLineNr cterm=none ctermfg=6
 
+" Highlight trailing whitespace
+highlight TrailingWhitespace ctermbg=9 guibg=9
+" Define what matches the custom group
+match TrailingWhitespace /\s\+$/
+
 " Toggle vertical cursor centering
 fu! ToggleCentering()
     if &scrolloff
