@@ -13,7 +13,7 @@ sum_package_sizes() {
     echo $SIZE
 }
 
-if ! [ -z "$(pacman -Qtdq)"]; then
+if ! [ -z "$(pacman -Qtdq)" ]; then
     # -n flag: do not save important configuration files
     echo Removing unused orphans...
     sudo pacman -Rns $(pacman -Qtdq)
