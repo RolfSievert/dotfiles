@@ -9,12 +9,14 @@ BACKGROUND_TESTER_SCRIPT=($ROOT_FOLDER/background-tester.sh)
 THEME_SETTER_SCRIPT=($ROOT_FOLDER/theme/theme-setter.sh)
 THEME_RANDOMIZER_SCRIPT=($ROOT_FOLDER/theme/theme-randomizer.sh)
 SELECT_FOLDER_SCRIPT=($ROOT_FOLDER/select-folder-prompt.sh)
+EDIT_COLORSCHEME_SCRIPT=($ROOT_FOLDER/colorscheme/edit-colorscheme.sh)
 
 OPTIONS=(
-    "Change Colorscheme" 
+    "Change Colorscheme"
     "Test Backgrounds"
     "Set theme"
     "Set random theme"
+    "Edit Colorscheme"
 )
 
 ROFI_THEME=(
@@ -39,4 +41,6 @@ elif [[ "$SELECTION" == ${OPTIONS[2]} ]]; then
     $THEME_SETTER_SCRIPT >/dev/null &
 elif [[ "$SELECTION" == ${OPTIONS[3]} ]]; then
     $THEME_RANDOMIZER_SCRIPT >/dev/null &
+elif [[ "$SELECTION" == ${OPTIONS[4]} ]]; then
+    $EDIT_COLORSCHEME_SCRIPT >/dev/null &
 fi
