@@ -27,7 +27,7 @@ preview_file_path = project_folder / PREVIEW_FILE
 focused = i3.get_tree().find_focused().workspace().name
 command = ["i3-msg", "workspace " + focused + "; append_layout " + str(i3_layout.absolute())]
 
-process = subprocess.Popen(command, stdout=subprocess.PIPE)
+process = subprocess.Popen(command)
 output, error = process.communicate()
 
 # Run preview
@@ -35,5 +35,15 @@ command = [TERMINAL, "--class", "float", "--working-directory", project_folder,
            "-e",
            SHELL, "-ic",
            EDITOR + " " + str(preview_file_path.absolute())]
-process = subprocess.Popen(command, stdout=subprocess.PIPE)
+process = subprocess.Popen(command)
+
+# output process id so that other applications can shutdown the preview
+#print(process.pid)
+with open(project_folder / "preview_colorscheme_pid.txt", 'w') as f:
+    f.write(str(process.pid))
+
 output, error = process.communicate()
+
+def get_pid():
+    with open(project_folder / "preview_colorscheme_pid.txt", 'r') as f:
+        print(f.read())
