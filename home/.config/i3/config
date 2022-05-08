@@ -296,10 +296,10 @@ exec_always --no-startup-id wal -R
 exec_always --no-startup-id ~/.fehbg &
 # Picom (compositor)
 exec_always --no-startup-id picom
+# Reload screen settings
+#exec_always --no-startup-id autorandr --change
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# Reload screen settings
-exec_always --no-startup-id autorandr --change
 
 # Compton
 #exec_always compton --config $HOME/.config/compton/compton.conf -b --blur-method kawase
