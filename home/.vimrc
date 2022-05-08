@@ -18,9 +18,9 @@ Plug 'dylanaraps/wal.vim'
 Plug 'godlygeek/tabular'
 " Markdown compiler, syntax, etc
 Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-pandoc/vim-rmarkdown'
 " File browser
 Plug 'preservim/nerdtree' |
@@ -140,12 +140,12 @@ nmap ,f :NERDTreeFind<CR>
 
 """ Markdown Preview
 
-" use a custom markdown style must be absolute path
-"let g:mkdp_markdown_css = '~/.config/markdown-css/markdown.css'
-" use a custom highlight style must absolute path
-"let g:mkdp_highlight_css = '~/.config/markdown-css/highlight.css'
 " Set default browser
 let g:mkdp_browser = 'brave'
+" TODO use a custom markdown style must be absolute path or expand(...)
+"let g:mkdp_markdown_css = expand('~/markdown.css')
+" TODO use a custom highlight style must absolute path or expand(...)
+"let g:mkdp_highlight_css = expand('highligt.css')
 
 """ Vim fugitive (git tools)
 " what is the !~ for?
@@ -240,6 +240,9 @@ set cursorlineopt=number
 " Color of cursor line
 " ctermfg is tui colors and cterm is font type (none, bold, etc)
 highlight CursorLineNr cterm=none ctermfg=6
+
+" Error gives a really horrible and invisible foreground
+highlight Error ctermfg=6
 
 " Highlight trailing whitespace
 highlight TrailingWhitespace ctermbg=9 guibg=9
