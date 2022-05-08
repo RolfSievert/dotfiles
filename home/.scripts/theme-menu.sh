@@ -32,6 +32,9 @@ OPTIONS=(
 ROFI_THEME=(
     -theme-str "window { width: 16%; }"
     -theme-str "listview { lines: ${#OPTIONS[@]}; }"
+    -theme-str "entry { enabled: false; }"
+    -theme-str "textbox-prompt-colon { enabled: false; }"
+    -theme-str "prompt { highlight: bold; }"
 )
 
 ROFI_OPTIONS=(
