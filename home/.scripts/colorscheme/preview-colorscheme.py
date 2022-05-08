@@ -2,16 +2,17 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 
-"""
-
-"""
-
 import i3ipc
 import os
 import subprocess
 from pathlib import Path
+import argparse
 
 i3 = i3ipc.Connection()
+
+parser = argparse.ArgumentParser(description='Open a window previewing syntax highlighting.')
+parser.add_argument('pid_path', type=str, help='path to store pid of process')
+args = parser.parse_args()
 
 TERMINAL = "/usr/bin/alacritty"
 EDITOR = "nvim"
@@ -38,12 +39,11 @@ command = [TERMINAL, "--class", "float", "--working-directory", project_folder,
 process = subprocess.Popen(command)
 
 # output process id so that other applications can shutdown the preview
-#print(process.pid)
-with open(project_folder / "preview_colorscheme_pid.txt", 'w') as f:
+with open(project_folder / args.pid_path, 'w') as f:
     f.write(str(process.pid))
 
 output, error = process.communicate()
 
 def get_pid():
-    with open(project_folder / "preview_colorscheme_pid.txt", 'r') as f:
+    with open(project_folder / args.pid_path, 'r') as f:
         print(f.read())

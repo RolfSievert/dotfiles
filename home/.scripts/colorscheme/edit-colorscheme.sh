@@ -67,6 +67,9 @@ SELECTED="0"
 
 SCRIPT_FOLDER=$(dirname "$(realpath $0)")
 
+ENTR_PID=".entr_pid.txt"
+PREVIEW_PID=".preview_colorscheme_pid.txt"
+
 while [ -n "$SELECTED" ]; do
     # Build list of available options and their current selection
     OPTIONS=()
@@ -88,15 +91,18 @@ while [ -n "$SELECTED" ]; do
                 wal --theme $file > /dev/null
 
                 # TODO get pid and terminate after closing editor?
-                ls $file | entr -n wal --theme $file > /dev/null &
-                "$SCRIPT_FOLDER"/preview-colorscheme.py &
+                ls $file | entr -n wal --theme $file > /dev/null & echo "$!" > "$SCRIPT_FOLDER"/"$ENTR_PID"
+                "$SCRIPT_FOLDER"/preview-colorscheme.py "$SCRIPT_FOLDER/$PREVIEW_PID" &
                 sleep 1
-                preview_pid=$(cat "$SCRIPT_FOLDER/preview_colorscheme_pid.txt")
-                echo $preview_pid
                 alacritty --class float --working-directory "$(dirname "$file")" -e /usr/bin/zsh -ic "nvim $(basename -- "$file")"
 
                 # restore colorscheme and close preview
+                preview_pid=$(cat "$SCRIPT_FOLDER/$PREVIEW_PID")
                 kill $preview_pid
+                rm "$SCRIPT_FOLDER/$PREVIEW_PID"
+                entr_pid=$(cat "$SCRIPT_FOLDER/$ENTR_PID")
+                kill $entr_pid
+                rm "$SCRIPT_FOLDER/$ENTR_PID"
                 wal --theme ~/.cache/wal/colors-old.json > /dev/null
 
                 break
