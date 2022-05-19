@@ -140,7 +140,8 @@ vf() {
 }
 
 folder_items() {
-    sudo du -ax --block-size=1M "$1" | sort -n -r | head -20
+    # TODO print tree structure
+    sudo du -ax --block-size=1M "$1" | sort -n | tail -50
 }
 
 package_sizes_all() {
