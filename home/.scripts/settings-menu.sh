@@ -10,6 +10,7 @@ THEME_SETTER_SCRIPT=($ROOT_FOLDER/theme/theme-setter.sh)
 THEME_RANDOMIZER_SCRIPT=($ROOT_FOLDER/theme/theme-randomizer.sh)
 SELECT_FOLDER_SCRIPT=($ROOT_FOLDER/select-folder-prompt.sh)
 EDIT_COLORSCHEME_SCRIPT=($ROOT_FOLDER/colorscheme/edit-colorscheme.sh)
+AUTORANDR=($ROOT_FOLDER/autorandr.sh)
 
 OPTIONS=(
     "Change Colorscheme"
@@ -17,6 +18,7 @@ OPTIONS=(
     "Set theme"
     "Set random theme"
     "Edit Colorscheme"
+    "Set autorandr profile"
 )
 
 ROFI_THEME=(
@@ -43,4 +45,6 @@ elif [[ "$SELECTION" == ${OPTIONS[3]} ]]; then
     $THEME_RANDOMIZER_SCRIPT >/dev/null &
 elif [[ "$SELECTION" == ${OPTIONS[4]} ]]; then
     $EDIT_COLORSCHEME_SCRIPT >/dev/null &
+elif [[ "$SELECTION" == ${OPTIONS[5]} ]]; then
+    $AUTORANDR >/dev/null &
 fi
