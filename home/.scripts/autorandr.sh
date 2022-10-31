@@ -3,7 +3,7 @@
 # settings-menu.sh
 #
 
-OPTIONS=($(autorandr --list))
+OPTIONS=($(autorandr --detected))
 
 ROFI_THEME=(
     -theme-str "window { width: 16%; }"
