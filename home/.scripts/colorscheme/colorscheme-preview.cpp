@@ -1,6 +1,6 @@
-/* Colorscheme preview */
-#include <iostream>
-typedef unsigned int uint;
+/* Colorscheme preview */ // 8
+#include <iostream> // 4 2
+typedef unsigned int uint; // 5 3 7
 
 #ifndef hmm
 #define hmm // TODO
@@ -10,7 +10,7 @@ class Base {};
 
 namespace Yepp {
 template <class T> class Preview : Base {
-  private:
+  private: // 1
     T hello;
   public:
     Preview() : Base() {}
