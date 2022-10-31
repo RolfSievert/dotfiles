@@ -35,3 +35,7 @@ gnome-icon-theme
 flameshot
 # Creates colorschemes based on background
 python-pywal
+# Command line interface to controlling music etc
+playerctl
+# emoji picker
+emote
