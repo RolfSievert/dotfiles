@@ -1,0 +1,27 @@
+{
+    "name": "Gruvbox light, medium",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "special": {
+        "background": "#F5F7F7",
+        "foreground": "#4C5853",
+        "cursor": "#6F8179"
+    },
+    "colors": {
+        "color0": "#F5F7F7",
+        "color1": "#B374A0",
+        "color2": "#b0b070",
+        "color3": "#47916A",
+        "color4": "#6D9DBB",
+        "color5": "#996363",
+        "color6": "#427b58",
+        "color7": "#504945",
+        "color8": "#A2957E",
+        "color9": "#fbf1c7",
+        "color10": "#79740e",
+        "color11": "#b57614",
+        "color12": "#076678",
+        "color13": "#8f3f71",
+        "color14": "#427b58",
+        "color15": "#504945"
+    }
+}
