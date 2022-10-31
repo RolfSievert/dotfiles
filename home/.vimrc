@@ -225,13 +225,18 @@ set cursorlineopt=number
 " ctermfg is tui colors and cterm is font type (none, bold, etc)
 highlight CursorLineNr cterm=none ctermfg=6
 
+" Vertical split customization, separator
+"highlight VertSplit ctermbg=0
+"highlight VertSplit ctermfg=1
+set fillchars+=vert:\▐
+
 " Error gives a really horrible and invisible foreground
 highlight Error ctermfg=6
 
-" Highlight trailing whitespace
-highlight TrailingWhitespace ctermbg=9 guibg=9
 " Define what matches the custom group
 match TrailingWhitespace /\s\+$/
+" Highlight trailing whitespace
+highlight TrailingWhitespace ctermbg=9 guibg=9
 
 " Toggle vertical cursor centering
 fu! ToggleCentering()
