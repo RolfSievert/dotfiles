@@ -1,0 +1,5 @@
+{
+    // inlayHint shows parameter info at end of line
+    "inlayHint.enable": false,
+    "clangd.arguments": ["-style:file"]
+}

@@ -27,8 +27,8 @@ Plug 'preservim/nerdtree' |
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use template for new files
 Plug 'aperezdc/vim-template'
-" Asynchronous linting (TODO add help to linting with cmake)
-Plug 'dense-analysis/ale'
+" Completion and lsp support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language pack (better syntax highlighting)
 Plug 'sheerun/vim-polyglot'
 " Fuzzy search for vim
@@ -45,6 +45,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'lervag/vimtex'
 " Useful git tools, such as :Git blame
 Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 """"" IDEAS & TODOS """""
@@ -54,6 +55,50 @@ call plug#end()
 
 
 """"" PLUG PACKAGES CONFIG """""
+
+" CoC
+
+let g:coc_global_extensions = [
+    \ 'coc-clangd',
+    \ 'coc-json'
+    \ ]
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Show documentation in preview window.
+nnoremap <silent> gh :call ShowDocumentation()<CR>
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+
+" Add `:Format` command to format current buffer.
+nmap <silent> <F8> :call CocActionAsync('format')<CR>
 
 " VimTex
 let g:vimtex_view_method = 'zathura'
@@ -67,40 +112,6 @@ nmap <silent> <C-s> :FZF<cr>
 
 " Wal colorscheme
 colorscheme wal
-
-" ALE
-let g:syntastic_python_pylint_post_args="--max-line-length=120"
-let g:ale_python_pylint_options="--max-line-length=120"
-" GCC settings
-" For linting, check :ALEINFO and see 'Available Linters'
-" In a c++ project, link the compile_commands.json to the project root.
-" It contains the paths necessary to find the project files.
-let g:ale_linter_aliases = {'jsx': ['css', 'javascript', 'jsx']}
-let g:ale_linters = {
-            \ 'cpp': ['clangd'],
-            \ 'python': ['pylint'],
-            \ 'jsx': ['prettier', 'eslint'],
-            \ 'dart': ['analysis_server', 'dartanalyzer', 'language_server']}
-" jump to warning/error
-nmap <silent> <C-j> :ALENext<CR>
-nmap <silent> <C-k> :ALEPrevious<CR>
-nmap gd :ALEGoToDefinition<CR>
-nmap gi :ALEGoToImplementation<CR>
-nmap gh :ALEHover<CR>
-let g:ale_fixers = {
-            \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'cpp': ['clang-format'],
-            \ 'arduino': ['clang-format'],
-            \ 'python': ['yapf'], 'jsx': ['tidy', 'prettier', 'eslint'],
-            \ 'latex': ['latexindent', 'textlint'],
-            \ 'dart': ['dart-format']}
-" Clang format is located in home folder, .clang-format
-call ale#Set('c_clangformat_options', '-style=file')
-nmap <silent> <F8> :ALEFix<CR>
-" Find virtual environment automatically
-let g:ale_python_auto_pipenv = 1
-" Enable completion
-let g:ale_completion_enabled = 1
 
 " NerdTree
 " open nerdtree if no files are specified
@@ -141,12 +152,12 @@ syntax enable
 set mouse=a
 
 " Use tab to step through completion suggestions
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-Tab>
-      \ pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" inoremap <silent><expr> <Tab>
+      " \ pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr> <S-Tab>
+      " \ pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " show popup menu even when there's only one suggestion
-set completeopt=menuone
+" set completeopt=menuone
 
 " Suggested linebreak
 "set colorcolumn=72
