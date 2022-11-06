@@ -93,6 +93,7 @@ bindsym $mod+space focus mode_toggle
 # Floating windows
 for_window [class="Thunar"] floating enable, resize set 60 ppt 80 ppt, move position center
 for_window [class="Nautilus"] floating enable, resize set 60 ppt 80 ppt, move position center
+for_window [class="SimpleScreenRecorder"] floating enable, move position 1 ppt 0 ppt
 for_window [class="gimp"] floating enable
 for_window [class="Blueman-manager"] floating enable, resize set 20 ppt 60 ppt, move position center
 
@@ -208,6 +209,7 @@ for_window [window_role=north-west] floating enable, move position 0 0
 for_window [title=float] floating enable, move position center
 
 # use --class float to make window floating with alacritty
+for_window [class="float" instance="float"] floating enable
 for_window [class="Alacritty" instance="float"] floating enable
 for_window [class="Alacritty" instance="notes"] floating enable, border pixel 0, resize set 30 ppt 60 ppt, move position center
 for_window [class="Alacritty" instance="nmtui"] floating enable, border pixel 0, resize set 30 ppt 75 ppt, move position center
@@ -278,7 +280,7 @@ bindsym $mod+b exec $SHELL -c "$HOME/.config/i3/switch_keyboard_layout.sh se us"
 
 # Screen capture
 bindsym Print exec flameshot gui
-
+bindsym Shift+Print exec simplescreenrecorder
 
 # show on press and hide on release
 # bindcde $mod exec
@@ -292,11 +294,11 @@ bindsym Print exec flameshot gui
 exec_always --no-startup-id $HOME/.config/i3/dunst_launch.sh
 # Restore previous color scheme
 exec_always --no-startup-id wal -R
+# Reload screen settings
+exec_always --no-startup-id autorandr --change
 # Set background image
 exec_always --no-startup-id ~/.fehbg &
 # Picom (compositor)
 exec_always --no-startup-id picom
-# Reload screen settings
-exec_always --no-startup-id autorandr --change
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
