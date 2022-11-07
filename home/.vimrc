@@ -58,9 +58,13 @@ call plug#end()
 
 " CoC
 
+" [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 let g:coc_global_extensions = [
     \ 'coc-clangd',
-    \ 'coc-json'
+    \ 'coc-json',
+    \ 'coc-sh',
+    \ 'coc-glslx',
+    \ 'coc-vimlsp'
     \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.

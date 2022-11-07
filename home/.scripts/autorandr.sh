@@ -4,6 +4,10 @@
 #
 
 OPTIONS=($(autorandr --detected))
+# add full list if no profiles are detected
+if [ ${#OPTIONS[@]} -eq 0 ]; then
+    OPTIONS=($(autorandr --list))
+fi
 
 ROFI_THEME=(
     -theme-str "window { width: 16%; }"
