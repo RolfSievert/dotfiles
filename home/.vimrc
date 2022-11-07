@@ -22,9 +22,6 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-pandoc/vim-rmarkdown'
-" File browser
-Plug 'preservim/nerdtree' |
-    \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use template for new files
 Plug 'aperezdc/vim-template'
 " Completion and lsp support
@@ -49,8 +46,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " Required by nvim-telescope
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " Improves sort speed of telescope
-" Highlight color codes
-Plug 'chrisbra/Colorizer'
+" Nice file explorer
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 
 call plug#end()
 
@@ -65,9 +63,9 @@ call plug#end()
 " CoC
 " [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 let g:coc_global_extensions = [
-    \ 'coc-clangd',
-    \ 'coc-json',
     \ 'coc-sh',
+    \ 'coc-json',
+    \ 'coc-clangd',
     \ 'coc-glslx',
     \ 'coc-vimlsp'
     \ ]
@@ -126,15 +124,15 @@ colorscheme wal
 
 " NerdTree
 " open nerdtree if no files are specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " set nerdtree shortcut (Ctrl + n)
-nmap <C-n> :NERDTreeToggle<CR>
+" nmap <C-n> :NERDTreeToggle<CR>
 " close nerdtree when opening a file
-let NERDTreeQuitOnOpen = 1
+" let NERDTreeQuitOnOpen = 1
 " NerdTree position
-let g:NERDTreeWinPos = "right"
-nmap ,f :NERDTreeFind<CR>
+" let g:NERDTreeWinPos = "right"
+" nmap ,f :NERDTreeFind<CR>
 
 """ Markdown Preview
 
