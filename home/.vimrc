@@ -63,8 +63,6 @@ call plug#end()
 """"" PLUG PACKAGES CONFIG """""
 
 " CoC
-color = "#162716"
-
 " [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 let g:coc_global_extensions = [
     \ 'coc-clangd',
