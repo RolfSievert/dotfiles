@@ -45,6 +45,12 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'lervag/vimtex'
 " Useful git tools, such as :Git blame
 Plug 'tpope/vim-fugitive'
+" Telescope, file and string finder
+Plug 'nvim-lua/plenary.nvim' " Required by nvim-telescope
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " Improves sort speed of telescope
+" Highlight color codes
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
@@ -57,6 +63,7 @@ call plug#end()
 """"" PLUG PACKAGES CONFIG """""
 
 " CoC
+color = "#162716"
 
 " [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 let g:coc_global_extensions = [
@@ -110,9 +117,11 @@ let g:tex_flavor = 'latex' " can give error if not set
 " desired by VimTex for some reason
 let g:vimtex_compiler_progname = 'nvr'
 
+" Telescope
+" Settings are in nvim.init
+
 " FZF
-" run
-nmap <silent> <C-s> :FZF<cr>
+" nmap <silent> <C-s> :FZF<cr>
 
 " Wal colorscheme
 colorscheme wal
@@ -140,8 +149,8 @@ let g:mkdp_browser = 'brave'
 
 """ Vim fugitive (git tools)
 " what is the !~ for?
-nmap ,d :Gvdiffsplit !~<CR>
-nmap ,D :Ghdiffsplit !~<CR>
+" nmap ,d :Gvdiffsplit !~<CR>
+" nmap ,D :Ghdiffsplit !~<CR>
 
 
 
