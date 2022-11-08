@@ -39,3 +39,5 @@ python-pywal
 playerctl
 # emoji picker
 emote
+# required for nvim-telescope, kind of like fzf
+ripgrep
