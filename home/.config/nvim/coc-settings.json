@@ -1,5 +1,6 @@
 {
     "suggest.noselect": true, // make tab select first suggestion
     "inlayHint.enable": false, // inlayHint shows parameter info at end of line
-    "clangd.arguments": ["-style:file"] // make clang search for styling file
+
+    "clangd.path": "/usr/bin/clangd" // make clang search for styling file
 }

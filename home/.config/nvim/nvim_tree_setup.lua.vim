@@ -6,9 +6,6 @@ lua <<EOF
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors to enable highlight groups
---vim.opt.termguicolors = true
-
 -- empty setup using defaults
 --require("nvim-tree").setup()
 
@@ -23,7 +20,20 @@ require("nvim-tree").setup({
     },
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
+    custom = {
+      ".git"
+    }
+  },
+  update_focused_file = {
+    enable = true,
+    update_root = false,
+    ignore_list = {},
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    }
   },
 })
 EOF
