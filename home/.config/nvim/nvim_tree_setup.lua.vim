@@ -1,5 +1,6 @@
 nmap <C-n> :NvimTreeToggle<CR>
 nmap ,f :NvimTreeFindFile<CR>
+highlight NvimTreeCursorLine cterm=none ctermfg=none ctermbg=8
 
 lua <<EOF
 -- disable netrw at the very start of your init.lua (strongly advised)
@@ -35,5 +36,35 @@ require("nvim-tree").setup({
       quit_on_open = true,
     }
   },
+  renderer = {
+    highlight_git = false,
+    highlight_opened_files = "none",
+
+    icons = {
+      glyphs = {
+        default = "",
+        symlink = "",
+        folder = {
+          default = "",
+          empty = "",
+          empty_open = "",
+          open = "",
+          symlink = "",
+          symlink_open = "",
+          arrow_open = "",
+          arrow_closed = "",
+        },
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
+      }
+    }
+  }
 })
 EOF

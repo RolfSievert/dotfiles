@@ -61,6 +61,9 @@ call plug#end()
 """"" PLUG PACKAGES CONFIG """""
 
 " CoC
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 " [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 let g:coc_global_extensions = [
     \ 'coc-sh',
@@ -121,18 +124,6 @@ let g:vimtex_compiler_progname = 'nvr'
 
 " Wal colorscheme
 colorscheme wal
-
-" NerdTree
-" open nerdtree if no files are specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" set nerdtree shortcut (Ctrl + n)
-" nmap <C-n> :NERDTreeToggle<CR>
-" close nerdtree when opening a file
-" let NERDTreeQuitOnOpen = 1
-" NerdTree position
-" let g:NERDTreeWinPos = "right"
-" nmap ,f :NERDTreeFind<CR>
 
 """ Markdown Preview
 
