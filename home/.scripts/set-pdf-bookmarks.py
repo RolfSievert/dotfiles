@@ -15,6 +15,7 @@ index_example = \
 
 8 Appendix
 """
+
 parser = argparse.ArgumentParser(description=f'Set bookmarks to a pdf according to index file. Index entries start with page number followed by bookmark name, where children are defined with spaces.')
 parser.add_argument('pdf_path', type=pathlib.Path, help='path to the pdf')
 parser.add_argument('-i', required=True, type=pathlib.Path, help='path to file containing indexes of bookmarks')
