@@ -69,7 +69,7 @@ let g:coc_global_extensions = [
     \ 'coc-sh',
     \ 'coc-json',
     \ 'coc-clangd',
-    \ 'coc-glslx',
+    \ 'coc-jedi',
     \ 'coc-vimlsp'
     \ ]
 

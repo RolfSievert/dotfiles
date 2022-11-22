@@ -1,5 +1,5 @@
 nmap <C-n> :NvimTreeToggle<CR>
-nmap ,f :NvimTreeFindFile<CR>
+" nmap ,f :NvimTreeFindFile<CR>
 highlight NvimTreeCursorLine cterm=none ctermfg=none ctermbg=8
 
 lua <<EOF
@@ -34,6 +34,9 @@ require("nvim-tree").setup({
   actions = {
     open_file = {
       quit_on_open = true,
+      window_picker = {
+        enable = false,
+      },
     }
   },
   renderer = {
