@@ -23,14 +23,32 @@ function get_default_sink {
     echo "$(pactl get-default-sink)"
 }
 
+function get_device_name {
+    # get line of with info of current card, and find the first device desription
+    # after that line (which is the device name)
+    device_code=$(pactl get-default-sink | cut -f2 -d.)
+    card_line_number=$(pactl list cards | grep -n "\.${device_code}" | cut -f1 -d:)
+    device_lines=($(pactl list cards | grep -n "device.description" | cut -f1 -d:))
+    for device_line in "${device_lines[@]}"; do
+        if [ "$device_line" -gt "$card_line_number" ]; then
+            echo $(pactl list cards \
+                | sed "${device_line}q;d" \
+                | grep -o '".*"' \
+                | sed 's/"//g')
+        fi
+    done
+}
+
 function send_notification {
     volume=$(get_volume $1)
 
+    device_name=$(get_device_name)
+
     # Set title
     if [[ "$(is_mute $1)" == *"yes"* ]]; then
-        title="Volume Muted"
+        title="Volume Muted (${device_name})"
     else
-        title="Volume"
+        title="Volume (${device_name})"
     fi
 
     send_notification_message_bar "$volume" "$title" "$msgId"
