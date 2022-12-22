@@ -99,6 +99,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf <Plug>(coc-codeaction)
+nmap <silent> ,r <Plug>(coc-rename)
 " Show documentation in preview window.
 nnoremap <silent> gh :call ShowDocumentation()<CR>
 
@@ -223,7 +225,7 @@ set splitbelow
 set splitright
 
 " Search and replace
-nmap ,r :%s/<c-r><c-w>//gc<left><left><left>
+"nmap ,r :%s/<c-r><c-w>//gc<left><left><left>
 
 " Search for visual selection
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
