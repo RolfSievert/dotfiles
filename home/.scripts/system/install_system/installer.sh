@@ -1,12 +1,20 @@
 #! /bin/sh
 
 # Install general packages
-#PACKAGES = $(cat ~/.scripts/system/install_system/general_packages.txt | grep -v '#')
-#sudo pacman -S --needed $PACKAGES
+read -p "Install general packages?" -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    PACKAGES=$(cat ~/.scripts/system/install_system/general_packages.txt | grep -v '#')
+    yay -S --needed $PACKAGES
+fi
 
 # Install i3 packages
-PACKAGES=$(cat ~/.scripts/system/install_system/i3_packages.txt | grep -v '#')
-yay -S --needed $PACKAGES
+read -p "Install i3 packages?" -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    PACKAGES=$(cat ~/.scripts/system/install_system/i3_packages.txt | grep -v '#')
+    yay -S --needed $PACKAGES
+fi
 
 # install oh my zsh
 read -p "Install oh my zsh?" -n 1 -r
@@ -23,19 +31,13 @@ then
 	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+: ' Not needed since nvim has link within its init
 # Link vimrc to .config/nvim/init.vim
 if [ ! -d ~/.config/nvim ]; then
     mkdir ~/.config/nvim;
 fi
 ln ~/.vimrc ~/.config/nvim/init.vim
-
-# Install YouCompleteMe
-read -p "Run YouCompleteMe installer?" -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	cd ~/.vim/plugged/YouCompleteMe/
-	sudo python3 ./install.py --clangd-completer --ts-completer
-fi
+'
 
 # Install rmarkdown with R
 #R install.packages("rmarkdown")
@@ -57,11 +59,3 @@ then
 	# Run wal to make rofi and polybar work
 	wal --theme ~/.config/wal/colorschemes/dark/gruvbox-dark-soft.json
 fi
-
-
-# Spotify fix for i3
-#iptables -N TCP
-#iptables -N UDP
-#iptables -A TCP -p tcp --dport 57621 -j ACCEPT -m comment --comment spotify
-#iptables -A UDP -p udp --dport 57621 -j ACCEPT -m comment --comment spotify
-#iptables-save -f /etc/iptables/iptables.rules
