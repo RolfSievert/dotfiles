@@ -1,10 +1,12 @@
+# nice terminal
+alacritty
 # makes symlinks from git repo to system, nice for config files
-homesick
+#homesick
 # Pdf reader with vim bindings
 zathura
 #zathura-pdf-poppler
 # Good browser
-brave
+brave-bin
 # Expansion of bash isch
 zsh
 # fzf fuzzy search
@@ -30,7 +32,7 @@ autorandr
 # Graphical file explorer
 nautilus
 # Icons for nautilus
-gnome-icon-theme
+#gnome-icon-theme
 # printscreen
 flameshot
 # Creates colorschemes based on background
