@@ -49,11 +49,11 @@ SAVE_PATH="$HOME/.bg"
 
 # Check screen proportions
 # Aspect ratio of monitor
-MON_AR=`get_monitor_aspect_ratio`
+MON_AR=$(get_monitor_aspect_ratio)
 # Aspect ratio of image
-PIC_DIM=`magick identify -format "%wx%h" "$IMAGE"`
+PIC_DIM=$(magick identify -format "%wx%h" "$IMAGE")
 PIC_DIM=(${PIC_DIM//x/ })
-PIC_AR=`get_aspect_ratio ${PIC_DIM[@]}`
+PIC_AR=$(get_aspect_ratio ${PIC_DIM[@]})
 
 # If screen proportions are equal to image, set bg and return
 if [[ "${MON_AR[@]}" == "${PIC_AR[@]}" ]]; then
