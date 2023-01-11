@@ -46,7 +46,7 @@ function send_notification {
 
     # Set title
     if [[ "$(is_mute $1)" == *"yes"* ]]; then
-        title="Volume Muted (${device_name})"
+        title="Muted (${device_name})"
     else
         title="Volume (${device_name})"
     fi
