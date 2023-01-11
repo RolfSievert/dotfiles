@@ -46,7 +46,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " Required by nvim-telescope
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " Improves sort speed of telescope
-" Nice file explorer
+" Nice file explorer. NOTE: needs patched font!
 Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 

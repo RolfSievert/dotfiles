@@ -43,3 +43,15 @@ playerctl
 emote
 # required for nvim-telescope, kind of like fzf
 ripgrep
+# ruby, necessary for some zsh stuff in config
+ruby
+# quick search menu
+rofi
+# necessary for coc.nvim
+nodejs
+# necessary for coc.nvim
+yarn
+# font for terminal, a patched font (contains symbols etc)
+ttf-dejavu
+# needed for vim to share clipboard with system
+xclip
