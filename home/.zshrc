@@ -114,7 +114,7 @@ alias nv='nvim'
 # todolist l
 
 # Set vim as editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
