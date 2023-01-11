@@ -46,21 +46,27 @@ db_length=len(images)
 downloads=listDownloads()
 images=[x for x in images if x not in downloads]
 
-import urllib.request as request
-import sys
+download_count = 0
+
 print()
 for i, image in enumerate(images):
-    #sys.stdout.flush()
-    #print("\r")
-    #sys.stdout.flush()
-    print(f"Downloading... ({len(downloads) + i}/{db_length})", end='\r')
-    resp = request.urlopen(unsplash_download_url.format(image))
-    try:
-        with open(f'{BACKGROUNDS_PATH}/{image}-unsplash.jpg', 'wb') as handler:
-            handler.write(resp.read())
-    except:
-        print(f"Aborted. Downloaded {i} images.")
-        raise
+    print(f"Downloading... ({len(downloads) + i}/{db_length})", end='\r', flush=True)
 
-print(f"Done. Downloaded {len(images)} images.")
+    import requests
+    resp = requests.get(unsplash_download_url.format(image))
+
+    if resp.status_code != 200:
+        print(f'Skipping image with id "{image}". Not found or no internet connection.')
+    else:
+        try:
+            from PIL import Image
+            from io import BytesIO
+            img = Image.open(BytesIO(resp.content))
+            with open(f'{BACKGROUNDS_PATH}/{image}-unsplash.jpg', 'wb') as f:
+                img.save(f)
+        except e:
+            print(f'Failed to save image from respone {response}!')
+            throw(e)
+
+print(f'Done. Downloaded {download_count} / {len(images)} images.')
 
