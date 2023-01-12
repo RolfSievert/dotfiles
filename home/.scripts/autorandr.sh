@@ -3,11 +3,13 @@
 # settings-menu.sh
 #
 
-OPTIONS=($(autorandr --detected))
+#OPTIONS=($(autorandr --detected))
 # add full list if no profiles are detected
-if [ ${#OPTIONS[@]} -eq 0 ]; then
-    OPTIONS=($(autorandr --list))
-fi
+#if [ ${#OPTIONS[@]} -eq 0 ]; then
+    #OPTIONS=($(autorandr --list))
+#fi
+
+OPTIONS=($(autorandr --list))
 
 ROFI_THEME=(
     -theme-str "window { width: 16%; }"
