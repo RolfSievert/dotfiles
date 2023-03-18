@@ -170,7 +170,11 @@ PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 # Path to flutter and other flutter settings
 # TODO use alias instead to not add unnecessary files in folder
 PATH="$PATH:$HOME/Programs/flutter/bin/"
+#if ! command -v flutter &> /dev/null
+#then
 export CHROME_EXECUTABLE=brave
+export ANDROID_HOME="$HOME/Programs/AndroidSDK/"
+#fi
 
 # TODO add separate file for including programs and aliases etc
 
