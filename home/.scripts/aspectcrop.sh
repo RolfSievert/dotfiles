@@ -61,11 +61,11 @@ parseAspectRatio()
 
     aspect="$1"
     if [[ $aspect == *":"* ]]; then
-        # TODO add regex float definition as variable "\d[.\d]*"
-        width=$(echo $aspect | grep -Po "^\d[.\d]*(?=:)")
-        height=$(echo $aspect | grep -Po "(?<=:)\d[.\d]*$")
+        floatRegex="\d+(\.\d+)?"
+        width=$(echo $aspect | grep -Po "^$floatRegex(?=:)")
+        height=$(echo $aspect | grep -Po "(?<=:)$floatRegex$")
     else
-        width=$(echo $aspect | grep -Po "^\d[.\d]*$")
+        width=$(echo $aspect | grep -Po "^$floatRegex$")
     fi
 
     # check that width and height was found
