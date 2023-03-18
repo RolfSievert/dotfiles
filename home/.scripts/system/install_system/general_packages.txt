@@ -27,8 +27,6 @@ neovim
 python-pynvim
 # Colorscheme editor and color picker
 gpick
-# automatically detect and swap display settings based on connected devices
-autorandr
 # Graphical file explorer
 nautilus
 # Icons for nautilus
@@ -55,3 +53,5 @@ yarn
 ttf-dejavu
 # needed for vim to share clipboard with system
 xclip
+# colored emoji font
+noto-fonts-emoji

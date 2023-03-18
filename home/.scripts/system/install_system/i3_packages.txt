@@ -29,6 +29,8 @@ dunst
 ###### not really necessary stuff #####
 # Nice search popup
 rofi
+# detect and swap display settings based on connected devices
+autorandr
 # Nice theme for cursor
 xcursor-breeze
 # rmarkdown support in vim depends on
