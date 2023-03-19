@@ -78,32 +78,45 @@ background_path="$SAVE_PATH.$EXTENSION"
 
 # Check screen proportions
 # Aspect ratio of monitor
-MON_AR=$(primaryMonitorAspectRatio)
+monitorAspect=$(primaryMonitorAspectRatio)
 # Aspect ratio of image
-PIC_DIM=$(magick identify -format "%wx%h" "$IMAGE")
-PIC_DIM=(${PIC_DIM//x/ })
-PIC_AR=$(getAspectRatio ${PIC_DIM[@]})
+imageResolution=$(magick identify -format "%w %h" "$IMAGE")
+imageAspect=$(getAspectRatio ${imageResolution[@]})
 
 # If screen proportions are equal to image, set bg and return
-if [[ "${MON_AR[@]}" == "${PIC_AR[@]}" ]]; then
+if [[ "${monitorAspect[@]}" == "${imageAspect[@]}" ]]; then
     cp "$IMAGE" "$background_path"
     setBackground "$background_path"
     echo "$IMAGE"
     exit 0
 fi
 
-# Prompt to select alignment
-gravity_options=(center north west south east northeast northwest southwest southeast)
+monitorRatio="$(echo "scale=4; ${monitorAspect// / / }" | bc)"
+imageRatio="$(echo "scale=4; ${imageAspect// / / }" | bc)"
+
+# Calculate what alignments are available considering monitor and image aspect ratio
+gravity_options=(center)
+landscape_options=(west east) # image is more landscape than monitor
+portrait_options=(north south) # image is more portrait than monitor
+if [[ $(echo "$monitorRatio < $imageRatio" | bc) ]]; then
+    gravity_options+=( "${portrait_options[@]}" )
+else
+    gravity_options+=( "${landscape_options[@]}" )
+fi
+
 gravity="$(printf '%s\n' "${gravity_options[@]}" | rofi -dmenu -mesg "Select alignment of background image." -p "alignment")"
 
 # Crop image and save copy (if selection is valid, otherwise cancel operation)
 # Path to aspect crop script
 ASPECTCROP=~/.scripts/aspectcrop.sh
 
-if [[ "$gravity" == "center" ]]; then
+if [[ -z "$gravity" ]]; then
+    # Cancel operation
+    exit 0
+elif [[ "$gravity" == "center" ]]; then
     cp "$IMAGE" "$background_path"
 elif [[ $(contains "$gravity" "${gravity_options[@]}") ]]; then
-    $ASPECTCROP -a "${MON_AR// /:}" -g "$gravity" "$IMAGE" "$background_path"
+    $ASPECTCROP -a "${monitorAspect// /:}" -g "$gravity" "$IMAGE" "$background_path"
 else
     # Cancel operation
     exit 0
