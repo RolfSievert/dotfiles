@@ -2,13 +2,8 @@
 #
 # background-setter.sh
 #
-# Aspectcrop script: (thanks fred)
-# http://www.fmwconcepts.com/imagemagick/aspectcrop/index.php
 
-# Set background with feh --bg-fill, but image is cropped beforehand as desired if not matching screen proportions.
-# Requires script aspectcrop.sh
-
-function gcd {
+gcd() {
     # Calculate gcd of two numbers
     dividend=$1
     divisor=$2
@@ -23,80 +18,98 @@ function gcd {
     echo $dividend
 }
 
-function get_aspect_ratio {
-    WIDTH=$1
-    HEIGHT=$2
-    tmp=`gcd $WIDTH $HEIGHT`
-    R_W=$((WIDTH / tmp))
-    R_H=$((HEIGHT / tmp))
+getAspectRatio() {
+    width=$1
+    height=$2
+    tmp=`gcd $width $height`
+    R_W=$((width / tmp))
+    R_H=$((height / tmp))
     echo $R_W $R_H
 }
 
-function get_monitor_aspect_ratio {
+primaryMonitorAspectRatio() {
     # Get resolution
-    res=`xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/'`
+    res="$(xrandr | grep 'connected primary' | grep -Po '\d+x\d+')"
     # Split height and width on 'x'
     res=(${res//x/ })
-    WIDTH=${res[0]}
-    HEIGHT=${res[1]}
+    width=${res[0]}
+    height=${res[1]}
     # Get aspect ratio
-    AR=`get_aspect_ratio $WIDTH $HEIGHT`
-    echo $AR
+    aspectRatio=$(getAspectRatio $width $height)
+    echo $aspectRatio
 }
+
+contains() {
+    local match=$1
+    local array=$2
+
+    for el in "${array[@]}"; do
+        if [[ "$match" == "$el" ]]; then
+            echo 1
+            return
+        fi
+    done
+
+    echo 0
+}
+
+setBackground() {
+    local imgPath=$1
+    if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
+        gsettings set org.gnome.desktop.background picture-uri "file://$imgPath"
+        gsettings set org.gnome.desktop.background picture-uri-dark "file://$imgPath"
+    else
+        feh --bg-fill "$imgPath"
+    fi
+}
+
+if [[ $# -eq 0 ]]; then
+    echo 'Missing image path argument.'
+    exit 1
+elif [[ -z "$(command -v rofi)" ]]; then
+    echo 'Command "rofi" is not available!'
+    exit 1
+fi
 
 IMAGE=$1
 SAVE_PATH="$HOME/.bg"
+EXTENSION="${IMAGE##*.}"
+background_path="$SAVE_PATH.$EXTENSION"
 
 # Check screen proportions
 # Aspect ratio of monitor
-MON_AR=$(get_monitor_aspect_ratio)
+MON_AR=$(primaryMonitorAspectRatio)
 # Aspect ratio of image
 PIC_DIM=$(magick identify -format "%wx%h" "$IMAGE")
 PIC_DIM=(${PIC_DIM//x/ })
-PIC_AR=$(get_aspect_ratio ${PIC_DIM[@]})
+PIC_AR=$(getAspectRatio ${PIC_DIM[@]})
 
 # If screen proportions are equal to image, set bg and return
 if [[ "${MON_AR[@]}" == "${PIC_AR[@]}" ]]; then
-    feh --bg-fill "$IMAGE"
-    cp "$IMAGE" "$SAVE_PATH.jpg"
+    cp "$IMAGE" "$background_path"
+    setBackground "$background_path"
     echo "$IMAGE"
-    exit
+    exit 0
 fi
 
 # Prompt to select alignment
-# Options: center, top, bottom, left, right
-OPTIONS=(Center Top Bottom Left Right)
-SELECTED="$(printf '%s\n' "${OPTIONS[@]}" | rofi -dmenu -mesg "Select alignment of background image." -p "alignment")"
+gravity_options=(center north west south east northeast northwest southwest southeast)
+gravity="$(printf '%s\n' "${gravity_options[@]}" | rofi -dmenu -mesg "Select alignment of background image." -p "alignment")"
 
 # Crop image and save copy (if selection is valid, otherwise cancel operation)
 # Path to aspect crop script
 ASPECTCROP=~/.scripts/aspectcrop.sh
-NO_END="${IMAGE%.*}"
-EXTENSION="${IMAGE##*.}"
-case "$SELECTED" in
-    "Center")
-        feh --bg-fill "$IMAGE"
-        cp "$IMAGE" "$SAVE_PATH.jpg"
-        ;;
-    "Top")
-        $ASPECTCROP -a "${MON_AR// /:}" -g n "$IMAGE" "$SAVE_PATH.$EXTENSION"
-        feh --bg-fill "$SAVE_PATH.$EXTENSION"
-        ;;
-    "Bottom")
-        $ASPECTCROP -a "${MON_AR// /:}" -g s "$IMAGE" "$SAVE_PATH.$EXTENSION"
-        feh --bg-fill "$SAVE_PATH.$EXTENSION"
-        ;;
-    "Left")
-        $ASPECTCROP -a "${MON_AR// /:}" -g w "$IMAGE" "$SAVE_PATH.$EXTENSION"
-        feh --bg-fill "$SAVE_PATH.$EXTENSION"
-        ;;
-    "Right")
-        $ASPECTCROP -a "${MON_AR// /:}" -g e "$IMAGE" "$SAVE_PATH.$EXTENSION"
-        feh --bg-fill "$SAVE_PATH.$EXTENSION"
-        ;;
-    *)
-        # Cancel operation
-        exit
-esac
 
+if [[ "$gravity" == "center" ]]; then
+    cp "$IMAGE" "$background_path"
+elif [[ $(contains "$gravity" "${gravity_options[@]}") ]]; then
+    $ASPECTCROP -a "${MON_AR// /:}" -g "$gravity" "$IMAGE" "$background_path"
+else
+    # Cancel operation
+    exit 0
+fi
+
+setBackground "$background_path"
 echo "$IMAGE"
+exit 0
+

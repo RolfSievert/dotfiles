@@ -8,16 +8,15 @@
 
 # Requires scripts select-folder-prompt.sh, background-setter.sh, remove-prompt.sh, wal.sh
 
-REMOVE_ACTION=3
-PYWAL=2
 MOVE_ACTION=1
+PYWAL=2
+REMOVE_ACTION=3
 COLOR_ANALYSIS=5
 
-if [ $# -eq 0 ]
-  then
+if [[ $# -eq 0 ]]; then
     echo "No arguments supplied"
     echo "Script requires at least one path"
-    exit
+    exit 1
 fi
 
 # Arguments of paths passed to script
@@ -26,9 +25,13 @@ PATHS="$@"
 # Open next empty workspace
 #python ~/.config/i3/next_empty.py
 
-scale=40
-width=$((16 * scale))
-height=$((9 * scale))
+monitor_resolution="$(xrandr | grep 'connected primary' | grep -Po '\d+x\d+')"
+
+scale=3
+width=$(($(echo "$monitor_resolution" | cut -d 'x' -f1)))
+width=$((width / scale))
+height=$(($(echo "$monitor_resolution" | cut -d 'x' -f2)))
+height=$((height / scale))
 
 # Call feh (use title "float" for i3 to set window to floating. see i3 config)
 feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom \
@@ -37,3 +40,5 @@ feh --title "float" --geometry "$width"x"$height" --scale-down --auto-zoom \
     --action$REMOVE_ACTION "~/.scripts/remove-prompt.sh %F" \
     --action$PYWAL ";~/.scripts/wal.sh %F" "$PATHS" \
     --action$COLOR_ANALYSIS ";python ~/.scripts/color-analysis.py %F" "$PATHS"
+
+exit 0
