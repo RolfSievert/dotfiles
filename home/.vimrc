@@ -18,9 +18,7 @@ Plug 'dylanaraps/wal.vim'
 Plug 'godlygeek/tabular'
 " Markdown compiler, syntax, etc
 Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-pandoc/vim-rmarkdown'
 " Use template for new files
 Plug 'aperezdc/vim-template'
@@ -49,6 +47,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " Improves sor
 " Nice file explorer. NOTE: needs patched font!
 Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
+" Preview markdown files in browser with custom pandoc compilation
+Plug '~/projects/pandoc_preview'
 
 call plug#end()
 
@@ -57,10 +57,14 @@ call plug#end()
 " Assign random colors to the bar containing the current file-name to help separate windows (statusline)
 " Add grammar check in latex and md
 
-
 """"" PLUG PACKAGES CONFIG """""
 
-" CoC
+""" vim-pandoc-syntax
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+""" CoC
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
@@ -70,7 +74,8 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-clangd',
     \ 'coc-jedi',
-    \ 'coc-vimlsp'
+    \ 'coc-vimlsp',
+    \ 'coc-tsserver'
     \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -153,14 +158,6 @@ syntax enable
 " Make clicking move cursor
 set mouse=a
 
-" Use tab to step through completion suggestions
-" inoremap <silent><expr> <Tab>
-      " \ pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <silent><expr> <S-Tab>
-      " \ pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" show popup menu even when there's only one suggestion
-" set completeopt=menuone
-
 " Suggested linebreak
 "set colorcolumn=72
 
@@ -173,7 +170,6 @@ set t_Co=256
 
 " colorscheme elflord
 " set background=dark
-" au Filetype prolog colorscheme delek
 
 " Realod file when changed
 set autoread
