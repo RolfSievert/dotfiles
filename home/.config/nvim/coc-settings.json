@@ -3,5 +3,6 @@
     "inlayHint.enable": false, // inlayHint shows parameter info at end of line
 
     "clangd.path": "/usr/bin/clangd", // make clang search for styling file
-    "clangd.fallbackFlags": [ "-std=c++17" ]
+    "clangd.fallbackFlags": [ "-std=c++17" ],
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer"
 }
