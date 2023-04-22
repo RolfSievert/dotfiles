@@ -57,3 +57,5 @@ xclip
 noto-fonts-emoji
 # nice lightweight and multifunctional video player
 mpv
+# command-line benchmarking tool (good for kattis)
+hyperfine
