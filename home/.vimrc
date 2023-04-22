@@ -48,7 +48,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " Improves sor
 Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 " Preview markdown files in browser with custom pandoc compilation
-Plug '~/projects/pandoc_preview'
+Plug 'RolfSievert/vim-pandoc-preview'
 
 call plug#end()
 
@@ -58,6 +58,9 @@ call plug#end()
 " Add grammar check in latex and md
 
 """"" PLUG PACKAGES CONFIG """""
+
+""" Pandoc preview
+let g:pandoc_preview_template = 'bootstrap'
 
 """ vim-pandoc-syntax
 augroup pandoc_syntax
