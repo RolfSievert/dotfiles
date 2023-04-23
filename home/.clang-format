@@ -3,6 +3,12 @@ BasedOnStyle: WebKit
 IndentWidth: 4
 ColumnLimit: 120
 PointerAlignment: Right
+AlwaysBreakTemplateDeclarations: Yes
+AllowShortFunctionsOnASingleLine: All
+AllowShortBlocksOnASingleLine: Always
+AlignAfterOpenBracket: AlwaysBreak
+BreakInheritanceList: BeforeColon
+BinPackParameters: false
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterCaseLabel:  false
