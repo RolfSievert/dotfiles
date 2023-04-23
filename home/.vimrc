@@ -225,6 +225,8 @@ set splitright
 
 " Search and replace
 "nmap ,r :%s/<c-r><c-w>//gc<left><left><left>
+" Search and replace visual selection
+vnoremap ,r :<bs><bs><bs><bs><bs>%s/\%V//g<left><left><left>
 
 " Search for visual selection
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
