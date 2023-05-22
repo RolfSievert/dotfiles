@@ -121,10 +121,12 @@ nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <F8> :call CocActionAsync('format')<CR>
 
 " VimTex
-let g:vimtex_view_method = 'zathura'
-let g:tex_flavor = 'latex' " can give error if not set
-" desired by VimTex for some reason
-let g:vimtex_compiler_progname = 'nvr'
+if has_key(g:plugs, 'vimtex')
+    let g:vimtex_view_method = 'zathura'
+    let g:tex_flavor = 'latex' " can give error if not set
+    " (maybe) desired by VimTex for some reason
+    " let g:vimtex_compiler_progname = 'nvr'
+endif
 
 " Telescope
 " Settings are in nvim.init
