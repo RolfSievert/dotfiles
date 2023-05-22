@@ -35,9 +35,9 @@ Plug 'honza/vim-snippets'
 " Arduino
 Plug 'stevearc/vim-arduino'
 " CSS suggestions
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 " Latex preview, requires 'pip3 install neovim-remote' for callbacks to work with neovim
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 " Useful git tools, such as :Git blame
 Plug 'tpope/vim-fugitive'
 " Telescope, file and string finder
@@ -78,7 +78,8 @@ let g:coc_global_extensions = [
     \ 'coc-clangd',
     \ 'coc-jedi',
     \ 'coc-vimlsp',
-    \ 'coc-tsserver'
+    \ 'coc-tsserver',
+    \ 'coc-tailwindcss3'
     \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
