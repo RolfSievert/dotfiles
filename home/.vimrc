@@ -28,9 +28,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 " Fuzzy search for vim
 Plug 'ctrlpvim/ctrlp.vim'
-" Better folding
-Plug 'Konfekt/FastFold'
-" Snippets
+" Better folding (TODO remove if not missing it!)
+" Plug 'Konfekt/FastFold'
+" Snippets (TODO remove?)
 Plug 'honza/vim-snippets'
 " Arduino
 Plug 'stevearc/vim-arduino'
@@ -78,8 +78,7 @@ let g:coc_global_extensions = [
     \ 'coc-clangd',
     \ 'coc-jedi',
     \ 'coc-vimlsp',
-    \ 'coc-tsserver',
-    \ 'coc-tailwindcss3'
+    \ 'coc-tsserver'
     \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -157,6 +156,9 @@ let g:mkdp_browser = 'brave'
 
 
 """"" BUILT IN CONFIGS """""
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
+
 " Indent and syntax highlighting
 filetype plugin indent on
 syntax enable
