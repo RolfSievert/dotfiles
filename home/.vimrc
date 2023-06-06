@@ -28,16 +28,16 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 " Fuzzy search for vim
 Plug 'ctrlpvim/ctrlp.vim'
-" Better folding
-Plug 'Konfekt/FastFold'
-" Snippets
+" Better folding (TODO remove if not missing it!)
+" Plug 'Konfekt/FastFold'
+" Snippets (TODO remove?)
 Plug 'honza/vim-snippets'
 " Arduino
 Plug 'stevearc/vim-arduino'
 " CSS suggestions
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 " Latex preview, requires 'pip3 install neovim-remote' for callbacks to work with neovim
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 " Useful git tools, such as :Git blame
 Plug 'tpope/vim-fugitive'
 " Telescope, file and string finder
@@ -120,10 +120,12 @@ nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <F8> :call CocActionAsync('format')<CR>
 
 " VimTex
-let g:vimtex_view_method = 'zathura'
-let g:tex_flavor = 'latex' " can give error if not set
-" desired by VimTex for some reason
-let g:vimtex_compiler_progname = 'nvr'
+if has_key(g:plugs, 'vimtex')
+    let g:vimtex_view_method = 'zathura'
+    let g:tex_flavor = 'latex' " can give error if not set
+    " (maybe) desired by VimTex for some reason
+    " let g:vimtex_compiler_progname = 'nvr'
+endif
 
 " Telescope
 " Settings are in nvim.init
@@ -153,6 +155,9 @@ let g:mkdp_browser = 'brave'
 
 
 """"" BUILT IN CONFIGS """""
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
+
 " Indent and syntax highlighting
 filetype plugin indent on
 syntax enable
