@@ -75,7 +75,6 @@ set signcolumn=yes
 let g:coc_global_extensions = [
     \ 'coc-sh',
     \ 'coc-json',
-    \ 'coc-clangd',
     \ 'coc-jedi',
     \ 'coc-vimlsp',
     \ 'coc-tsserver'
