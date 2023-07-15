@@ -59,3 +59,5 @@ noto-fonts-emoji
 mpv
 # command-line benchmarking tool (good for kattis)
 hyperfine
+# maths for the terminal
+bc

@@ -138,7 +138,7 @@ else
                 imgPath="$1"
                 if [ -z "$inputImage" ]; then
                     if [ -f "$imgPath" ]; then
-                        inputImage=$imgPath
+                        inputImage="$imgPath"
                     else
                         printError "\"${imgPath}\" is not a path to an image"
                     fi
@@ -157,21 +157,21 @@ fi
 verifyImage()
 {
     imagePath="$1"
-    if [ ! -f $imagePath ]; then
+    if [ ! -f "$imagePath" ]; then
         printError "\"$imagePath\" does not exist or is not a file"
-    elif [[ "$(identify $imagePath &> /dev/null; echo $?)" == "1" ]]; then
+    elif [[ "$(identify "$imagePath" &> /dev/null; echo $?)" == "1" ]]; then
         printError "\"$imagePath\" is not a valid image"
         exit 1
-    elif [[ "$(convert +repage $imagePath /dev/null &> /dev/null ; echo $?)" == "1" ]]; then
+    elif [[ "$(convert +repage "$imagePath" /dev/null &> /dev/null ; echo $?)" == "1" ]]; then
         printError "Cannot parse image \"$imagePath\""
         exit 1
     fi
 }
 
 # check image validity
-verifyImage $inputImage
+verifyImage "$inputImage"
 
 # +repage is recommended for png for some reason
-convert $inputImage -gravity $gravity -crop $aspectRatio +repage $outputImage
+convert "$inputImage" -gravity $gravity -crop $aspectRatio +repage $outputImage
 
 exit 0
