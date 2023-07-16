@@ -72,13 +72,13 @@ augroup END
 " diagnostics appear/become resolved.
 set signcolumn=yes
 " [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
-let g:coc_global_extensions = [
-    \ 'coc-sh',
-    \ 'coc-json',
-    \ 'coc-jedi',
-    \ 'coc-vimlsp',
-    \ 'coc-tsserver'
-    \ ]
+" let g:coc_global_extensions = [
+    " \ 'coc-sh',
+    " \ 'coc-json',
+    " \ 'coc-jedi',
+    " \ 'coc-vimlsp',
+    " \ 'coc-tsserver'
+    " \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -135,15 +135,6 @@ endif
 
 " Wal colorscheme
 colorscheme wal
-
-""" Markdown Preview
-
-" Set default browser
-let g:mkdp_browser = 'brave'
-" TODO use a custom markdown style must be absolute path or expand(...)
-"let g:mkdp_markdown_css = expand('~/markdown.css')
-" TODO use a custom highlight style must absolute path or expand(...)
-"let g:mkdp_highlight_css = expand('highligt.css')
 
 """ Vim fugitive (git tools)
 " what is the !~ for?
