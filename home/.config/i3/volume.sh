@@ -27,7 +27,7 @@ function get_device_name {
     # get line of with info of current card, and find the first device desription
     # after that line (which is the device name)
     device_code=$(pactl get-default-sink | cut -f2 -d.)
-    card_line_number=$(pactl list cards | grep -n "\.${device_code}" | cut -f1 -d:)
+    card_line_number=$(pactl list cards | grep -n "\.${device_code}" | cut -f1 -d: | head -1)
     device_lines=($(pactl list cards | grep -n "device.description" | cut -f1 -d:))
     for device_line in "${device_lines[@]}"; do
         if [ "$device_line" -gt "$card_line_number" ]; then

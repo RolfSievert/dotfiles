@@ -18,11 +18,10 @@ ttf-material-design-icons-git
 
 ##### system stuff #####
 # Control screen brightness
-xorg-xbacklight
+brightnessctl
 # Bluetooth
 bluez
 bluez-utils
-pulseaudio-bluetooth
 # Notification deamon
 dunst
 
