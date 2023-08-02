@@ -23,22 +23,7 @@ fi
 echo Removing old logs...
 sudo journalctl --vacuum-time=7d
 
-# Remove broken symlinks
-#BROKEN_SYMLINKS=$(sudo find '/' -type d \( -path '/proc' -o -path '/run' \) -prune -o -xtype l)
-BROKEN_SYMLINKS=$(sudo find '/' -xtype l | grep -v "/proc" | grep -v "/run")
-#CYCLIC_SYMLINKS=$(sudo find '/' -type l -exec test ! -e {} \; -print | grep -v "/proc" | grep -v "/run")
-
-
-if [[ -n "${BROKEN_SYMLINKS[@]}" ]]; then
-
-    echo Broken symlinks:
-    printf '%s\n' "${BROKEN_SYMLINKS[@]}"
-
-    read -p "Do you want to remove the broken symlinks listed above? " -r
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        sudo rm -f ${BROKEN_SYMLINKS[@]}
-    fi
-fi
+# TODO? Remove broken symlinks, can be dangerous
 
 # Stores result in $REPLY
 read -p "Do you want to remove uninstalled cached packages? " -r
@@ -55,6 +40,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo paccache -rk1
 fi
 paccache -dk1
+
 CACHE_SPACE=`sudo du -sh ~/.cache/`
 echo ~/.cache/ occupies $CACHE_SPACE
 read -p "Do you wish to clean cache? " -r
