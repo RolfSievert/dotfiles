@@ -144,12 +144,24 @@ folder_items() {
     sudo du -ax --block-size=1M "$1" | sort -n | tail -50
 }
 
+sum_sizes() {
+    numfmt --from=auto | awk '{s+=$1} END {print s}' | numfmt --to=iec-i
+}
+
 package_sizes_all() {
-    pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+    sizes=$(pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h)
+    # extract sizes without byte suffix
+    total=$(echo "$sizes" | cut -d' ' -f1 | cut -d'B' -f1 | sum_sizes)
+
+    echo "$sizes\n\nTotal: ${total}B"
 }
 
 package_sizes() {
-    expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqt | sort) <({ pacman -Qqg base-devel; expac -l '\n' '%E' base; })) | sort -h
+    sizes=$(pacman -Qei | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h)
+    # extract sizes without byte suffix
+    total=$(echo "$sizes" | cut -d' ' -f1 | cut -d'B' -f1 | sum_sizes)
+
+    echo "$sizes\n\nTotal: ${total}B"
 }
 
 nn() {
