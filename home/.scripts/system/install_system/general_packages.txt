@@ -61,3 +61,5 @@ mpv
 hyperfine
 # maths for the terminal
 bc
+# a nice and modern colorpicker
+colorpicker-fr
