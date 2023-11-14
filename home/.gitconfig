@@ -4,3 +4,4 @@
     ci = commit
     ch = cherry-pick
     br = branch
+    pullr = pull --recurse-submodules
