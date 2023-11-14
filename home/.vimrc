@@ -42,7 +42,7 @@ Plug 'stevearc/vim-arduino'
 Plug 'tpope/vim-fugitive'
 " Telescope, file and string finder
 Plug 'nvim-lua/plenary.nvim' " Required by nvim-telescope
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " Improves sort speed of telescope
 " Nice file explorer. NOTE: needs patched font!
 Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
