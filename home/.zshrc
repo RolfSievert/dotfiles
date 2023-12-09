@@ -167,22 +167,22 @@ ptop() {
     sudo powertop --auto-tune -r && firefox powertop.html && rm powertop.html
 }
 
-# export FZF_DEFAULT_COMMAND='ag -i --hidden --ignore .git -g ""'
 # GCC colors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# TODO add separate file for including programs and aliases etc
 
 # Path to ruby executables
 PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # Path to flutter and other flutter settings
 # TODO use alias instead to not add unnecessary files in folder
-PATH="$PATH:$HOME/Programs/flutter/bin/"
-#if ! command -v flutter &> /dev/null
-#then
-export CHROME_EXECUTABLE=brave
-export ANDROID_HOME="$HOME/Programs/AndroidSDK/"
-#fi
+if ! command -v flutter &> /dev/null; then
+    PATH="$PATH:$HOME/Programs/flutter/bin/"
+fi
 
-# TODO add separate file for including programs and aliases etc
+export CHROME_EXECUTABLE=brave # used by flutter
 
-alias aseprite="$HOME/.local/share/Steam/steamapps/common/Aseprite/aseprite"
+alias aseprite="steam steam://rungameid/431730"
+
+export PATH="$PATH:$HOME/.spicetify"
