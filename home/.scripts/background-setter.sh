@@ -98,7 +98,7 @@ imageRatio="$(echo "scale=4; ${imageAspect// / / }" | bc)"
 gravity_options=(center)
 landscape_options=(west east) # image is more landscape than monitor
 portrait_options=(north south) # image is more portrait than monitor
-if [[ $(echo "$monitorRatio < $imageRatio" | bc) ]]; then
+if [[ $(echo "$monitorRatio > $imageRatio" | bc) -eq "1" ]]; then
     gravity_options+=( "${portrait_options[@]}" )
 else
     gravity_options+=( "${landscape_options[@]}" )
