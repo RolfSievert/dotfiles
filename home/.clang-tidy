@@ -1,0 +1,13 @@
+# Naming conventions
+
+# Class related
+ClassCase: CamelCase
+ClassMethodCase: camelBack
+ClassConstantCase: lower_case
+ClassMemberCase: lower_case
+
+# General
+MethodCase: camelBack
+ConstantCase: lower_case
+MemberCase: lower_case
+NamespaceCase: CamelCase
