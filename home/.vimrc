@@ -49,6 +49,8 @@ Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 " Preview markdown files in browser with custom pandoc compilation
 Plug 'RolfSievert/vim-pandoc-preview'
+" Use perf to produce logs and then perfanno to view the performance report
+Plug 't-troebst/perfanno.nvim'
 
 call plug#end()
 
@@ -75,7 +77,7 @@ set signcolumn=yes
 " let g:coc_global_extensions = [
     " \ 'coc-sh',
     " \ 'coc-json',
-    " \ 'coc-jedi',
+    " \ 'coc-pyright',
     " \ 'coc-vimlsp',
     " \ 'coc-tsserver'
     " \ ]

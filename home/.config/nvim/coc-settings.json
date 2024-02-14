@@ -23,5 +23,6 @@
                 "objcpp"
             ]
         }
-    }
+    },
+    "python.formatting.provider": "ruff"
 }
