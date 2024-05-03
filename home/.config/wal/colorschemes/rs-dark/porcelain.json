@@ -1,0 +1,26 @@
+{
+  "name": "Porcelain",
+  "author": "Rolf Sievert",
+  "color": [
+    "#151b1e",
+    "#68b368",
+    "#c8d47f",
+    "#bf7160",
+    "#cb88c7",
+    "#89b4de",
+    "#89b4de",
+    "#bdbdb5",
+
+    "#636975",
+    "#68b368",
+    "#c8d47f",
+    "#bf7160",
+    "#cb88c7",
+    "#89b4de",
+    "#89b4de",
+    "#d9d9d9"
+  ],
+  "foreground": "#babdb1",
+  "background": "#151b1e",
+  "cursor": "#707880"
+}
