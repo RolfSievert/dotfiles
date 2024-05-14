@@ -49,8 +49,10 @@ rofi
 nodejs
 # necessary for coc.nvim
 yarn
-# font for terminal, a patched font (contains symbols etc)
-ttf-dejavu
+# patched (contains symbols etc) font for terminal
+ttf-cascadia-mono-nerd
+ttf-dejavu-nerd
+ttf-jetbrains-mono-nerd
 # needed for vim to share clipboard with system
 xclip
 # colored emoji font
