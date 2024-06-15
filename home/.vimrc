@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 """ Load plugins
 
 " Colorscheme from wal
-Plug 'dylanaraps/wal.vim'
+Plug 'AlphaTechnolog/pywal.nvim'
 " Good tabs and spaces
 Plug 'godlygeek/tabular'
 " Markdown compiler, syntax, etc
@@ -136,7 +136,7 @@ endif
 " nmap <silent> <C-s> :FZF<cr>
 
 " Wal colorscheme
-colorscheme wal
+colorscheme pywal
 
 """ Vim fugitive (git tools)
 " what is the !~ for?
