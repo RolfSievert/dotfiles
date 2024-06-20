@@ -9,8 +9,6 @@
 !home/.config/wal/**
 !home/.config/rofi
 !home/.config/rofi/**
-!home/.config/compton
-!home/.config/compton/**
 !home/.config/nvim
 !home/.config/nvim/**
 !/home/.scripts/
