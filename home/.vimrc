@@ -12,8 +12,8 @@ call plug#begin('~/.vim/plugged')
 
 """ Load plugins
 
-" Colorscheme from wal
-Plug 'AlphaTechnolog/pywal.nvim'
+" Colorscheme from pywal
+Plug 'RedsXDD/neopywal.nvim', { 'as': 'neopywal' }
 " Good tabs and spaces
 Plug 'godlygeek/tabular'
 " Markdown compiler, syntax, etc
@@ -134,9 +134,6 @@ endif
 
 " FZF
 " nmap <silent> <C-s> :FZF<cr>
-
-" Wal colorscheme
-colorscheme pywal
 
 """ Vim fugitive (git tools)
 " what is the !~ for?
