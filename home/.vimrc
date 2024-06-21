@@ -69,58 +69,6 @@ augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
 
-""" CoC
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-" [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
-" let g:coc_global_extensions = [
-    " \ 'coc-sh',
-    " \ 'coc-json',
-    " \ 'coc-pyright',
-    " \ 'coc-vimlsp',
-    " \ 'coc-tsserver'
-    " \ ]
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gf <Plug>(coc-codeaction)
-nmap <silent> ,r <Plug>(coc-rename)
-" Show documentation in preview window.
-nnoremap <silent> gh :call ShowDocumentation()<CR>
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-
-" Add `:Format` command to format current buffer.
-nmap <silent> <F8> :call CocActionAsync('format')<CR>
-
 " VimTex
 if has_key(g:plugs, 'vimtex')
     let g:vimtex_view_method = 'zathura'
@@ -128,12 +76,6 @@ if has_key(g:plugs, 'vimtex')
     " (maybe) desired by VimTex for some reason
     " let g:vimtex_compiler_progname = 'nvr'
 endif
-
-" Telescope
-" Settings are in nvim.init
-
-" FZF
-" nmap <silent> <C-s> :FZF<cr>
 
 """ Vim fugitive (git tools)
 " what is the !~ for?
