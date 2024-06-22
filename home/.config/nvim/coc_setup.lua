@@ -31,8 +31,8 @@ keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-keyset("n", "C-k", "<Plug>(coc-diagnostic-prev)", {silent = true})
-keyset("n", "C-j", "<Plug>(coc-diagnostic-next)", {silent = true})
+keyset("n", "<C-k>", "<Plug>(coc-diagnostic-prev)", {silent = true})
+keyset("n", "<C-j>", "<Plug>(coc-diagnostic-next)", {silent = true})
 
 keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
 keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})

@@ -1,8 +1,5 @@
-nmap <C-n> :NvimTreeToggle<CR>
-" nmap ,f :NvimTreeFindFile<CR>
-highlight NvimTreeCursorLine cterm=none ctermfg=none ctermbg=8
 
-lua <<EOF
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
@@ -15,9 +12,10 @@ local function on_attach(bufnr)
   -- Default mappings. Feel free to modify or remove as you wish.
   api.config.mappings.default_on_attach(bufnr)
 
-  -- Custom mappings
-  vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
-  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+  -- Custom mappings within file exolorer
+  local keyset = vim.keymap.set
+  keyset('n', 'u', api.tree.change_root_to_parent, opts('Up'))
+  keyset('n', '?', api.tree.toggle_help, opts('Help'))
 
 end
 
@@ -81,4 +79,3 @@ require("nvim-tree").setup({
     }
   }
 })
-EOF
