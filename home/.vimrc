@@ -200,6 +200,7 @@ endfunction
 nmap ,c :call ToggleCentering()<CR>
 
 command! -nargs=0 RemoveTrailingWhitespace :%s/\s\+$//e
+command! -nargs=0 RemoveWindowsLineEndings :%s/\r$//e
 
 " print highlighting info of text under cursor
 fu! HighlightInfo()
