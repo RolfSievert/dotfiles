@@ -42,6 +42,9 @@ keyset("n", "gf", "<Plug>(coc-codeaction)", {silent = true})
 keyset("n", ",r", "<Plug>(coc-rename)", {silent = true})
 keyset("n", "<F8>", "<Plug>(coc-format)", {silent = true})
 
+keyset('i', '<C-j>', 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', {expr = true, noremap = true, silent = true})
+keyset('i', '<C-k>', 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', {expr = true, noremap = true, silent = true})
+
 -- show documentation in preview window
 function _G.show_docs()
     local cw = vim.fn.expand('<cword>')
