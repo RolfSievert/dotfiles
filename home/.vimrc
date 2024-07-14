@@ -22,8 +22,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
 " Use template for new files
 Plug 'aperezdc/vim-template'
-" Completion and lsp support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language pack (better syntax highlighting)
 Plug 'sheerun/vim-polyglot'
 " Fuzzy search for vim
@@ -55,6 +53,19 @@ Plug 't-troebst/perfanno.nvim'
 Plug 'brenoprata10/nvim-highlight-colors'
 " brackets pairing snippets
 Plug 'windwp/nvim-autopairs'
+" neovim language server configuration
+Plug 'neovim/nvim-lspconfig'
+
+" completer stuff
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+" snippets, required by nvim-cmp
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*'}
+Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
 
