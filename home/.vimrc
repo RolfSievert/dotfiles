@@ -51,6 +51,8 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'RolfSievert/vim-pandoc-preview'
 " Use perf to produce logs and then perfanno to view the performance report
 Plug 't-troebst/perfanno.nvim'
+" highlight color codes
+Plug 'brenoprata10/nvim-highlight-colors'
 
 call plug#end()
 

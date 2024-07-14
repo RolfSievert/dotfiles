@@ -13,3 +13,4 @@ source ~/.config/nvim/nvim_tree_setup.lua
 source ~/.config/nvim/perfanno_setup.lua
 source ~/.config/nvim/neopywal_setup.lua
 source ~/.config/nvim/coc_setup.lua
+source ~/.config/nvim/nvim_highlight_colors.lua
