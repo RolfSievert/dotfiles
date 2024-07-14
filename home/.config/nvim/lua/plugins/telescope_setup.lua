@@ -11,6 +11,7 @@ map('n', ',h', builtin.help_tags, opts)
 map('n', ',,', builtin.resume, opts)
 
 vim.api.nvim_create_user_command('GitFileCommits', builtin.git_bcommits, { nargs = 0 })
+vim.api.nvim_create_user_command('GitStatus', builtin.git_status, { nargs = 0 })
 vim.api.nvim_create_user_command("HighlightSearch", builtin.highlights, { nargs = 0 })
 
 local actions = require("telescope.actions")
