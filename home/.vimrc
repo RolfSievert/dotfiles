@@ -53,6 +53,8 @@ Plug 'RolfSievert/vim-pandoc-preview'
 Plug 't-troebst/perfanno.nvim'
 " highlight color codes
 Plug 'brenoprata10/nvim-highlight-colors'
+" brackets pairing snippets
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
 
