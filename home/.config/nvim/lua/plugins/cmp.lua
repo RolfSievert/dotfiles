@@ -9,7 +9,10 @@ cmp.setup({
   },
   window = {
     -- completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    documentation = {
+        border = 'rounded',
+        -- TODO: how to set color to this one??
+    }
   },
   mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -26,7 +29,6 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'path' },
-    -- { name = 'diag-codes' }, show diagnostic messages in popup
   }, {
     { name = 'buffer' }
   })

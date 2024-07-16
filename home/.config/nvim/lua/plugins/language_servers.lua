@@ -10,8 +10,6 @@ local language_servers = {
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 local map = vim.keymap.set
 local telescope_builtin = require('telescope.builtin')
 
@@ -29,7 +27,7 @@ local function on_attach(_, bufnr)
   map("n", "<F8>", vim.lsp.buf.format, opts "Format code")
   map("n", "<C-j>", vim.diagnostic.goto_next, opts "Go to next warning")
   map("n", "<C-k>", vim.diagnostic.goto_prev, opts "Go to previous warning")
-  map("n", ",sh", vim.lsp.buf.signature_help, opts "Show signature help")
+  map("n", "gh", vim.lsp.buf.signature_help, opts "Show signature help")
   map("n", ",wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", ",wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
 
@@ -38,10 +36,12 @@ local function on_attach(_, bufnr)
   end, opts "List workspace folders")
 
 
-  map('n', 'gr', telescope_builtin.lsp_references, opts 'Show references')
+  map('n', 'gr', function() telescope_builtin.lsp_references({show_line = false}) end, opts 'Show references')
 end
 
 -- Setup language servers here
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 for _, ls in ipairs(language_servers) do
   ls.setup({
