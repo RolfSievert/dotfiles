@@ -11,6 +11,8 @@
 !home/.config/rofi/**
 !home/.config/nvim
 !home/.config/nvim/**
+!home/.config/tmux
+!home/.config/tmux/**
 !/home/.scripts/
 !/home/.scripts/**
 
