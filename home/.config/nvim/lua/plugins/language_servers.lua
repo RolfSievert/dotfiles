@@ -6,6 +6,8 @@ local language_servers = {
     require('lspconfig').ruff,
     require('lspconfig').rust_analyzer,
     require('lspconfig').csharp_ls,
+    require('lspconfig').biome,
+    require('lspconfig').tsserver,
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
