@@ -70,6 +70,11 @@ return {
         opts = {},
     },
     {
+        "williamboman/mason.nvim",
+        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+        opts = {}
+    },
+    {
         -- neovim language server configuration
         'neovim/nvim-lspconfig',
         config = function()
