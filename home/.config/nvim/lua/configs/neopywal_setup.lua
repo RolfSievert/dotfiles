@@ -5,4 +5,3 @@ neopywal.setup({
 })
 
 vim.cmd.colorscheme("neopywal")
-

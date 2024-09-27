@@ -7,8 +7,9 @@ local language_servers = {
     require('lspconfig').rust_analyzer,
     require('lspconfig').csharp_ls,
     require('lspconfig').biome,
-    require('lspconfig').tsserver,
+    require('lspconfig').ts_ls,
     require('lspconfig').cssls,
+    require('lspconfig').marksman,
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
