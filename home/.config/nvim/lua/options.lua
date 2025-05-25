@@ -62,3 +62,7 @@ vim.o.fillchars = 'vert:▐'
 vim.cmd('highlight TrailingWhitespace ctermbg=9 guibg=9')
 -- Define what matches the custom group
 vim.cmd('match TrailingWhitespace /\\s\\+$/')
+
+-- Recommended option by avante.nvim: https://github.com/yetone/avante.nvim
+-- what it does: https://neovim.io/doc/user/options.html#'laststatus'
+vim.opt.laststatus = 3

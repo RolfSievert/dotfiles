@@ -186,3 +186,8 @@ export CHROME_EXECUTABLE=brave # used by flutter
 alias aseprite="steam steam://rungameid/431730"
 
 export PATH="$PATH:$HOME/.spicetify"
+
+# Source local (private) environment variables if they exist.
+if [ -f ~/.local_environment_variables ]; then
+  source ~/.local_environment_variables
+fi

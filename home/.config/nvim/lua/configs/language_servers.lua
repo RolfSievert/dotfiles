@@ -1,15 +1,16 @@
 -- list all the language servers you want
 -- config list here: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local language_servers = {
-    require('lspconfig').dartls,
-    require('lspconfig').clangd,
-    require('lspconfig').ruff,
-    require('lspconfig').rust_analyzer,
-    require('lspconfig').csharp_ls,
-    require('lspconfig').biome,
-    require('lspconfig').ts_ls,
-    require('lspconfig').cssls,
-    require('lspconfig').marksman,
+  require('lspconfig').dartls,
+  require('lspconfig').clangd,
+  require('lspconfig').ruff,
+  require('lspconfig').pyright,
+  require('lspconfig').rust_analyzer,
+  require('lspconfig').csharp_ls,
+  require('lspconfig').biome,
+  require('lspconfig').ts_ls,
+  require('lspconfig').cssls,
+  require('lspconfig').marksman,
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
@@ -28,9 +29,9 @@ local function on_attach(_, bufnr)
   map("n", ",r", vim.lsp.buf.rename, opts "Rename")
   map("n", ",y", vim.lsp.buf.type_definition, opts "Go to type definition")
   map("n", "gf", vim.lsp.buf.code_action, opts "Code action")
-  map("n", "<F8>", vim.lsp.buf.format, opts "Format code")
-  map("n", "<C-j>", vim.diagnostic.goto_next, opts "Go to next warning")
-  map("n", "<C-k>", vim.diagnostic.goto_prev, opts "Go to previous warning")
+  map("n", "<F8>", function() require("conform").format({ lsp_format = "fallback" }) end, opts "Format code")
+  map("n", "<C-j>", function() vim.diagnostic.jump({ count = 1 }) end, opts "Go to next warning")
+  map("n", "<C-k>", function() vim.diagnostic.jump({ count = -1 }) end, opts "Go to previous warning")
   map("n", "gh", vim.lsp.buf.signature_help, opts "Show signature help")
   map("n", ",wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", ",wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
@@ -40,7 +41,7 @@ local function on_attach(_, bufnr)
   end, opts "List workspace folders")
 
 
-  map('n', 'gr', function() telescope_builtin.lsp_references({show_line = false}) end, opts 'Show references')
+  map('n', 'gr', function() telescope_builtin.lsp_references({ show_line = false }) end, opts 'Show references')
 end
 
 -- Setup language servers here
@@ -56,12 +57,12 @@ end
 
 -- add special configuration last
 
-require'lspconfig'.lua_ls.setup {
+require 'lspconfig'.lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
-    if vim.fn.filereadable(path..'/.luarc.json') == 1 or vim.fn.filereadable(path..'/.luarc.jsonc') == 1 then
+    if vim.fn.filereadable(path .. '/.luarc.json') == 1 or vim.fn.filereadable(path .. '/.luarc.jsonc') == 1 then
       return
     end
 
