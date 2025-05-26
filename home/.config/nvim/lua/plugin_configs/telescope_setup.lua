@@ -15,7 +15,7 @@ vim.api.nvim_create_user_command('GitStatus', builtin.git_status, { nargs = 0 })
 vim.api.nvim_create_user_command("HighlightSearch", builtin.highlights, { nargs = 0 })
 
 local actions = require("telescope.actions")
-require("telescope").setup{
+require("telescope").setup {
   defaults = {
     mappings = {
       i = {
@@ -26,4 +26,3 @@ require("telescope").setup{
     },
   }
 }
-

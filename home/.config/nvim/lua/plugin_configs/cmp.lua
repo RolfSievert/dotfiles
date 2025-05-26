@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   snippet = {
@@ -10,8 +10,8 @@ cmp.setup({
   window = {
     -- completion = cmp.config.window.bordered(),
     documentation = {
-        border = 'rounded',
-        -- TODO: how to set color to this one??
+      border = 'rounded',
+      -- TODO: how to set color to this one??
     }
   },
   mapping = cmp.mapping.preset.insert({

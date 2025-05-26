@@ -1,12 +1,11 @@
 -- Tip: run :checkhealth
 
 --[[ TODOs
- * Assign random colors to the bar containing the current file-name to help separate windows (statusline)
  * Add grammar check in latex and md (already exists?)
 --]]
 
-require('mappings')
+require('keymappings')
 require('options')
-require('commands')
+require('user_commands')
 
-require('lazy_nvim')
+require('lazy_package_manager')

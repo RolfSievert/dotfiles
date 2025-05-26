@@ -35,4 +35,3 @@ local function CursorCentering()
 end
 vim.api.nvim_create_user_command('CursorCentering', CursorCentering, {})
 vim.api.nvim_set_keymap('n', ',c', ':CursorCentering<CR>', opts_nore)
-

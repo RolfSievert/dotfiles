@@ -69,11 +69,11 @@ vim.o.termguicolors = true
 
 -- Randomized statusline color
 vim.g.statusline_saturation = 0.2
-vim.g.statusline_brightness = 0.4
+vim.g.statusline_brightness = 0.35
 
 -- Create autocmd group for random statusline colors per window
 vim.api.nvim_create_augroup("RandomStatuslineColor", { clear = true })
-vim.api.nvim_create_autocmd("BufNew", {
+vim.api.nvim_create_autocmd({ 'WinEnter', 'VimEnter' }, {
   group = "RandomStatuslineColor",
-  callback = require("custom_plugins.random_statusline_color").set_random_statusline_color,
+  callback = require("custom_scripts.random_statusline_color").set_random_statusline_color,
 })

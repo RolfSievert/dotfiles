@@ -1,4 +1,3 @@
-
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 local function on_attach(bufnr)
@@ -16,7 +15,6 @@ local function on_attach(bufnr)
   local keyset = vim.keymap.set
   keyset('n', 'u', api.tree.change_root_to_parent, opts('Up'))
   keyset('n', '?', api.tree.toggle_help, opts('Help'))
-
 end
 
 
