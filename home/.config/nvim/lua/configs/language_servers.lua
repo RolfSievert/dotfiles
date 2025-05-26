@@ -11,6 +11,7 @@ local language_servers = {
   require('lspconfig').ts_ls,
   require('lspconfig').cssls,
   require('lspconfig').marksman,
+  require('lspconfig').jsonls,
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
@@ -30,8 +31,8 @@ local function on_attach(_, bufnr)
   map("n", ",y", vim.lsp.buf.type_definition, opts "Go to type definition")
   map("n", "gf", vim.lsp.buf.code_action, opts "Code action")
   map("n", "<F8>", function() require("conform").format({ lsp_format = "fallback" }) end, opts "Format code")
-  map("n", "<C-j>", function() vim.diagnostic.jump({ count = 1 }) end, opts "Go to next warning")
-  map("n", "<C-k>", function() vim.diagnostic.jump({ count = -1 }) end, opts "Go to previous warning")
+  map("n", "<C-j>", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts "Go to next warning")
+  map("n", "<C-k>", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts "Go to previous warning")
   map("n", "gh", vim.lsp.buf.signature_help, opts "Show signature help")
   map("n", ",wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", ",wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")

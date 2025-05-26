@@ -39,7 +39,7 @@ vim.o.ignorecase = true
 
 -- Cool stuff
 vim.o.showmatch = true -- Highlight braces
-vim.o.wildmenu = true -- Show menu alternatives
+vim.o.wildmenu = true  -- Show menu alternatives
 
 -- Focus new window (focus right and below)
 vim.o.splitbelow = true
@@ -63,6 +63,17 @@ vim.cmd('highlight TrailingWhitespace ctermbg=9 guibg=9')
 -- Define what matches the custom group
 vim.cmd('match TrailingWhitespace /\\s\\+$/')
 
--- Recommended option by avante.nvim: https://github.com/yetone/avante.nvim
--- what it does: https://neovim.io/doc/user/options.html#'laststatus'
-vim.opt.laststatus = 3
+-- Don't know when this is necessary, but it enables higher quality colors or something
+-- for terminals that support it
+vim.o.termguicolors = true
+
+-- Randomized statusline color
+vim.g.statusline_saturation = 0.2
+vim.g.statusline_brightness = 0.4
+
+-- Create autocmd group for random statusline colors per window
+vim.api.nvim_create_augroup("RandomStatuslineColor", { clear = true })
+vim.api.nvim_create_autocmd("BufNew", {
+  group = "RandomStatuslineColor",
+  callback = require("custom_plugins.random_statusline_color").set_random_statusline_color,
+})

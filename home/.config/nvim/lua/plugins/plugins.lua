@@ -160,6 +160,12 @@ return {
                 ft = { "markdown", "Avante" },
             },
         },
+        init = function()
+            -- Recommended option
+            -- views can only be fully collapsed with the global statusline
+            -- what it does: https://neovim.io/doc/user/options.html#'laststatus'
+            vim.opt.laststatus = 3
+        end
     },
     {
         -- formatter that can complement LSP
