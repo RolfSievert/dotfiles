@@ -1,6 +1,6 @@
 local options = {
   formatters_by_ft = {
-    csharp = { "csharpier" }
+    cs = { "csharpier" }
   },
   formatters = {
     csharpier = function()
