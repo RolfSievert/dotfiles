@@ -1,10 +1,8 @@
-local incline = require("incline")
-
-incline.setup({
+require('incline').setup({
   window = {
     placement = {
-      horizontal = "right",
-      vertical = "top"
+      horizontal = 'right',
+      vertical = 'top'
     }
   }
 })

@@ -62,7 +62,7 @@ return {
     {
         -- highlight color codes
         'brenoprata10/nvim-highlight-colors',
-        opts = require('plugin_configs.nvim_highlight_colors')
+        opts = require('plugin_configs.nvim_highlight_colors_options')
     },
     {
         'windwp/nvim-autopairs',
@@ -88,7 +88,7 @@ return {
             {
                 'hrsh7th/nvim-cmp',
                 config = function()
-                    require('plugin_configs.cmp')
+                    require('plugin_configs.cmp_setup')
                 end,
                 dependencies = {
                     -- snippets
@@ -155,4 +155,19 @@ return {
         -- Optional: Lazy load Incline
         event = 'VeryLazy',
     },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        config = function ()
+            require('plugin_configs.noice_setup')
+        end,
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            -- "rcarriga/nvim-notify",
+        }
+    }
 }
