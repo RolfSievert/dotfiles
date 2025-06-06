@@ -12,6 +12,7 @@ local language_servers = {
   require('lspconfig').cssls,
   require('lspconfig').marksman,
   require('lspconfig').jsonls,
+  require('lspconfig').texlab,
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
