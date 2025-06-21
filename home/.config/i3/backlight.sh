@@ -15,8 +15,12 @@ function get_brightness_percentage {
     echo ${float%.*}
 }
 
+function get_display_name {
+    echo $(xrandr | grep -w connected | cut -f '1' -d ' ')
+}
+
 # Difference to change volume with
-function send_notification {
+function send_brightness_notification {
     brightness=$(get_brightness_percentage)
 
     # Send the notification
@@ -27,10 +31,6 @@ if [[ "$1" == "up" ]]; then
     brightnessctl set +$2%
 elif [[ "$1" == "down" ]]; then
     brightnessctl set $2%-
-elif [[ "$1" == "bright" ]]; then
-    # simulate increased brightness
-    display=$(xrandr | grep -w connected | cut -f '1' -d ' ')
-    xrandr --output $display --brightness "$2"
 else
     echo warning: input not recognized
     echo usage:
@@ -39,4 +39,4 @@ else
     exit
 fi
 
-send_notification
+send_brightness_notification
