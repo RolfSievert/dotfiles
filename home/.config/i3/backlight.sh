@@ -8,7 +8,7 @@ source $(dirname $0)/message_bar.sh
 # Arbitrary but unique message id
 msgId="991050"
 
-function get_brightness_percentage {
+function get_backlight_percentage {
     current=$(brightnessctl get)
     max=$(brightnessctl max)
     float=$((100 * current / max))
@@ -20,11 +20,11 @@ function get_display_name {
 }
 
 # Difference to change volume with
-function send_brightness_notification {
-    brightness=$(get_brightness_percentage)
+function send_backlight_notification {
+    backlight=$(get_backlight_percentage)
 
     # Send the notification
-    send_notification_message_bar $brightness "Brightness" $msgId
+    send_notification_message_bar $backlight "Brightness ($backlight%)" $msgId
 }
 
 if [[ "$1" == "up" ]]; then
@@ -34,9 +34,8 @@ elif [[ "$1" == "down" ]]; then
 else
     echo warning: input not recognized
     echo usage:
-    echo -e "\tup, down - increase/decrease brightness"
-    echo -e "\tbright - set percieved screen brightness"
+    echo -e "\tup, down - increase/decrease backlight brightness"
     exit
 fi
 
-send_brightness_notification
+send_backlight_notification

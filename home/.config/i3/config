@@ -234,8 +234,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/volume.sh up 
 bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/volume.sh down 5 #decrease sound volume
 bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.config/i3/backlight.sh up 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.config/i3/backlight.sh down 10 # decrease screen brightness
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id $HOME/.config/i3/contrast.sh up 10 # increase screen contrast
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id $HOME/.config/i3/contrast.sh down 10 # decrease screen contrast
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id $HOME/.config/i3/screen_gamma.sh up 10 # increase screen gamma
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id $HOME/.config/i3/screen_gamma.sh down 10 # decrease screen gamma
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
