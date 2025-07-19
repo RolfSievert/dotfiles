@@ -4,6 +4,7 @@
 [alias]
     st = status
     co = checkout
+    cop = "!f() { git checkout \"$1\" && git pull; }; f"
     ci = commit
     ch = cherry-pick
     br = branch
