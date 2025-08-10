@@ -1,5 +1,9 @@
 local options = {
-  provider = "openai", -- NOTE: you own the code and can use it commercially, but check your region's copyright laws using AI
+  behaviour = {
+    auto_approve_tool_permissions = false, -- auto approve tools such as web_search
+  },
+
+  provider = "ollama", -- NOTE: you own the code and can use it commercially, but check your region's copyright laws using AI
   providers = {
     openai = {
       endpoint = "https://api.openai.com/v1",
@@ -10,7 +14,28 @@ local options = {
         max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       }
-    }
+    },
+
+    ollama = {
+      endpoint = "http://localhost:11434",
+      model = "qwen3:14b",
+      extra_request_body = {
+        options = {
+          num_ctx = 4096, -- have this as big as possible without the CPU being utilized (see `ollama ps` when the model is running)
+          keep_alive = "5m",
+        }
+      },
+      disabled_tools = {
+        "web_search",
+        "attempt_completion" -- triggers unnecessary tasks for the AI. See https://github.com/yetone/avante.nvim/issues/2436. This config does not fix the issue but may mitigate it a bit.
+      },
+    },
+
+    llama_cpp = {
+      __inherited_from = 'openai',
+      endpoint = "http://localhost:8080",
+      model = "",
+    },
   }
 }
 
