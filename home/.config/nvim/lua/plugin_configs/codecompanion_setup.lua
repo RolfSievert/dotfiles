@@ -1,5 +1,11 @@
 local codecompanion = require("codecompanion")
 
+local map = vim.keymap.set
+
+local opts = { noremap = true, silent = true }
+
+map('n', ',c', codecompanion.toggle, opts)
+
 codecompanion.setup({
   strategies = {
     chat = {
