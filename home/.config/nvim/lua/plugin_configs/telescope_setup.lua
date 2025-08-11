@@ -1,18 +1,4 @@
-local builtin = require('telescope.builtin')
-
-local map = vim.keymap.set
-
-local opts = { noremap = true, silent = true }
-
-map('n', ',d', builtin.find_files, opts)
-map('n', ',s', builtin.live_grep, opts)
-map('n', ',b', builtin.buffers, opts)
-map('n', ',h', builtin.help_tags, opts)
-map('n', ',,', builtin.resume, opts)
-
-vim.api.nvim_create_user_command('GitFileCommits', builtin.git_bcommits, { nargs = 0 })
-vim.api.nvim_create_user_command('GitStatus', builtin.git_status, { nargs = 0 })
-vim.api.nvim_create_user_command("HighlightSearch", builtin.highlights, { nargs = 0 })
+-- see snacks for bindings
 
 local actions = require("telescope.actions")
 require("telescope").setup {

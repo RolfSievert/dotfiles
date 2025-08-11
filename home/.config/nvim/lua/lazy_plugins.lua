@@ -1,16 +1,35 @@
 return {
     'aperezdc/vim-template',
-    -- Good tabs and spaces
-    'godlygeek/tabular',
-    -- Markdown compiler, syntax, etc
-    'artempyanykh/marksman',
-    -- Use template for new files
-    'aperezdc/vim-template',
-    -- Language pack (better syntax highlighting)
-    'sheerun/vim-polyglot',
-    -- Useful git tools, such as :Git blame
-    'tpope/vim-fugitive',
+    'godlygeek/tabular',           -- Good tabs and spaces
+    'artempyanykh/marksman',       -- Markdown compiler, syntax, etc
+    'aperezdc/vim-template',       -- Use template for new files
+    'sheerun/vim-polyglot',        -- Language pack (better syntax highlighting)
+    'tpope/vim-fugitive',          -- Useful git tools, such as :Git blame
+    'nvim-tree/nvim-web-devicons', -- For file icons. Remember to have a patched font for your terminal!
 
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        config = function()
+            require('plugin_configs.snacks_config')
+        end,
+        opts = {
+            -- see the [list of features](https://github.com/folke/snacks.nvim) for what these opts do
+            bigfile = { enabled = false },
+            dashboard = { enabled = true }, -- nvim startup screen
+            explorer = { enabled = false },
+            indent = { enabled = false },
+            input = { enabled = true },  -- a tad prettier native input prompt
+            picker = { enabled = true }, -- prettier and more practical than out of the box telescope
+            notifier = { enabled = false },
+            quickfile = { enabled = false },
+            scope = { enabled = false },
+            scroll = { enabled = false },
+            statuscolumn = { enabled = false },
+            words = { enabled = true },
+        },
+    },
     {
         -- Colorscheme from pywal
         'RedsXDD/neopywal.nvim',
@@ -19,7 +38,6 @@ return {
             require('plugin_configs.neopywal_setup')
         end
     },
-
     {
         -- Telescope, file and string finder
         'nvim-telescope/telescope.nvim',
@@ -43,7 +61,7 @@ return {
             require('plugin_configs.nvim_tree_setup')
         end,
         dependencies = {
-            -- optional, for file icons. Remember to have a patched font for your terminal!
+            -- Optional: for file icons. Remember to have a patched font for your terminal!
             'nvim-tree/nvim-web-devicons'
         }
     },
@@ -102,52 +120,6 @@ return {
         }
     },
     {
-        -- AI in editor
-        "yetone/avante.nvim",
-        build = vim.fn.has("win32") ~= 0
-            and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-            or
-            "make",
-        event = "VeryLazy",
-        version = false, -- Never set this value to "*"! Never!
-        -- @module 'avante'
-        -- @type avante.Config
-        opts = require('plugin_configs.avante_options'),
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            --- The below dependencies are optional,
-            "echasnovski/mini.pick",         -- for file_selector provider mini.pick
-            "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-            "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-            "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-            "stevearc/dressing.nvim",        -- for input provider dressing
-            "folke/snacks.nvim",             -- for input provider snacks
-            "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-            --"zbirenbaum/copilot.lua",        -- for providers='copilot'
-            {
-                -- support for image pasting
-                "HakonHarnes/img-clip.nvim",
-                event = "VeryLazy",
-                opts = require('plugin_configs.img_clip_options')
-            },
-            {
-                -- Make sure to set this up properly if you have lazy=true
-                'MeanderingProgrammer/render-markdown.nvim',
-                opts = {
-                    file_types = { "markdown", "Avante" },
-                },
-                ft = { "markdown", "Avante" },
-            },
-        },
-        init = function()
-            -- Recommended option
-            -- views can only be fully collapsed with the global statusline
-            -- what it does: https://neovim.io/doc/user/options.html#'laststatus'
-            vim.opt.laststatus = 3
-        end
-    },
-    {
         -- formatter that can complement LSP
         'stevearc/conform.nvim',
         opts = require('plugin_configs.conform_options'),
@@ -175,5 +147,39 @@ return {
             --   If not available, we use `mini` as the fallback
             -- "rcarriga/nvim-notify",
         }
-    }
+    },
+    {
+        -- AI coding companion
+        -- Integrates with lots of different providers, e.g. Ollama
+        "olimorris/codecompanion.nvim",
+        opts = {},
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            {
+                "nvim-treesitter/nvim-treesitter",
+                branch = 'master',
+                lazy = false,
+                build = ":TSUpdate"
+            },
+            {
+                -- Optional: markdown formatting in chat
+                "MeanderingProgrammer/render-markdown.nvim",
+                ft = { "markdown", "codecompanion" },
+            },
+            {
+                -- Optional: show diffs
+                "echasnovski/mini.diff",
+                config = function()
+                    local diff = require("mini.diff")
+                    diff.setup({
+                        -- Disabled by default
+                        source = diff.gen_source.none(),
+                    })
+                end,
+            },
+        },
+        config = function()
+            require('plugin_configs.codecompanion_setup')
+        end
+    },
 }

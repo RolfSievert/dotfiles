@@ -24,14 +24,16 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   -- see for more sources: https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
-  sources = cmp.config.sources({
-    { name = 'luasnip' }, -- For luasnip users.
-    { name = 'nvim_lua' },
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-  }, {
-    { name = 'buffer' }
-  })
+  sources = cmp.config.sources(
+    {
+      { name = 'luasnip' }, -- For luasnip users.
+      { name = 'nvim_lua' },
+      { name = 'nvim_lsp' },
+      { name = 'path' },
+    },
+    {
+      { name = 'buffer' }
+    })
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).

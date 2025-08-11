@@ -1,3 +1,5 @@
+-- NOTE: I like Avante.nvim but it is rarely working at all for me. CodeCompanion.nvim is more stable.
+
 local options = {
   behaviour = {
     auto_approve_tool_permissions = false, -- auto approve tools such as web_search
@@ -21,7 +23,7 @@ local options = {
       model = "qwen3:14b",
       extra_request_body = {
         options = {
-          num_ctx = 4096, -- have this as big as possible without the CPU being utilized (see `ollama ps` when the model is running)
+          num_ctx = 2048, -- have this as big as possible without the CPU being utilized (see `ollama ps` when the model is running)
           keep_alive = "5m",
         }
       },
