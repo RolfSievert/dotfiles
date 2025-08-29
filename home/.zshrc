@@ -191,3 +191,5 @@ export PATH="$PATH:$HOME/.spicetify"
 if [ -f ~/.local_environment_variables ]; then
   source ~/.local_environment_variables
 fi
+
+export PATH="$PATH:$HOME/.config/tmux/"
