@@ -21,7 +21,7 @@ return {
             explorer = { enabled = false },
             indent = { enabled = false },
             input = { enabled = true },  -- a tad prettier native input prompt
-            picker = { enabled = true }, -- prettier and more practical than out of the box telescope
+            picker = { enabled = true }, -- prettier and more practical than out of the box telescope, but noticeably slower
             notifier = { enabled = false },
             quickfile = { enabled = false },
             scope = { enabled = false },
