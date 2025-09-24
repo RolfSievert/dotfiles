@@ -13,6 +13,9 @@ codecompanion.setup({
     },
     inline = {
       adapter = "ollama",
+    },
+    cmd = {
+      adapter = "ollama",
     }
   },
   adapters = {
@@ -22,7 +25,7 @@ codecompanion.setup({
           return require("codecompanion.adapters").extend("ollama", {
             schema = {
               model = {
-                default = "qwen3:14b",
+                default = "qwen3:8b",
               },
               num_ctx = {
                 default = 2048,

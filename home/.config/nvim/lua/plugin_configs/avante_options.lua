@@ -5,6 +5,8 @@ local options = {
     auto_approve_tool_permissions = false, -- auto approve tools such as web_search
   },
 
+  -- this file can contain specific instructions for your project
+  instructions_file = "avante.md",
   provider = "ollama", -- NOTE: you own the code and can use it commercially, but check your region's copyright laws using AI
   providers = {
     openai = {
@@ -20,17 +22,14 @@ local options = {
 
     ollama = {
       endpoint = "http://localhost:11434",
-      model = "qwen3:14b",
+      model = "qwen3:8b",
       extra_request_body = {
         options = {
           num_ctx = 2048, -- have this as big as possible without the CPU being utilized (see `ollama ps` when the model is running)
           keep_alive = "5m",
         }
       },
-      disabled_tools = {
-        "web_search",
-        "attempt_completion" -- triggers unnecessary tasks for the AI. See https://github.com/yetone/avante.nvim/issues/2436. This config does not fix the issue but may mitigate it a bit.
-      },
+      disable_tools = true, -- important to set this to true when running a local server
     },
 
     llama_cpp = {
