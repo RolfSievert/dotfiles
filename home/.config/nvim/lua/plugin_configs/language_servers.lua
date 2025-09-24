@@ -1,18 +1,18 @@
 -- list all the language servers you want
--- config list here: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- config list here: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 local language_servers = {
-  require('lspconfig').dartls,
-  require('lspconfig').clangd,
-  require('lspconfig').ruff,
-  require('lspconfig').pyright,
-  require('lspconfig').rust_analyzer,
-  require('lspconfig').csharp_ls,
-  require('lspconfig').biome,
-  require('lspconfig').ts_ls,
-  require('lspconfig').cssls,
-  require('lspconfig').marksman,
-  require('lspconfig').jsonls,
-  require('lspconfig').texlab,
+  'dartls',
+  'clangd',
+  'ruff',
+  'pyright',
+  'rust_analyzer',
+  'csharp_ls',
+  'biome',
+  'ts_ls',
+  'cssls',
+  'marksman',
+  'jsonls',
+  'texlab',
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
@@ -51,40 +51,70 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 for _, ls in ipairs(language_servers) do
-  ls.setup({
+  vim.lsp.config(ls, {
     capabilities = capabilities,
     on_attach = on_attach
   })
+
+  -- enable the config so that it activates for its filetypes
+  vim.lsp.enable(ls)
 end
 
 -- add special configuration last
 
-require 'lspconfig'.lua_ls.setup {
+
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   on_init = function(client)
-    local path = client.workspace_folders[1].name
-    if vim.fn.filereadable(path .. '/.luarc.json') == 1 or vim.fn.filereadable(path .. '/.luarc.jsonc') == 1 then
-      return
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if
+          path ~= vim.fn.stdpath('config')
+          and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+      then
+        return
+      end
     end
 
     client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
       runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT'
+        -- Tell the language server which version of Lua you're using (most
+        -- likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Tell the language server how to find Lua modules same way as Neovim
+        -- (see `:h lua-module-load`)
+        path = {
+          'lua/?.lua',
+          'lua/?/init.lua',
+        },
       },
       -- Make the server aware of Neovim runtime files
       workspace = {
         checkThirdParty = false,
         library = {
           vim.env.VIMRUNTIME,
-          vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+          -- OLD CONFIG: is this needed?
+          --vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+          --
+          --
+          -- Depending on the usage, you might want to add additional paths
+          -- here.
+          -- '${3rd}/luv/library'
+          -- '${3rd}/busted/library'
         }
+        -- Or pull in all of 'runtimepath'.
+        -- NOTE: this is a lot slower and will cause issues when working on
+        -- your own configuration.
+        -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+        -- library = {
+        --   vim.api.nvim_get_runtime_file('', true),
+        -- }
       }
     })
   end,
   settings = {
     Lua = {}
   }
-}
+})
+vim.lsp.enable('lua_ls')
