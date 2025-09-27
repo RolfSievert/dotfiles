@@ -16,6 +16,7 @@ map('n', ',,', builtin.resume, opts)
 --vim.api.nvim_create_user_command("HighlightSearch", builtin.highlights, { nargs = 0 })
 
 local actions = require("telescope.actions")
+
 require("telescope").setup {
   defaults = {
     mappings = {
@@ -25,5 +26,15 @@ require("telescope").setup {
         ["<esc>"] = actions.close,
       },
     },
+    border = true,
+    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+    layout_strategy = 'horizontal', -- horizontal includes results and preview
+    layout_config = {
+      horizontal = {
+        prompt_position = 'top',
+        height = 0.8,
+      },
+    },
+    sorting_strategy = 'ascending',
   }
 }
