@@ -33,7 +33,9 @@ return {
     {
         -- Colorscheme from pywal
         'RedsXDD/neopywal.nvim',
-        as = 'neopywal',
+        name = 'neopywal',
+        lazy = false,
+        priority = 2000,
         config = function()
             require('plugin_configs.neopywal_setup')
         end
@@ -134,6 +136,7 @@ return {
         event = 'VeryLazy',
     },
     {
+        -- change cmdline to be a popup
         "folke/noice.nvim",
         event = "VeryLazy",
         config = function()
