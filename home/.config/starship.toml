@@ -4,12 +4,14 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-format = '$directory[➤](fg:1) '
+format = '$directory$character'
 right_format = '$git_status $git_state$git_branch'
 
 # Starts the prompt on a newline with a leading character
 [character]
-disabled = true
+disabled = false
+success_symbol = '[➤](fg:1)'
+error_symbol = '[➤](fg:4)'
 
 # Disable the package module, hiding it from the prompt completely
 [package]
