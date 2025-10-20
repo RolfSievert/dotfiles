@@ -1,14 +1,16 @@
+[general]
+import = [
+    'font_size.toml' # configure font size individually for different setups
+]
+
 [terminal.shell]
 program = "/bin/zsh"
 
 [debug]
-prefer_egl = true
+prefer_egl = true # can be removed if there is no issue on gnome
 
 [env]
 TERM = "xterm-256color"
-
-[font]
-size = 12.5
 
 [font.normal]
 style = "Regular"

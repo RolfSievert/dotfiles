@@ -1,5 +1,12 @@
 *
+!.gitignore
 !home/
+!home/.zshrc
+!home/.clang-format
+!home/.clang-tidy
+!home/.gitconfig
+!home/.ruff.toml
+!home/.style.yapf
 !home/.config/
 !home/.config/starship.toml
 !home/.config/i3
@@ -14,6 +21,8 @@
 !home/.config/nvim/**
 !home/.config/tmux
 !home/.config/tmux/**
+!home/.config/alacritty/
+!home/.config/alacritty/alacritty.toml
 !home/.scripts/
 !home/.scripts/**
 !home/.shell/
