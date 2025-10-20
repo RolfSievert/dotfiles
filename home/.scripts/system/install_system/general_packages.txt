@@ -1,24 +1,20 @@
 # nice terminal
 alacritty
-# makes symlinks from git repo to system, nice for config files
-#homesick
 # Pdf reader with vim bindings
 zathura
 #zathura-pdf-poppler
 # Good browser
 brave-bin
-# Expansion of bash isch
+# Extends bash shell a bit
 zsh
+# Nice cross platform shell customization
+starship
 # fzf fuzzy search
 fzf
 # Nice file opener
 perl-file-mimeinfo
 # Nice search
 gawk
-# cmake
-cmake
-# clang, for cpp linting, formatting etc
-clang
 # Python pip
 python-pip
 # Editor nvim
@@ -41,14 +37,8 @@ playerctl
 emote
 # required for nvim-telescope, kind of like fzf
 ripgrep
-# ruby, necessary for some zsh stuff in config
-ruby
 # quick search menu
 rofi
-# necessary for coc.nvim
-nodejs
-# necessary for coc.nvim
-yarn
 # patched (contains symbols etc) font for terminal
 ttf-cascadia-mono-nerd
 ttf-dejavu-nerd

@@ -1,0 +1,34 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+format = '$directory[➤](fg:1) '
+right_format = '$git_status $git_state$git_branch'
+
+# Starts the prompt on a newline with a leading character
+[character]
+disabled = true
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# shows the working directory before the caret
+[directory]
+disabled = false
+style = 'fg:3'
+truncation_length = 1 # the max number of directories to show
+
+[git_branch]
+format = '[$branch(:$remote_branch)]($style) $symbol'
+style = 'fg:3'
+symbol = '🌱'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+style = 'fg:1'
+deleted = 'd'
+modified = 'm'
+renamed = 'r'

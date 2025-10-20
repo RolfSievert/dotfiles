@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="arrow"
+# ZSH_THEME="arrow"
 
 # Set colorscheme from wal
 (cat ~/.cache/wal/sequences &)
@@ -66,10 +66,9 @@ ZSH_THEME="arrow"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  # git
 )
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -100,80 +99,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias nv='nvim'
+source $ZSH/oh-my-zsh.sh
+source $HOME/.shell/user_commands.bash
+source $HOME/.shell/user_aliases.sh
+
+# Source local (private) environment variables if they exist.
+if [ -f ~/.user_environment_variables ]; then
+  source ~/.user_environment_variables
+fi
 
 # cowsay
 #python3 .scripts/cowsay/cowsay.py | cowsay -f moose
 
-# Show todolist
-# todolist l
-
 # Set vim as editor
 export EDITOR=nvim
 
-# Modified version where you can press
-#   - CTRL-O to open with `open` command,
-#   - CTRL-E or Enter key to open with the $EDITOR
-fo() {
-  local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --expect=ctrl-o,ctrl-e))
-  key=$(head -1 <<< "$out")
-  file=$(head -2 <<< "$out" | tail -1)
-  if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || mimeopen "$file" & disown
-  fi
-}
-
-vf() {
-  local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --expect=ctrl-o,ctrl-e))
-  key=$(head -1 <<< "$out")
-  file=$(head -2 <<< "$out" | tail -1)
-  if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || nvim "$file"
-  fi
-}
-
-folder_items() {
-    # TODO print tree structure
-    sudo du -ax --block-size=1M "$1" | sort -n | tail -50
-}
-
-sum_sizes() {
-    numfmt --from=auto | awk '{s+=$1} END {print s}' | numfmt --to=iec-i
-}
-
-package_sizes_all() {
-    sizes=$(pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h)
-    # extract sizes without byte suffix
-    total=$(echo "$sizes" | cut -d' ' -f1 | cut -d'B' -f1 | sum_sizes)
-
-    echo "$sizes\n\nTotal: ${total}B"
-}
-
-package_sizes() {
-    sizes=$(pacman -Qei | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h)
-    # extract sizes without byte suffix
-    total=$(echo "$sizes" | cut -d' ' -f1 | cut -d'B' -f1 | sum_sizes)
-
-    echo "$sizes\n\nTotal: ${total}B"
-}
-
-nn() {
-    gnome-terminal --working-directory=$(pwd) >/dev/null &
-}
-
-ptop() {
-    sudo powertop --auto-tune -r && firefox powertop.html && rm powertop.html
-}
-
 # GCC colors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# TODO add separate file for including programs and aliases etc
-
-# Path to ruby executables
-PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # Path to flutter and other flutter settings
 # TODO use alias instead to not add unnecessary files in folder
@@ -182,14 +124,8 @@ if ! command -v flutter &> /dev/null; then
 fi
 
 export CHROME_EXECUTABLE=brave # used by flutter
-
-alias aseprite="steam steam://rungameid/431730"
-
 export PATH="$PATH:$HOME/.spicetify"
-
-# Source local (private) environment variables if they exist.
-if [ -f ~/.local_environment_variables ]; then
-  source ~/.local_environment_variables
-fi
-
 export PATH="$PATH:$HOME/.config/tmux/"
+
+# load starship (shell customization)
+eval "$(starship init zsh)"

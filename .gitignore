@@ -1,6 +1,7 @@
 *
-!home
+!home/
 !home/.config/
+!home/.config/starship.toml
 !home/.config/i3
 !home/.config/i3/**
 !home/.config/polybar
@@ -13,10 +14,12 @@
 !home/.config/nvim/**
 !home/.config/tmux
 !home/.config/tmux/**
-!/home/.scripts/
-!/home/.scripts/**
+!home/.scripts/
+!home/.scripts/**
+!home/.shell/
+!home/.shell/**
 
 home/.scripts/cowsay/joke-dataset
 home/.config/polybar/launch_log.txt
 home/.config/nvim/lazy-lock.json
-home/.local_environment_variables
+home/.user_environment_variables
