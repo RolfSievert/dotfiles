@@ -30,7 +30,7 @@ nautilus
 # printscreen
 flameshot
 # Creates colorschemes based on background
-python-pywal
+python-pywal16
 # Command line interface to controlling music etc
 playerctl
 # emoji picker
