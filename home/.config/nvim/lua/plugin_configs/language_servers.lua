@@ -13,6 +13,7 @@ local language_servers = {
   'marksman',
   'jsonls',
   'texlab',
+  'just',
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
