@@ -27,6 +27,8 @@
 !home/.scripts/**
 !home/.shell/
 !home/.shell/**
+!home/.system/
+!home/.system/**
 
 home/.scripts/cowsay/joke-dataset
 home/.config/polybar/launch_log.txt
