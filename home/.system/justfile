@@ -1,0 +1,35 @@
+#
+# A command runner to help setup and maintain a linux arch-based system.
+#
+
+# General TODOs:
+# - add pkgbuild file for https://github.com/Toinane/colorpicker
+
+default: check
+
+[private]
+check-symlinked:
+    # we don't know if we're in a symlinked folder or not, so cd to physical location
+    cd "$(readlink -f .)" && cd ..
+
+# Check the system health
+check:
+    @if ! ./install.sh --dry-run; then \
+        echo; \
+        echo "System is not fully set up. Run \`just install\` to go through the installer (it will ask for permission for each action)."; \
+    else \
+        echo "System is up to date!"; \
+    fi
+
+# Runs through system setup
+install:
+    @if ! ./install.sh; then \
+        echo; \
+        echo "Setup failed!"; \
+    else \
+        echo; \
+        echo "Setup done."; \
+    fi
+
+clean:
+    # TODO: add clean system script

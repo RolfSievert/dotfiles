@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Install
+Type = Package
+Target = *
+
+[Action]
+Description = Track explicitly installed package %P in custom package file
+When = PostTransaction
+Exec = ${HOME}/.system/packages/add_package.sh ${HOME}/.system/packages/general.txt

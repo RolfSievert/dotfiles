@@ -23,25 +23,6 @@ then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-# Install Plug for nvim
-read -p "Install Plug for neovim?" -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-: ' Not needed since nvim has link within its init
-# Link vimrc to .config/nvim/init.vim
-if [ ! -d ~/.config/nvim ]; then
-    mkdir ~/.config/nvim;
-fi
-ln ~/.vimrc ~/.config/nvim/init.vim
-'
-
-# Install rmarkdown with R
-#R install.packages("rmarkdown")
-
 # Start services
 echo Services:
 ls ~/.scripts/system/services/
