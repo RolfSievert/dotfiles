@@ -14,6 +14,7 @@ local language_servers = {
   'jsonls',
   'texlab',
   'just',
+  'bashls', -- requires shellcheck to get linting working
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)
