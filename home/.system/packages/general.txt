@@ -53,3 +53,5 @@ mpv
 hyperfine
 # maths for the terminal
 bc
+# install python tools as executables
+python-pipx

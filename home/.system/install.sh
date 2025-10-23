@@ -2,11 +2,9 @@
 
 # TODO:
 # - new versions of pkgbuilds based on github
-# - if pacman install hook is active
 # - memory allocation status
 # - check that config and all such files are symlinked to home dir
-# - copy pacman install hooks (that adds new packages to the general.txt file in packages)
-# - list and install package files
+# - add pipx and flathub package lists? How to make the correct installer run them?
 
 ROOT=$(dirname "$0")
 SCRIPTS="$ROOT/scripts"
