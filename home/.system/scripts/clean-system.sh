@@ -1,22 +1,26 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# TODO:
+# - add dry run flag?
+
 sudo true
 
 # Size of package including dependencies not used by other packages
 package_size() {
-    pacman -Rs --print-format '%s' $1 | awk '{size+=$1} END {print size/1048576}'
+    pacman -Rs --print-format '%s' "$1" | awk '{size+=$1} END {print size/1048576}'
 }
 sum_package_sizes() {
     SIZE=0
     for var in "$@"; do
-        SIZE=$SIZE+$(package_size $var)
+        SIZE=$SIZE+$(package_size "$var")
     done
-    echo $SIZE
+    echo "$SIZE"
 }
 
 if ! [ -z "$(pacman -Qtdq)" ]; then
     # -n flag: do not save important configuration files
     echo Removing unused orphans...
-    sudo pacman -Rns $(pacman -Qtdq)
+    sudo pacman -Rns "$(pacman -Qtdq)"
 fi
 
 # Clear journal
@@ -26,7 +30,7 @@ sudo journalctl --vacuum-time=7d
 # TODO? Remove broken symlinks, can be dangerous
 
 # Stores result in $REPLY
-read -p "Do you want to remove uninstalled cached packages? " -r
+read -p "Do you want to remove uninstalled cached packages? " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Remove not installed cached packages
     # The extra 'c' ensures nothing is left in cache
@@ -35,14 +39,14 @@ fi
 
 # Remove cashed packages except the most recent ones
 # removal candidates: paccache -dk1
-read -p "Do you want to remove cached packages (except the latest versions)? " -r
+read -p "Do you want to remove cached packages (except the latest versions)? " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo paccache -rk1
 fi
 paccache -dk1
 
-CACHE_SPACE=`sudo du -sh ~/.cache/`
-echo ~/.cache/ occupies $CACHE_SPACE
+CACHE_SPACE=$(sudo du -sh ~/.cache/)
+echo ~/.cache/ occupies "$CACHE_SPACE"
 read -p "Do you wish to clean cache? " -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Remove not installed cashed packages

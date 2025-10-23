@@ -32,4 +32,4 @@ install:
     fi
 
 clean:
-    # TODO: add clean system script
+    @./scripts/clean-system.sh
