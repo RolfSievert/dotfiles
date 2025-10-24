@@ -5,8 +5,14 @@
 # - memory allocation status
 # - check that config and all such files are symlinked to home dir
 # - add pipx and flathub package lists? How to make the correct installer run them?
+# - summarize found issues and show at end if dry run
+# - add colors:
+#   - issues headings (like uninstalled packages list): warning / orange
+#   - actions like copying files: info / blue
+#   - unfocused test: gray
 
 ROOT=$(dirname "$0")
+DOTFILES_ROOT="$ROOT/.."
 SCRIPTS="$ROOT/scripts"
 HOOKS="$ROOT/pacman_hooks"
 GENERATED_HOOKS="$ROOT/.generated_hooks"
@@ -145,6 +151,99 @@ for pack in "$PACKAGES_DIR"/*.txt; do
         yay -S "${uninstalled_packages[*]}"
     fi
 done
+
+# Check that all files are symlinked
+readarray -t dotfiles <<< "$(ls -A "$DOTFILES_ROOT")"
+missing_symlinks=()
+for file in "${dotfiles[@]}"; do
+    symlink_path="$HOME/$(basename "$file")"
+    src_path="$DOTFILES_ROOT/$file"
+    if ! [ -L "$symlink_path" ]; then
+        missing_symlinks+=("$(realpath "$src_path")")
+    elif [[ "$(realpath "$symlink_path")" != "$(realpath "$src_path")" ]]; then
+        # if the symlink points to another path, add that as well
+        missing_symlinks+=("$(realpath "$src_path")")
+    fi
+done
+if [[ ${#missing_symlinks[@]} -gt 0 ]]; then
+    found_issues=1
+
+    echo
+    echo "Missing symlinks in '$HOME':"
+    for file in "${missing_symlinks[@]}"; do
+        file_type="file"
+        if [[ -d "$file" ]]; then
+            file_type="directory"
+        fi
+        echo " - $(basename "$file") ($file_type)"
+    done
+
+    if ! (( dry_run )); then
+        echo
+        read -p "Symlink files & directories to '$HOME'? " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            for file in "${missing_symlinks[@]}"; do
+                symlink_path="$HOME/$(basename "$file")"
+
+                # symlink file
+                if [[ -f "$file" ]]; then
+                    if [[ -L "$symlink_path" ]]; then
+                        echo
+                        read -p "A symlink already exists at '$symlink_path' (-> $(realpath "$symlink_path")), replace it? " -n 1 -r
+                        echo
+                        if [[ $REPLY =~ ^[Yy]$ ]]; then
+                            ln -s -f --no-target-directory "$file" "$symlink_path"
+                        else
+                            continue
+                        fi
+                    elif [[ -f "$symlink_path" ]]; then
+                        echo
+                        read -p "File already exists at '$symlink_path', replace? Cannot be undone! " -n 1 -r
+                        echo
+                        if [[ $REPLY =~ ^[Yy]$ ]]; then
+                            ln -s -f "$file" "$symlink_path"
+                        else
+                            continue
+                        fi
+                    else
+                        ln -s "$file" "$symlink_path"
+                    fi
+                # symlink directory
+                elif [[ -d "$file" ]]; then
+                    if [[ -L "$symlink_path" ]]; then
+                        echo
+                        read -p "A symlink already exists at '$symlink_path' (-> $(realpath "$symlink_path")), replace it? " -n 1 -r
+                        echo
+                        if [[ $REPLY =~ ^[Yy]$ ]]; then
+                            ln -s -f --no-target-directory "$file" "$symlink_path"
+                        else
+                            continue
+                        fi
+                    elif [[ -d "$symlink_path" ]]; then
+                        echo
+                        read -p "Directory already exists at '$symlink_path', do you want to merge directories (overlapping files will be removed)? Cannot be undone! " -n 1 -r
+                        echo
+                        if [[ $REPLY =~ ^[Yy]$ ]]; then
+                            # copy all contents to directory to be symlinked without overwriting existing files
+                            rsync -r --ignore-existing "$symlink_path" "$DOTFILES_ROOT"
+                            # remove old directory after merge
+                            rm -r "$symlink_path"
+                            # symlink directory with files and directories from the original folder merged in
+                            ln -s --no-target-directory "$file" "$symlink_path"
+                        else
+                            continue
+                        fi
+                    else
+                        ln -s --no-target-directory "$file" "$symlink_path"
+                    fi
+                fi
+
+                echo "Symlinked $symlink_path -> $file"
+            done
+        fi
+    fi
+fi
 
 
 # Cleanup
