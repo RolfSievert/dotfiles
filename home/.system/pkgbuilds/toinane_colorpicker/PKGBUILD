@@ -1,0 +1,51 @@
+# Maintainer: Rolf Sievert
+# AppImage PKGBUILD guide: https://wiki.archlinux.org/title/User:SergeyK/AppImage_package_guidelines
+
+_pkgname=colorpicker
+pkgname="${_pkgname}"
+pkgver=2.3.0
+pkgrel=1                      # increase when you need to rebuild without upstream changes
+pkgdesc="A mininal but complete colorpicker desktop app"
+arch=('x86_64')
+url="https://github.com/Toinane/colorpicker"
+license=('GPL-3.0')
+depends=('zlib' 'fuse2')
+options=(!strip) # only build a single package
+_appimage="Colorpicker-${pkgver}.AppImage"
+source=(
+    "https://github.com/Toinane/colorpicker/releases/download/${pkgver}/${_appimage}"
+    "https://raw.githubusercontent.com/Toinane/colorpicker/${pkgver}/LICENSE"
+)
+noextract=("${_appimage}")
+sha256sums=(
+    '39a595c8b66d195f538f4294cd466c19250c510d0878993cb07d098845f3c2d8'
+    '9a9e1baf800576dd016c711db3f4ce98647145ea2685e92894be42596c0d2c55'
+)
+
+prepare() {
+    chmod +x "${_appimage}"
+    ./"${_appimage}" --appimage-extract
+}
+
+
+package() {
+    # AppImage
+    install -Dm755 "${srcdir}/${_appimage}" "${pkgdir}/opt/${pkgname}/${pkgname}.AppImage"
+    install -Dm644 "${srcdir}/LICENSE" "${pkgdir}/opt/${pkgname}/LICENSE"
+
+    # Desktop file
+    install -Dm644 "${srcdir}/squashfs-root/${_pkgname}-app.desktop"\
+            "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
+
+    # Icon images
+    install -dm755 "${pkgdir}/usr/share/"
+    cp -a "${srcdir}/squashfs-root/usr/share/icons" "${pkgdir}/usr/share/"
+
+    # Symlink executable
+    install -dm755 "${pkgdir}/usr/bin"
+    ln -s "/opt/${pkgname}/${pkgname}.AppImage" "${pkgdir}/usr/bin/${_pkgname}"
+
+    # Symlink license
+    install -dm755 "${pkgdir}/usr/share/licenses/${pkgname}/"
+    ln -s "/opt/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname"
+}
