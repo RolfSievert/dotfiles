@@ -180,7 +180,7 @@ if [[ ${#missing_symlinks[@]} -gt 0 ]]; then
 
     if ! (( dry_run )); then
         echo
-        read -p "Symlink files & directories to '$HOME'? " -n 1 -r
+        read -p "Symlink files & directories to '$HOME/'? " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             for file in "${missing_symlinks[@]}"; do
