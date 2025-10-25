@@ -25,8 +25,20 @@ sha256sums=(
 prepare() {
     chmod +x "${_appimage}"
     ./"${_appimage}" --appimage-extract
-}
 
+    # Replace Exec with installed program name
+    sed -i \
+        's/^Exec=.*/Exec=colorpicker %U/' \
+        "${srcdir}/squashfs-root/${_pkgname}-app.desktop"
+
+    # For some reason the icons folder has different permissions than the install
+    # directory. Set the correct permissions before installing icons, otherwise the
+    # desktop shortcut icon won't show.
+    _icons_permissions=$(stat -c '%a' "/usr/share/icons")
+    chmod -R "${_icons_permissions}" "${srcdir}/squashfs-root/usr/share/icons"
+
+    # TODO: for some reason the desktop icon still won't show (in Gnome at least)
+}
 
 package() {
     # AppImage
@@ -34,8 +46,9 @@ package() {
     install -Dm644 "${srcdir}/LICENSE" "${pkgdir}/opt/${pkgname}/LICENSE"
 
     # Desktop file
-    install -Dm644 "${srcdir}/squashfs-root/${_pkgname}-app.desktop"\
-            "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
+    install -Dm644 \
+        "${srcdir}/squashfs-root/${_pkgname}-app.desktop" \
+        "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
 
     # Icon images
     install -dm755 "${pkgdir}/usr/share/"
