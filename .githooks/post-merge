@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# post-merge hook – runs after a merge (including a normal `git pull`)
+
+echo "🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧"
+echo "🔧 Running system check on successful merge...🔧"
+echo "🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧"
+
+SYSTEM_SETUP_ROOT="$(git rev-parse --show-toplevel)/home/.system"
+
+# spawn subshell that doesn't affect the working directory
+( cd "$SYSTEM_SETUP_ROOT" && just check )

@@ -3,7 +3,8 @@
 #
 
 # General TODOs:
-# - add pkgbuild file for https://github.com/Toinane/colorpicker
+# - make `just check` check if custom PKGBUILDs are installed
+# - make `just check` check if PKGBUILD files linking to github are latest version
 
 default: check
 

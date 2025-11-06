@@ -1,5 +1,7 @@
 *
 !.gitignore
+!.githooks/
+!.githooks/**
 !home/
 !home/.zshrc
 !home/.clang-format

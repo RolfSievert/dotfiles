@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
 # TODO:
-# - new versions of pkgbuilds based on github
 # - memory allocation status
-# - check that config and all such files are symlinked to home dir
 # - add pipx and flathub package lists? How to make the correct installer run them?
-# - summarize found issues and show at end if dry run
 # - add colors:
 #   - issues headings (like uninstalled packages list): warning / orange
 #   - actions like copying files: info / blue
@@ -47,6 +44,7 @@ done
 # Update outdated pacman hooks
 read -r -a outdated_hooks <<< "$("$SCRIPTS"/directory_diff.sh "$GENERATED_HOOKS" "$HOOKS_DESTINATION")"
 if [[ ${#outdated_hooks[@]} -gt 0 ]]; then
+    echo
     echo "Outdated pacman hooks:"
     for f in "${outdated_hooks[@]}"; do
         printf " - %s" "$f"
@@ -82,6 +80,7 @@ read -r -a missing_hooks <<< "$("$SCRIPTS"/files_not_in_directory.sh "$HOOKS" "$
 
 # Install pacman hooks
 if [[ ${#missing_hooks[@]} -gt 0 ]]; then
+    echo
     echo "Missing pacman hooks:"
     for f in "${missing_hooks[@]}"; do
         printf " - %s" "$f"
