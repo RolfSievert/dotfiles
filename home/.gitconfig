@@ -9,7 +9,5 @@
     ch = cherry-pick
     br = branch
     pullr = pull --recurse-submodules
-[core]
-	hooksPath = ~/.githooks
 [init]
 	defaultBranch = main

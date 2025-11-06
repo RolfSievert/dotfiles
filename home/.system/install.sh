@@ -6,7 +6,7 @@
 # - add colors:
 #   - issues headings (like uninstalled packages list): warning / orange
 #   - actions like copying files: info / blue
-#   - unfocused test: gray
+#   - unfocused text: gray
 
 ROOT=$(dirname "$0")
 DOTFILES_ROOT="$ROOT/.."
@@ -15,6 +15,26 @@ HOOKS="$ROOT/pacman_hooks"
 GENERATED_HOOKS="$ROOT/.generated_hooks"
 HOOKS_DESTINATION="/etc/pacman.d/hooks"
 PACKAGES_DIR="$ROOT/packages"
+
+colored_text() {
+    # index can range from 0-7, mapping to terminal colorscheme
+    local index="$1"
+    shift
+    local txt="$*"
+    # use "\033[9<n>m" for normal colors (0-7)
+    # use "\033[3<n>m" for intense colors (8-15)
+    local color_start="\033[3${color_index}m"
+    local color_end="\033[0m"
+    printf '%b%s%b' "$color_start" "$txt" "$color_end"
+}
+
+warning_nl() {
+    local txt="$*"
+    local color_index="4"
+    # 38;5;<n>  → set foreground colour to colour number <n>
+    # 208 is a bright orange in the 256‑colour palette.
+    printf '%s\n' "$(colored_text "$color_index" "$txt")"
+}
 
 found_issues=0
 dry_run=0
@@ -134,7 +154,7 @@ for pack in "$PACKAGES_DIR"/*.txt; do
 
     count="${#uninstalled_packages[@]}"
     echo
-    echo "Package list '$(basename "$pack")' contains $count packages not installed on this system:"
+    warning_nl "Package list '$(basename "$pack")' contains $count packages not installed on this system:"
     for package in "${uninstalled_packages[@]}"; do
         echo " - $package"
     done
