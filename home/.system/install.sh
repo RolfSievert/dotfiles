@@ -9,32 +9,14 @@
 #   - unfocused text: gray
 
 ROOT=$(dirname "$0")
-DOTFILES_ROOT="$ROOT/.."
-SCRIPTS="$ROOT/scripts"
-HOOKS="$ROOT/pacman_hooks"
-GENERATED_HOOKS="$ROOT/.generated_hooks"
+DOTFILES_ROOT="$ROOT"/..
+SCRIPTS="$ROOT"/scripts
+HOOKS="$ROOT"/pacman_hooks
+GENERATED_HOOKS="$ROOT"/.generated_hooks
 HOOKS_DESTINATION="/etc/pacman.d/hooks"
-PACKAGES_DIR="$ROOT/packages"
+PACKAGES_DIR="$ROOT"/packages
 
-colored_text() {
-    # index can range from 0-7, mapping to terminal colorscheme
-    local index="$1"
-    shift
-    local txt="$*"
-    # use "\033[9<n>m" for normal colors (0-7)
-    # use "\033[3<n>m" for intense colors (8-15)
-    local color_start="\033[3${color_index}m"
-    local color_end="\033[0m"
-    printf '%b%s%b' "$color_start" "$txt" "$color_end"
-}
-
-warning_nl() {
-    local txt="$*"
-    local color_index="4"
-    # 38;5;<n>  → set foreground colour to colour number <n>
-    # 208 is a bright orange in the 256‑colour palette.
-    printf '%s\n' "$(colored_text "$color_index" "$txt")"
-}
+source "$ROOT"/scripts/colored-text.sh
 
 found_issues=0
 dry_run=0
@@ -46,7 +28,7 @@ fi
 # Create missing hooks destination directory
 if [[ ! -d "$HOOKS_DESTINATION" ]]; then
     echo
-    echo "Creating missing hooks directory $HOOKS_DESTINATION... (requires sudo)"
+    info_nl "Creating missing hooks directory $HOOKS_DESTINATION... (requires sudo)"
     sudo mkdir -p $HOOKS_DESTINATION
 fi
 
@@ -65,7 +47,7 @@ done
 read -r -a outdated_hooks <<< "$("$SCRIPTS"/directory_diff.sh "$GENERATED_HOOKS" "$HOOKS_DESTINATION")"
 if [[ ${#outdated_hooks[@]} -gt 0 ]]; then
     echo
-    echo "Outdated pacman hooks:"
+    warning_nl "Outdated pacman hooks:"
     for f in "${outdated_hooks[@]}"; do
         printf " - %s" "$f"
     done
@@ -86,10 +68,10 @@ if [[ ${#outdated_hooks[@]} -gt 0 ]]; then
                 if [[ -e "$src_path" ]]; then
                     # Copy preserving mode, timestamps, and (optionally) ownership
                     if sudo cp "$src_path" "$dst_path"; then
-                        printf " - ✅ Updated %s -> %s\n" "$src_origin" "$dst_path"
+                        info_nl "$(printf " - ✅ Updated %s -> %s" "$src_origin" "$dst_path")"
                     fi
                 else
-                    echo "⚠️ Skipping – failed to copy source: $src_origin"
+                    alert_nl "⚠️ Skipping – failed to copy source: $src_origin"
                 fi
             done
         fi
@@ -101,7 +83,7 @@ read -r -a missing_hooks <<< "$("$SCRIPTS"/files_not_in_directory.sh "$HOOKS" "$
 # Install pacman hooks
 if [[ ${#missing_hooks[@]} -gt 0 ]]; then
     echo
-    echo "Missing pacman hooks:"
+    warning_nl "Missing pacman hooks:"
     for f in "${missing_hooks[@]}"; do
         printf " - %s" "$f"
     done
@@ -122,10 +104,10 @@ if [[ ${#missing_hooks[@]} -gt 0 ]]; then
                 if [[ -e "$src_path" ]]; then
                     # Copy preserving mode, timestamps, and (optionally) ownership
                     if sudo cp "$src_path" "$dst_path"; then
-                        printf " - ✅ Copied %s -> %s\n" "$src_origin" "$dst_path"
+                        info_nl "$(printf " - ✅ Copied %s -> %s\n" "$src_origin" "$dst_path")"
                     fi
                 else
-                    echo "⚠️ Skipping – failed to copy source: $src_origin"
+                    alert_nl "⚠️ Skipping – failed to copy source: $src_origin"
                 fi
             done
         fi
@@ -188,7 +170,7 @@ if [[ ${#missing_symlinks[@]} -gt 0 ]]; then
     found_issues=1
 
     echo
-    echo "Missing symlinks in '$HOME':"
+    warning_nl "Missing symlinks in '$HOME':"
     for file in "${missing_symlinks[@]}"; do
         file_type="file"
         if [[ -d "$file" ]]; then
@@ -258,7 +240,7 @@ if [[ ${#missing_symlinks[@]} -gt 0 ]]; then
                     fi
                 fi
 
-                echo "Symlinked $symlink_path -> $file"
+                info_nl "Symlinked $symlink_path -> $file"
             done
         fi
     fi
