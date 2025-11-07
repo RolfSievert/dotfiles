@@ -6,4 +6,4 @@ Target = *
 [Action]
 Description = Track explicitly installed packages in custom package log
 When = PostTransaction
-Exec = ${HOME}/.system/packages/add_package.sh ${HOME}/.system/packages/general.txt
+Exec = ${HOME}/.system/packages/add_package.sh ${HOME}/.system/packages/yay_general.txt
