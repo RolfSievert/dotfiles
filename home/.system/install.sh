@@ -15,6 +15,7 @@ HOOKS="$ROOT"/pacman_hooks
 GENERATED_HOOKS="$ROOT"/.generated_hooks
 HOOKS_DESTINATION="/etc/pacman.d/hooks"
 PACKAGES_DIR="$ROOT"/packages
+GIT_HOOKS_PATH="$(git rev-parse --show-toplevel)"/.githooks
 
 source "$ROOT"/scripts/colored-text.sh
 
@@ -23,6 +24,26 @@ dry_run=0
 
 if [[ "${1:-}" == "--dry-run" ]]; then
     dry_run=1
+fi
+
+current_git_hooks_path=$(git config core.hooksPath)
+if [[ $(realpath "$current_git_hooks_path") != $(realpath "$GIT_HOOKS_PATH") ]]; then
+    echo
+    alert_nl "Git hooks are not setup, i.e. the system status will not be checked automatically when changes are made."
+
+    if [[ -n "$current_git_hooks_path" ]]; then
+        note_nl " - Current hook: $(realpath "$current_git_hooks_path")"
+    fi
+
+    if ! (( dry_run )); then
+        echo
+        read -p "Setup git hooks for this repo? " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            git config core.hooksPath "$GIT_HOOKS_PATH"
+            info_nl "New git hook directory: $(realpath GIT_HOOKS_PATH)"
+        fi
+    fi
 fi
 
 # Create missing hooks destination directory
@@ -138,7 +159,7 @@ for pack in "$PACKAGES_DIR"/*.txt; do
     echo
     warning_nl "Package list '$(basename "$pack")' contains $count packages not installed on this system:"
     for package in "${uninstalled_packages[@]}"; do
-        echo " - $package"
+        note_nl " - $package"
     done
 
     if (( dry_run )); then
