@@ -1,0 +1,52 @@
+# Maintainer: Rolf Sievert
+# AppImage PKGBUILD guide: https://wiki.archlinux.org/title/User:SergeyK/AppImage_package_guidelines
+# Sunshine releases page: https://github.com/LizardByte/Sunshine/releases
+
+_pkgname=sunshine
+_appname=Sunshine
+pkgname="${_pkgname}"
+pkgver=2025.924.154138
+_desktopname="dev.lizardbyte.app.${_appname}.desktop"
+pkgrel=1                      # increase when you need to rebuild without upstream changes
+pkgdesc="Self-hosted game stream host for Moonlight."
+arch=('x86_64')
+url="https://github.com/LizardByte/Sunshine"
+license=('GPL-3.0 LICENSE')
+depends=('zlib' 'fuse2')
+options=(!strip) # only build a single package
+_appimage="${_pkgname}.AppImage"
+source=(
+    "${url}/releases/download/v${pkgver}/${_appimage}"
+)
+noextract=("${_appimage}")
+sha256sums=(
+    '83921dd4e09fd517007150bc6a1a93b63db22a56f7da99025a3d7765c24b75fa'
+)
+
+prepare() {
+    chmod +x "${_appimage}"
+    ./"${_appimage}" --appimage-extract
+
+    # Replace Exec with installed program name
+    sed -i \
+        's/^Exec=.*/Exec=sunshine %U/' \
+        "${srcdir}/squashfs-root/${_desktopname}"
+}
+
+package() {
+    # AppImage
+    install -Dm755 "${srcdir}/${_appimage}" "${pkgdir}/opt/${pkgname}/${pkgname}.AppImage"
+
+    # Desktop file
+    install -Dm644 \
+        "${srcdir}/squashfs-root/${_desktopname}" \
+        "${pkgdir}/usr/share/applications/${_desktopname}"
+
+    # Icon images
+    install -dm755 "${pkgdir}/usr/share/"
+    cp -a "${srcdir}/squashfs-root/usr/share/icons" "${pkgdir}/usr/share/"
+
+    # Symlink executable
+    install -dm755 "${pkgdir}/usr/bin"
+    ln -s "/opt/${pkgname}/${pkgname}.AppImage" "${pkgdir}/usr/bin/${_pkgname}"
+}
