@@ -11,3 +11,5 @@
     pullr = pull --recurse-submodules
 [init]
 	defaultBranch = main
+[rebase]
+	autostash = true
