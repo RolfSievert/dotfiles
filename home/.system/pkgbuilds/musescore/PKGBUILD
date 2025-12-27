@@ -5,8 +5,8 @@
 _pkgname=musescore
 _appname=MuseScore
 pkgname="${_pkgname}"
-pkgver=4.6.3
-_buildid=252940956
+pkgver=4.6.5
+_buildid=253511702
 _desktopname="org.${_pkgname}.${_appname}4portable.desktop"
 pkgrel=1                      # increase when you need to rebuild without upstream changes
 pkgdesc="MuseScore is an open source and free music notation software. For support, contribution, bug reports, visit MuseScore.org. Fork and make pull requests!"
@@ -21,7 +21,7 @@ source=(
 )
 noextract=("${_appimage}")
 sha256sums=(
-    '61675085682c96c6190a4c67941e09a4c357e4218d52208886b2739ada49bb00'
+    '193daa0ea18bcfa90a47145a842275b8069b7b2b8d153e562b15fab5fe50fcaf'
 )
 
 prepare() {
@@ -32,8 +32,6 @@ prepare() {
     sed -i \
         's/^Exec=.*/Exec=musescore %U/' \
         "${srcdir}/squashfs-root/${_desktopname}"
-
-    # TODO: for some reason the desktop icon still won't show (in Gnome at least)
 }
 
 package() {
