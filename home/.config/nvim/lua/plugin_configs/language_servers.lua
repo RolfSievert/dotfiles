@@ -5,7 +5,7 @@ local language_servers = {
   'clangd',
   'ruff',
   'pyright',
-  'rust_analyzer',
+  'rust_analyzer', -- examples at: https://sharksforarms.dev/posts/neovim-rust/
   'csharp_ls',
   'biome',
   'ts_ls',
