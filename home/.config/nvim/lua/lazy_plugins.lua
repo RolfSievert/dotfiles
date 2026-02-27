@@ -1,5 +1,4 @@
 return {
-    'aperezdc/vim-template',
     'godlygeek/tabular',           -- Good tabs and spaces
     'artempyanykh/marksman',       -- Markdown compiler, syntax, etc
     'aperezdc/vim-template',       -- Use template for new files
@@ -21,4 +20,5 @@ return {
     require('lazy_plugins.incline'),
     require('lazy_plugins.noice'),
     require('lazy_plugins.codecompanion'),
+    require('lazy_plugins.avante'),
 }

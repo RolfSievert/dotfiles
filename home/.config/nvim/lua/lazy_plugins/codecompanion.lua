@@ -5,12 +5,7 @@ return {
   opts = {},
   dependencies = {
     "nvim-lua/plenary.nvim",
-    {
-      "nvim-treesitter/nvim-treesitter",
-      branch = 'master',
-      lazy = false,
-      build = ":TSUpdate"
-    },
+    "nvim-treesitter/nvim-treesitter",
     {
       -- Optional: markdown formatting in chat
       "MeanderingProgrammer/render-markdown.nvim",
