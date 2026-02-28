@@ -2,12 +2,12 @@
 -- config list here: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 local language_servers = {
   'dartls',
-  'clangd',
-  'ruff',
-  'pyright',
+  'clangd',        -- c++ lsp
+  'ty',            -- python type checker and lsp
+  'ruff',          -- python linter and formatter
   'rust_analyzer', -- examples at: https://sharksforarms.dev/posts/neovim-rust/
   'csharp_ls',
-  'biome',
+  'biome',         -- web formatter, linter, toolchain
   'ts_ls',
   'cssls',
   'marksman',
