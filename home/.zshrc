@@ -66,7 +66,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  # git
+  fzf # fuzzy search for reverse search etc
+  z # quickly jump to directories, use CTRL+T for file search and ALT+C for jumping to directories
 )
 
 
