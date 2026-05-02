@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # post-merge hook – runs after a merge (including a normal `git pull`)
 
+echo
+echo
 echo "🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧"
 echo "🔧 Running system check on successful merge...🔧"
 echo "🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧🔧"
