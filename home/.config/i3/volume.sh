@@ -26,11 +26,17 @@ function get_default_sink {
 function get_device_name {
     # get line of with info of current card, and find the first device desription
     # after that line (which is the device name)
-    device_code=$(pactl get-default-sink | cut -f2 -d.)
-    card_line_number=$(pactl list cards | grep -n "\.${device_code}" | cut -f1 -d: | head -1)
-    device_lines=("$(pactl list cards | grep -n "device.description" | cut -f1 -d:)")
-    for device_line in "${device_lines[@]}"; do
-        if [ "$device_line" -gt "$card_line_number" ]; then
+    device_id=$(pactl get-default-sink | cut -f2 -d.)
+    # bluetooth devices may have ":" in their names which will be replaced with "_" in pactl output
+    device_id_cleaned="${device_id//:/_}"
+    # find the device in the pactl info dump
+    device_line_number=$(pactl list cards | grep -n "\.${device_id_cleaned}" | cut -f1 -d: | head -1)
+    mapfile -t description_lines < <(
+        pactl list cards | grep -n "device.description" | cut -f1 -d:
+    )
+    for device_line in "${description_lines[@]}"; do
+        # the first description line after the device ID contains the device's name
+        if [ "$device_line" -gt "$device_line_number" ]; then
             pactl list cards \
                 | sed "${device_line}q;d" \
                 | grep -o '".*"' \
@@ -40,12 +46,9 @@ function get_device_name {
 }
 
 function send_notification() {
-    echo send notification
     volume=$(get_volume "$1")
-    echo vol $volume
 
     device_name=$(get_device_name)
-    echo $device_name
 
     # Set title
     if [[ "$(is_mute "$1")" == *"yes"* ]]; then
