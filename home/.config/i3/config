@@ -241,7 +241,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 # Quick start browser
-bindsym $mod+c exec brave
+bindsym $mod+b exec brave
 # Lock screen
 bindsym Control+$mod+l exec $HOME/.scripts/lock.sh
 # Rofi
@@ -278,7 +278,7 @@ bindsym $mod+m exec $SHELL -c $HOME/.scripts/settings-menu.sh
 bindsym $mod+t exec $SHELL -c $HOME/.scripts/theme-menu.sh
 
 # Switch keyboard layout, with arguments as alternatives
-bindsym $mod+b exec $SHELL -c "$HOME/.config/i3/switch_keyboard_layout.sh se us"
+bindsym $mod+c exec $SHELL -c "$HOME/.config/i3/switch_keyboard_layout.sh se us"
 
 # Screen capture
 bindsym Print exec flameshot gui
