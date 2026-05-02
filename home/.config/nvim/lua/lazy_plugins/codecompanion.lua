@@ -5,12 +5,7 @@ return {
   opts = {},
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    {
-      -- Optional: markdown formatting in chat
-      "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "codecompanion" },
-    },
+    "MeanderingProgrammer/render-markdown.nvim", -- NOTE: markdown formatting for this plugin is enabled in the render-markdown config
     {
       -- Optional: show diffs
       "echasnovski/mini.diff",

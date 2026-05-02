@@ -8,13 +8,13 @@ local language_servers = {
   'rust_analyzer', -- examples at: https://sharksforarms.dev/posts/neovim-rust/
   'csharp_ls',
   'biome',         -- web formatter, linter, toolchain
-  'ts_ls',
+  'ts_ls',         -- typescript
   'cssls',
-  'marksman',
   'jsonls',
   'texlab',
   'just',
   'bashls', -- requires shellcheck to get linting working
+  'markdown_oxide' -- markdown, navigation, rename, and links capabilities
 }
 
 -- usually don't care about the code below here (unless you need special configuration, see below)

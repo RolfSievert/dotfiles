@@ -70,6 +70,7 @@ return {
     "folke/snacks.nvim",             -- for input provider snacks
     "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua",        -- for providers='copilot'
+    "MeanderingProgrammer/render-markdown.nvim", -- NOTE: markdown formatting for this plugin is enabled in the render-markdown config
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
@@ -86,14 +87,6 @@ return {
           use_absolute_path = true,
         },
       },
-    },
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
     },
   },
 }
