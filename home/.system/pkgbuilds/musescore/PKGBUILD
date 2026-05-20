@@ -5,8 +5,8 @@
 _pkgname=musescore
 _appname=MuseScore
 pkgname="${_pkgname}"
-pkgver=4.6.5
-_buildid=253511702
+pkgver=4.7.1
+_buildid=260518142
 _desktopname="org.${_pkgname}.${_appname}4portable.desktop"
 pkgrel=1                      # increase when you need to rebuild without upstream changes
 pkgdesc="MuseScore is an open source and free music notation software. For support, contribution, bug reports, visit MuseScore.org. Fork and make pull requests!"
@@ -21,7 +21,7 @@ source=(
 )
 noextract=("${_appimage}")
 sha256sums=(
-    '193daa0ea18bcfa90a47145a842275b8069b7b2b8d153e562b15fab5fe50fcaf'
+    '20fad88750d00b701d06525f2b09a99e78656d58b302014b39f358cccf58b5cb'
 )
 
 prepare() {
