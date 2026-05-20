@@ -32,5 +32,9 @@ install:
         echo "Setup done."; \
     fi
 
+# Install target pkgbuild in ./pkgbuilds/[application_name]/
+install-pkgbuild application_name:
+    (cd pkgbuilds/{{ application_name }}; makepkg -sic)
+
 clean:
     @./scripts/clean-system.sh
