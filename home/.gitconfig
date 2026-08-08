@@ -3,6 +3,7 @@
 
 [alias]
     st = status
+    diffs = diff --staged
     co = checkout
     cop = "!f() { git checkout \"$1\" && git pull; }; f"
     fco = "!f() { git fetch && git checkout \"$1\"; }; f"
