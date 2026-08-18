@@ -29,6 +29,11 @@ is_adapter_powered() {
     busctl get-property org.bluez /org/bluez/hci0 org.bluez.Adapter1 Powered | grep -q true
 }
 
+if [[ -z "$devices" ]]; then
+    echo "No bluetooth device"
+    exit 0
+fi
+
 if is_adapter_powered; then
     result="󰂯" 
 
